@@ -97,7 +97,7 @@ var (
 	titleLanguageRE      = regexp.MustCompile(`itemprop=.url.>([^<]+)</a>`)
 	titleNationalitiesRE = regexp.MustCompile(`href="/country/[^"]+"[^>]+>([^<]+)`)
 	titleDescriptionRE   = regexp.MustCompile(`<p itemprop="description">([^<]+)`)
-	titlePosterRE        = regexp.MustCompile(`(?s)id="img_primary".* href="/media/(rm\d+).*?src="([^"]+)`)
+	titlePosterRE        = regexp.MustCompile(`(?s)href="/media/(rm\d+).*?src="([^"]+)"\s*itemprop="image"`)
 )
 
 // Parse parses a Title from its page.
@@ -127,9 +127,9 @@ func (t *Title) Parse(page []byte) error {
 	}
 
 	// Year
-	s = titlePubYearRE.FindSubmatch(page)
+	s = titleProdYearRE.FindSubmatch(page)
 	if s == nil {
-		s = titleProdYearRE.FindSubmatch(page)
+		s = titlePubYearRE.FindSubmatch(page)
 	}
 	if s != nil {
 		t.Year, _ = strconv.Atoi(string(s[1])) // Regexp matches digits.
