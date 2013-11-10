@@ -1,0 +1,4 @@
+cron:
+- description: bi-daily test
+  url: /tests
+  schedule: every 48 hours

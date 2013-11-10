@@ -1,0 +1,24 @@
+application: movie-db-api
+version: go
+runtime: go
+api_version: go1
+
+handlers:
+- url: /
+  static_files: index.htm
+  upload: index.htm
+
+- url: /find
+  script: _go_app
+
+- url: /title/tt\d+
+  script: _go_app
+
+- url: /tests
+  script: _go_app
+  login: admin
+  secure: always
+
+skip_files:
+- ^(.*/)?\..*
+- ^(.*/)?.*\.sh$

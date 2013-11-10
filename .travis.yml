@@ -5,3 +5,4 @@ go:
 
 install:
   - go get github.com/StalkR/httpcache
+  - rm -rf appengine examples
