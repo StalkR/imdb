@@ -16,4 +16,3 @@ handlers:
 
 skip_files:
 - ^(.*/)?\..*
-- ^(.*/)?.*\.sh$
