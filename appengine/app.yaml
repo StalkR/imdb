@@ -14,11 +14,6 @@ handlers:
 - url: /title/tt\d+
   script: _go_app
 
-- url: /tests
-  script: _go_app
-  login: admin
-  secure: always
-
 skip_files:
 - ^(.*/)?\..*
 - ^(.*/)?.*\.sh$
