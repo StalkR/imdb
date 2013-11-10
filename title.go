@@ -12,29 +12,29 @@ import (
 
 // A Title represents an IMDb title (movie, series, etc.).
 type Title struct {
-	ID            string
-	URL           string
-	Name          string
-	Type          string
-	Year          int
-	Rating        string
-	Duration      string
-	Directors     []Name
-	Writers       []Name
-	Actors        []Name
-	Genres        []string
-	Languages     []string
-	Nationalities []string
-	Description   string
-	Poster        Media
-	AKA           []string
+	ID            string   `json:",omitempty"`
+	URL           string   `json:",omitempty"`
+	Name          string   `json:",omitempty"`
+	Type          string   `json:",omitempty"`
+	Year          int      `json:",omitempty"`
+	Rating        string   `json:",omitempty"`
+	Duration      string   `json:",omitempty"`
+	Directors     []Name   `json:",omitempty"`
+	Writers       []Name   `json:",omitempty"`
+	Actors        []Name   `json:",omitempty"`
+	Genres        []string `json:",omitempty"`
+	Languages     []string `json:",omitempty"`
+	Nationalities []string `json:",omitempty"`
+	Description   string   `json:",omitempty"`
+	Poster        Media    `json:",omitempty"`
+	AKA           []string `json:",omitempty"`
 }
 
 // String formats a Title.
 func (t *Title) String() string {
 	name := t.Name
 	if t.Year != 0 {
-		name = fmt.Sprintf("%s (%i)", name, t.Year)
+		name = fmt.Sprintf("%s (%d)", name, t.Year)
 	}
 	return fmt.Sprintf("IMDb %s: %s", t.ID, name)
 }

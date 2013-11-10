@@ -10,10 +10,10 @@ import (
 // A Media represents an IMDb media (poster, photos, etc.).
 // It references to a Title by its ID.
 type Media struct {
-	ID         string
-	TitleID    string
-	URL        string
-	ContentURL string
+	ID         string `json:",omitempty"`
+	TitleID    string `json:",omitempty"`
+	URL        string `json:",omitempty"`
+	ContentURL string `json:",omitempty"`
 }
 
 // String formats a Media.

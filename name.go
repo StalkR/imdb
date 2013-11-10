@@ -9,9 +9,9 @@ import (
 
 // A Name represents an IMDb name (actor, director, writer, etc.).
 type Name struct {
-	ID       string
-	URL      string
-	FullName string
+	ID       string `json:",omitempty"`
+	URL      string `json:",omitempty"`
+	FullName string `json:",omitempty"`
 }
 
 // String formats a Name.
