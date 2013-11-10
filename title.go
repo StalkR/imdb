@@ -30,13 +30,48 @@ type Title struct {
 	AKA           []string `json:",omitempty"`
 }
 
-// String formats a Title.
+// String formats a Title on one line.
 func (t *Title) String() string {
 	name := t.Name
-	if t.Year != 0 {
+	if t.Year > 0 {
 		name = fmt.Sprintf("%s (%d)", name, t.Year)
 	}
-	return fmt.Sprintf("IMDb %s: %s", t.ID, name)
+	infos := []string{name}
+	if len(t.Genres) > 0 {
+		genres := t.Genres
+		if len(t.Genres) > 3 {
+			genres = genres[:3]
+		}
+		infos = append(infos, strings.Join(genres, ", "))
+	}
+	if len(t.Directors) > 0 {
+		var directors []string
+		for _, d := range t.Directors {
+			directors = append(directors, d.FullName)
+		}
+		if len(directors) > 2 {
+			directors = directors[:2]
+		}
+		infos = append(infos, strings.Join(directors, ", "))
+	}
+	if len(t.Actors) > 0 {
+		var actors []string
+		for _, a := range t.Actors {
+			actors = append(actors, a.FullName)
+		}
+		if len(actors) > 3 {
+			actors = actors[:3]
+		}
+		infos = append(infos, strings.Join(actors, ", "))
+	}
+	if t.Duration != "" {
+		infos = append(infos, t.Duration)
+	}
+	if t.Rating != "" {
+		infos = append(infos, t.Rating)
+	}
+	infos = append(infos, t.URL)
+	return strings.Join(infos, " - ")
 }
 
 var ttRE = regexp.MustCompile(`^tt\d+$`)
