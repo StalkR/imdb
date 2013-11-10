@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"regexp"
+	"time"
 
 	"appengine"
 	"appengine/urlfetch"
@@ -32,6 +33,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		b, err = title(c, id)
 		if err != nil {
+			c.Errorf("title: %v", err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
@@ -43,7 +45,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func title(c appengine.Context, id string) ([]byte, error) {
-	client := urlfetch.Client(c)
+	client := &http.Client{
+		Transport: &urlfetch.Transport{
+			Context:  c,
+			Deadline: 15 * time.Second,
+		},
+	}
 	t, err := imdb.NewTitle(client, id)
 	if err != nil {
 		return nil, err

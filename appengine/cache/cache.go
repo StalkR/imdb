@@ -20,7 +20,7 @@ func Get(c appengine.Context, key string) ([]byte, error) {
 	data, err := memcache.Get(c, key)
 	if err != nil {
 		if err != memcache.ErrCacheMiss {
-			c.Errorf("cache: error get: %v", err)
+			c.Errorf("cache: get: %v", err)
 		}
 		return nil, err
 	}
@@ -40,7 +40,7 @@ func SetExpire(c appengine.Context, key string, value []byte, expiration time.Du
 		Expiration: expiration,
 	}
 	if err := memcache.Set(c, item); err != nil {
-		c.Errorf("cache: error set: %v", err)
+		c.Errorf("cache: set: %v", err)
 		return err
 	}
 	return nil
