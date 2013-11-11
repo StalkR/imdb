@@ -53,7 +53,7 @@ func Set(c appengine.Context, key string, value []byte) error {
 // SetExpire sets a key to value with a given expiration.
 func SetExpire(c appengine.Context, key string, value []byte, expiration time.Duration) error {
 	// First layer: in-app memory cache.
-	inAppCache.Set(key, value)
+	inAppCache.SetExpire(key, value, expiration)
 	// Second layer: memcache.
 	item := &memcache.Item{
 		Key:        key,
