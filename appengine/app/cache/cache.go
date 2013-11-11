@@ -4,7 +4,7 @@ Package cache implements caching of bytes on AppEngine in three layers.
 It does three layers of caching from fastest to slowest:
  - in-app memory cache
  - memcache
- - datastore (not yet implemented)
+ - datastore
 
 If you only need an in-app memory cache, its implementation is exported so
 you can use it directly.
