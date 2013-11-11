@@ -16,6 +16,7 @@ import (
 	"time"
 
 	"appengine"
+	"appengine/datastore"
 	"appengine/memcache"
 )
 
@@ -25,23 +26,47 @@ var ErrCacheMiss = errors.New("cache: miss")
 // In-app memory cache.
 var inAppCache = NewAppCache()
 
+// An Item represents the internal type for items held in AppCache and datastore.
+type Item struct {
+	Value   []byte
+	Expires time.Time
+}
+
 // Get gets a value given a key.
 func Get(c appengine.Context, key string) ([]byte, error) {
 	// First layer: in-app memory cache.
 	value, err := inAppCache.Get(key)
 	if err == nil {
+		c.Infof("cache: in-app hit")
 		return value, nil
 	}
 	// Second layer: memcache.
 	item, err := memcache.Get(c, key)
 	if err == nil {
+		c.Infof("cache: memcache hit")
 		return item.Value, nil
 	}
 	if err != memcache.ErrCacheMiss {
-		c.Errorf("cache: get: %v", err)
+		c.Errorf("cache: memcache get: %v", err)
 		return nil, err
 	}
-	// TODO(StalkR): Third layer: datastore.
+	// Third layer: datastore.
+	k := datastore.NewKey(c, "Item", "Cache:"+key, 0, nil)
+	e := Item{}
+	err = datastore.Get(c, k, &e)
+	if err == nil {
+		if !e.Expires.IsZero() && e.Expires.Before(time.Now()) {
+			c.Infof("cache: miss")
+			return nil, ErrCacheMiss
+		}
+		c.Infof("cache: datastore hit")
+		return e.Value, nil
+	}
+	if err != datastore.ErrNoSuchEntity {
+		c.Errorf("cache: datastore get: %v", err)
+		return nil, err
+	}
+	c.Infof("cache: miss")
 	return nil, ErrCacheMiss
 }
 
@@ -61,9 +86,22 @@ func SetExpire(c appengine.Context, key string, value []byte, expiration time.Du
 		Expiration: expiration,
 	}
 	if err := memcache.Set(c, item); err != nil {
-		c.Errorf("cache: set: %v", err)
+		c.Errorf("cache: memcache set: %v", err)
 		return err
 	}
-	// TODO(StalkR): Third layer: datastore.
+	// Third layer: datastore.
+	// Datastore can save up to 1MB of []byte in an entity.
+	if len(value) >= 1<<20 {
+		return nil
+	}
+	k := datastore.NewKey(c, "Item", "Cache:"+key, 0, nil)
+	e := Item{Value: value}
+	if expiration > 0 {
+		e.Expires = time.Now().Add(expiration)
+	}
+	if _, err := datastore.Put(c, k, &e); err != nil {
+		c.Errorf("cache: datastore set: %v", err)
+		return err
+	}
 	return nil
 }

@@ -14,5 +14,10 @@ handlers:
 - url: /title/tt\d+
   script: _go_app
 
+- url: /cache/clean
+  script: _go_app
+  secure: always
+  login: admin
+
 skip_files:
 - ^(.*/)?\..*
