@@ -37,7 +37,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		cache.Set(c, "title:"+id, b)
+		cache.SetExpire(c, "title:"+id, b, 7*24*time.Hour)
 	}
 
 	w.Header().Set("Content-Type", "application/json")
