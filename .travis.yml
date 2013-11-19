@@ -3,6 +3,21 @@ language: go
 go:
   - 1.1
 
+before_install:
+  - pushd $HOME
+  - wget -nv http://googleappengine.googlecode.com/files/go_appengine_sdk_linux_amd64-1.8.8.zip
+  - unzip -q go_appengine_sdk_linux_amd64-1.8.8.zip
+  - popd
+
 install:
+  - go get -d -v . ./appengine ./examples && go build -v . ./appengine ./examples
   - go get github.com/StalkR/httpcache
-  - rm -rf appengine examples
+  - pushd appengine/app
+  - $HOME/go_appengine/goapp get -d -v ./... && $HOME/go_appengine/goapp build -v ./...
+  - popd
+
+script:
+  - go test -v . ./appengine ./examples
+  - pushd appengine/app
+  - $HOME/go_appengine/goapp test -v ./...
+  - popd
