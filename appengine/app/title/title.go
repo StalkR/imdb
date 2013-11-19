@@ -10,7 +10,7 @@ import (
 
 	"appengine"
 	"appengine/urlfetch"
-	"cache"
+	"github.com/StalkR/aecache"
 	"github.com/StalkR/imdb"
 )
 
@@ -29,7 +29,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	id := m[1]
 
 	c := appengine.NewContext(r)
-	b, err := cache.Get(c, "title:"+id)
+	b, err := aecache.Get(c, "title:"+id)
 	if err != nil {
 		b, err = title(c, id)
 		if err != nil {
@@ -37,7 +37,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		cache.SetExpire(c, "title:"+id, b, 7*24*time.Hour)
+		go aecache.Set(c, "title:"+id, b, 7*24*time.Hour)
 	}
 
 	w.Header().Set("Content-Type", "application/json")
