@@ -25,6 +25,9 @@ func NewTitle(c *http.Client, id string) (*imdb.Title, error) {
 	if err != nil {
 		return nil, err
 	}
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("%d: %s", resp.StatusCode, string(b))
+	}
 	var title imdb.Title
 	if err = json.Unmarshal(b, &title); err != nil {
 		return nil, err
@@ -44,6 +47,9 @@ func SearchTitle(c *http.Client, q string) ([]imdb.Title, error) {
 	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
+	}
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("%d: %s", resp.StatusCode, string(b))
 	}
 	var titles []imdb.Title
 	if err = json.Unmarshal(b, &titles); err != nil {
