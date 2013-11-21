@@ -86,3 +86,23 @@ func TestSearchTitlePositions(t *testing.T) {
 		}
 	}
 }
+
+func TestMachete(t *testing.T) {
+	title := "Machete Kills Again... In Space!"
+	r, err := SearchTitle(client, title)
+	if err != nil {
+		t.Errorf("SearchTitle(%s) error: %v", title, err)
+	} else {
+		if len(r) < 2 {
+			t.Errorf("SearchTitle(%s) len = %d; want %d", title, len(r), 1)
+		}
+		id := "tt2002719"
+		if r[0].ID != id {
+			t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, id)
+		}
+		id = "tt2002718"
+		if r[1].ID != id {
+			t.Errorf("SearchTitle(%s)[1] = %s; want %s", title, r[1].ID, id)
+		}
+	}
+}
