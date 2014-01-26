@@ -3,6 +3,7 @@ package imdb
 import (
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/StalkR/httpcache"
 )
@@ -12,10 +13,15 @@ import (
 // Otherwise a volatile memory cache is used.
 var client *http.Client
 
+var ttl = 24 * time.Hour
+
 func init() {
 	if _, err := os.Stat("cache"); err == nil {
-		client = httpcache.NewPersistentClient("cache")
+		client, err = httpcache.NewPersistentClient("cache", ttl)
+		if err != nil {
+			panic(err)
+		}
 	} else {
-		client = httpcache.NewVolatileClient()
+		client = httpcache.NewVolatileClient(ttl, 1024)
 	}
 }
