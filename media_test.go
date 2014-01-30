@@ -1,7 +1,7 @@
 package imdb
 
 import (
-	"reflect"
+	"fmt"
 	"testing"
 )
 
@@ -23,15 +23,15 @@ func TestMedia(t *testing.T) {
 				ID:         "rm1064868096",
 				TitleID:    "tt0167261",
 				URL:        "http://www.imdb.com/media/rm1064868096/tt0167261",
-				ContentURL: "http://ia.media-imdb.com/images/M/MV5BMTAyNDU0NjY4NTheQTJeQWpwZ15BbWU2MDk4MTY2Nw@@._V1._SX350_SY512_.jpg",
+				ContentURL: "http://ia.media-imdb.com/images/M/MV5BMTAyNDU0NjY4NTheQTJeQWpwZ15BbWU2MDk4MTY2Nw@@._V1_SX640_SY720_.jpg",
 			},
 		},
 	} {
 		got, err := NewMedia(client, tt.ID, tt.TitleID)
 		if err != nil {
 			t.Errorf("NewMedia(%s) error: %v", tt.ID, err)
-		} else if !reflect.DeepEqual(tt.want, *got) {
-			t.Errorf("NewMedia(%s) = %+v; want %+v", tt.ID, *got, tt.want)
+		} else {
+			diffStruct(t, fmt.Sprintf("NewMedia(%s)", tt.ID), tt.want, *got)
 		}
 	}
 }

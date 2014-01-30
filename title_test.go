@@ -1,7 +1,7 @@
 package imdb
 
 import (
-	"reflect"
+	"fmt"
 	"testing"
 )
 
@@ -29,7 +29,6 @@ func TestTitle(t *testing.T) {
 				},
 				Writers: []Name{
 					Name{ID: "nm0340894", URL: "http://www.imdb.com/name/nm0340894", FullName: "Sergio Grieco"},
-					Name{ID: "nm0739308", URL: "http://www.imdb.com/name/nm0739308", FullName: "Rafael Romero Marchent"},
 				},
 				Actors: []Name{
 					Name{ID: "nm0001886", URL: "http://www.imdb.com/name/nm0001886", FullName: "Howard Ross"},
@@ -47,7 +46,7 @@ func TestTitle(t *testing.T) {
 				Genres:        []string{"Crime", "Drama"},
 				Languages:     []string{"Italian"},
 				Nationalities: []string{"Italy", "France", "Spain"},
-				AKA:           []string{"Antimetopos me tin mafia", "El hombre que desafió a la organización", "L'homme qui défia l'organisation", "One Man Against the Organization"},
+				AKA:           []string{"Antimetopos me tin mafia", "El hombre que desafió a la organización", "L'homme qui défia l'organisation", "L'uomo che sfidò l'organizzazione", "One Man Against the Organization"},
 			},
 		},
 		{
@@ -89,7 +88,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"USA"},
 				Description:   "Earth is attacked by the Kulkus, a hostile alien breed infected by a lethal virus and needing human blood to develop an antidote. The worldwide governments negotiate with the humanoid ...",
 				Poster:        Media{ID: "rm3287190272", TitleID: "tt0437803", URL: "http://www.imdb.com/media/rm3287190272/tt0437803", ContentURL: "http://ia.media-imdb.com/images/M/MV5BMTk1MTA4NDMwMF5BMl5BanBnXkFtZTcwNTM2MTIzMg@@._V1_SY317_CR5,0,214,317_.jpg"},
-				AKA:           []string{"A Föld ostroma", "Alien Blood", "Alien Siege - Tod aus dem All", "Etat de siège", "O Perigo Alienígena", "Obca krew"},
+				AKA:           []string{"A Föld ostroma", "Alien Blood", "Alien Siege", "Alien Siege - Tod aus dem All", "Etat de siège", "O Perigo Alienígena", "Obca krew"},
 			},
 		},
 		{
@@ -99,7 +98,7 @@ func TestTitle(t *testing.T) {
 				URL:      "http://www.imdb.com/title/tt1179034",
 				Name:     "From Paris with Love",
 				Year:     2010,
-				Rating:   "6.4",
+				Rating:   "6.5",
 				Duration: "92m",
 				Directors: []Name{
 					Name{ID: "nm0603628", URL: "http://www.imdb.com/name/nm0603628", FullName: "Pierre Morel"},
@@ -130,7 +129,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"France", "USA"},
 				Description:   "In Paris, a young employee in the office of the US Ambassador hooks up with an American spy looking to stop a terrorist attack in the city.",
 				Poster:        Media{ID: "rm2505674496", TitleID: "tt1179034", URL: "http://www.imdb.com/media/rm2505674496/tt1179034", ContentURL: "http://ia.media-imdb.com/images/M/MV5BNDUyMzExOTAyM15BMl5BanBnXkFtZTcwMTU0NjAyMw@@._V1_SX214_.jpg"},
-				AKA:           []string{"Apo to Parisi me agapi", "Armastusega Pariisist", "Bons baisers de Paris", "De Paris com Amor", "Desde París con amor", "Dupla Implacável", "From Paris with love", "Iz Pariza s ljubavlju", "MiParis be'ahava", "Paris'ten sevgilerle", "París en la Mira", "París en la mira", "Pozdrowienia z Paryza", "Párizsból szeretettel", "Sangre y amor en París", "З Парижу з любов'ю", "Из Парижа с любовью"},
+				AKA:           []string{"Apo to Parisi me agapi", "Armastusega Pariisist", "Bons baisers de Paris", "De Paris com Amor", "Desde París con amor", "Dupla Implacável", "From Paris with Love", "From Paris with love", "Iz Pariza s ljubavlju", "MiParis be'ahava", "Paris'ten sevgilerle", "París en la Mira", "París en la mira", "Pozdrowienia z Paryza", "Párizsból szeretettel", "Sangre y amor en París", "З Парижу з любов'ю", "Из Парижа с любовью"},
 			},
 		},
 		{
@@ -172,7 +171,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"USA", "Australia"},
 				Description:   "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
 				Poster:        Media{ID: "rm3412696576", TitleID: "tt0133093", URL: "http://www.imdb.com/media/rm3412696576/tt0133093", ContentURL: "http://ia.media-imdb.com/images/M/MV5BMjEzNjg1NTg2NV5BMl5BanBnXkFtZTYwNjY3MzQ5._V1_SY317_CR6,0,214,317_.jpg"},
-				AKA:           []string{"La matrice", "Ma Tran", "Maatriks", "Matrica", "Matriks", "Matrix", "Mátrix", "Матрица", "Матрицата"},
+				AKA:           []string{"La matrice", "Ma Tran", "Maatriks", "Matrica", "Matriks", "Matrix", "Mátrix", "The Matrix", "Матрица", "Матрицата"},
 			},
 		},
 		{
@@ -212,7 +211,7 @@ func TestTitle(t *testing.T) {
 				Name:     "Brothers",
 				Type:     "TV Series",
 				Year:     1984,
-				Rating:   "7.1",
+				Rating:   "7.9",
 				Duration: "22m",
 				Writers: []Name{
 					Name{ID: "nm0515953", URL: "http://www.imdb.com/name/nm0515953", FullName: "David Lloyd"},
@@ -231,7 +230,7 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English"},
 				Nationalities: []string{"USA"},
 				Description:   "Joe Waters is an ex-place kicker for the Philadelphia Eagles. Now retired, he's opened up a restaurant. Lou is his older brother, a gruff construction worker. Both Joe and Lou receive the ...",
-				AKA:           []string{"Unter Brüdern"},
+				AKA:           []string{"Brothers", "Unter Brüdern"},
 			},
 		},
 		{
@@ -276,8 +275,8 @@ func TestTitle(t *testing.T) {
 		got, err := NewTitle(client, tt.ID)
 		if err != nil {
 			t.Errorf("NewTitle(%s) error: %v", tt.ID, err)
-		} else if !reflect.DeepEqual(tt.want, *got) {
-			t.Errorf("NewTitle(%s) = %#v; want %#v", tt.ID, *got, tt.want)
+		} else {
+			diffStruct(t, fmt.Sprintf("NewTitle(%s)", tt.ID), tt.want, *got)
 		}
 	}
 }

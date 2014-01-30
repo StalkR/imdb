@@ -49,7 +49,7 @@ func NewMedia(c *http.Client, id, titleid string) (*Media, error) {
 // Regular expressions to identify and parse a Media.
 var (
 	mediaIDRE         = regexp.MustCompile(`<link rel="canonical" href="http://www.imdb.com/media/(rm\d+)/(tt\d+)"`)
-	mediaContentURLRE = regexp.MustCompile(`(?s)<img id="primary-img".*?src="([^"]+)`)
+	mediaContentURLRE = regexp.MustCompile(`(?s)<img .*? id="primary-img".*?src="([^"]+)`)
 )
 
 // Parse parses a Media from its page.
