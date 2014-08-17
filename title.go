@@ -122,7 +122,7 @@ var (
 	titlePubYearRE       = regexp.MustCompile(`itemprop="datePublished" content="([0-9]{4})`)
 	titleRatingRE        = regexp.MustCompile(`star-box-giga-star">\s*([0-9.]+)`)
 	titleDurationRE      = regexp.MustCompile(`itemprop="duration" datetime="(?:PT)?([0-9HM]+)"`)
-	titlePersonRE        = regexp.MustCompile(`<a href="/name/(nm\d+)/.*?itemprop="name">([^<]+)`)
+	titlePersonRE        = regexp.MustCompile(`(?s)<a href="/name/(nm\d+)/.*?itemprop="name">([^<]+)`)
 	titleDirectorsRE     = regexp.MustCompile(`(?s)<div class="txt-block" itemprop="director"[^>]+>(.*?)</div>`)
 	titleWritersRE       = regexp.MustCompile(`(?s)<div class="txt-block" itemprop="creator"[^>]+>(.*?)</div>`)
 	titleActorsRE        = regexp.MustCompile(`(?s)<td class="itemprop" itemprop="actor".*?href="/name/(nm\d+)/.*?itemprop="name">([^<]+)`)
