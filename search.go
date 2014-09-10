@@ -17,6 +17,7 @@ var (
 	// searchTitleRE matches on titles.
 	searchTitleRE = regexp.MustCompile(`<a href="/title/(tt\d+).*?>([^<]+)</a>([^<]+)`)
 	searchYearRE  = regexp.MustCompile(`\((\d+)\)`)
+	searchTypeRE = regexp.MustCompile(`\)\s+\((.+)\)`)
 )
 
 // SearchTitle searches for titles matching name.
@@ -63,12 +64,18 @@ func SearchTitle(c *http.Client, name string) ([]Title, error) {
 		if y != nil {
 			year, _ = strconv.Atoi(string(y[1])) // Regexp matches digits.
 		}
+		var titleType string
+		p := searchTypeRE.FindSubmatch(r[3])
+		if p != nil {
+			titleType = string(p[1])
+		}
 		id := string(r[1])
 		t = append(t, Title{
 			ID:   id,
 			URL:  fmt.Sprintf(titleURL, id),
 			Name: decode(string(r[2])),
 			Year: year,
+			Type: titleType,
 		})
 	}
 	return t, nil
