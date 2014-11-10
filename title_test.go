@@ -124,12 +124,12 @@ func TestTitle(t *testing.T) {
 					Name{ID: "nm2457148", URL: "http://www.imdb.com/name/nm2457148", FullName: "Michaël Vander-Meiren"},
 					Name{ID: "nm1359275", URL: "http://www.imdb.com/name/nm1359275", FullName: "Didier Constant"},
 				},
-				Genres:        []string{"Action", "Crime", "Thriller"},
+				Genres:        []string{"Action", "Thriller"},
 				Languages:     []string{"English", "French", "Mandarin", "German"},
 				Nationalities: []string{"France", "USA"},
 				Description:   "In Paris, a young employee in the office of the US Ambassador hooks up with an American spy looking to stop a terrorist attack in the city.",
 				Poster:        Media{ID: "rm2505674496", TitleID: "tt1179034", URL: "http://www.imdb.com/media/rm2505674496/tt1179034", ContentURL: "http://ia.media-imdb.com/images/M/MV5BNDUyMzExOTAyM15BMl5BanBnXkFtZTcwMTU0NjAyMw@@._V1_SX214_AL_.jpg"},
-				AKA:           []string{"Apo to Parisi me agapi", "Armastusega Pariisist", "Bons baisers de Paris", "De Paris com Amor", "Desde París con amor", "Dupla Implacável", "From Paris with love", "Iz Pariza s ljubavlju", "MiParis be'ahava", "Paris'ten sevgilerle", "París en la Mira", "París en la mira", "Pozdrowienia z Paryza", "Párizsból szeretettel", "Sangre y amor en París", "З Парижу з любов'ю", "Из Парижа с любовью"},
+				AKA:           []string{"Apo to Parisi me agapi", "Armastusega Pariisist", "Bons baisers de Paris", "De Paris com Amor", "Desde París con amor", "Dupla Implacável", "From Paris with Love", "Iz Pariza s ljubavlju", "MiParis be'ahava", "Paris'ten sevgilerle", "París en la Mira", "París en la mira", "Pozdrowienia z Paryza", "Párizsból szeretettel", "Sangre y amor en París", "З Парижу з любов'ю", "Из Парижа с любовью"},
 			},
 		},
 		{
@@ -171,7 +171,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"USA", "Australia"},
 				Description:   "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
 				Poster:        Media{ID: "rm461886464", TitleID: "tt0133093", URL: "http://www.imdb.com/media/rm461886464/tt0133093", ContentURL: "http://ia.media-imdb.com/images/M/MV5BMTkxNDYxOTA4M15BMl5BanBnXkFtZTgwNTk0NzQxMTE@._V1_SX214_AL_.jpg"},
-				AKA:           []string{"La matrice", "Ma Tran", "Maatriks", "Matrica", "Matriks", "Matrix", "Mátrix", "The Matrix", "Матрица", "Матрицата"},
+				AKA:           []string{"La matrice", "Ma Tran", "Maatriks", "Matrica", "Matriks", "Matrix", "Mátrix", "The Matrix", "Матрикс", "Матрица", "Матрицата"},
 			},
 		},
 		{
@@ -269,6 +269,14 @@ func TestTitle(t *testing.T) {
 				Genres:        []string{"Action", "Adventure", "Sci-Fi"},
 				Languages:     []string{"English"},
 				Nationalities: []string{"USA"},
+			},
+		},
+		{
+			ID: "tt3038708",
+			want: Title{
+				ID:   "tt3038708",
+				URL:  "http://www.imdb.com/title/tt3038708",
+				Name: "Iron Sky the Coming Race",
 			},
 		},
 	} {

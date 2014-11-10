@@ -116,7 +116,7 @@ func NewTitle(c *http.Client, id string) (*Title, error) {
 // Regular expressions to parse a Title.
 var (
 	titleIDRE            = regexp.MustCompile(`<link rel="canonical" href="http://www.imdb.com/title/(tt\d+)/"`)
-	titleNameRE          = regexp.MustCompile(`property=.og:title. content="(.*?) \(`)
+	titleNameRE          = regexp.MustCompile(`property=.og:title. content="(.*?)( \(|")`)
 	titleTypeRE          = regexp.MustCompile(`property=.og:title. content="[^(]+ \((.*?) [0-9]{4}.*?\)" />`)
 	titleProdYearRE      = regexp.MustCompile(`property=.og:title. content="[^(]+ \(.*?([0-9]{4}).*?\)" />`)
 	titlePubYearRE       = regexp.MustCompile(`itemprop="datePublished" content="([0-9]{4})`)
@@ -277,16 +277,15 @@ func (t *Title) Parse(page []byte) error {
 
 	// Nationalities
 	as = titleNationalitiesRE.FindAllSubmatch(page, -1)
-	if as == nil {
-		return NewErrParse("nationalities")
-	}
-	t.Nationalities = nil
-	for _, m := range as {
-		nationality := decode(string(m[1]))
-		if stringSlice(t.Nationalities).Has(nationality) {
-			continue
+	if as != nil {
+		t.Nationalities = nil
+		for _, m := range as {
+			nationality := decode(string(m[1]))
+			if stringSlice(t.Nationalities).Has(nationality) {
+				continue
+			}
+			t.Nationalities = append(t.Nationalities, nationality)
 		}
-		t.Nationalities = append(t.Nationalities, nationality)
 	}
 
 	// Description
