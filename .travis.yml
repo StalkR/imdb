@@ -1,8 +1,5 @@
 language: go
 
-go:
-  - 1.1
-
 before_install:
   - pushd $HOME
   - wget -nv http://googleappengine.googlecode.com/files/go_appengine_sdk_linux_amd64-1.8.8.zip
