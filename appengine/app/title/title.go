@@ -8,10 +8,10 @@ import (
 	"regexp"
 	"time"
 
-	"appengine"
-	"appengine/urlfetch"
 	"github.com/StalkR/aecache"
 	"github.com/StalkR/imdb"
+	"appengine"
+	"appengine/urlfetch"
 )
 
 func init() {
@@ -37,7 +37,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		go aecache.Set(c, "title:"+id, b, 7*24*time.Hour)
+		go aecache.Set(c, "title:"+id, b, 24*time.Hour)
 	}
 
 	w.Header().Set("Content-Type", "application/json")
