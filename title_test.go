@@ -211,7 +211,7 @@ func TestTitle(t *testing.T) {
 				Name:     "Brothers",
 				Type:     "TV Series",
 				Year:     1984,
-				Rating:   "7.9",
+				Rating:   "8.0",
 				Duration: "22m",
 				Writers: []Name{
 					Name{ID: "nm0515953", URL: "http://www.imdb.com/name/nm0515953", FullName: "David Lloyd"},
