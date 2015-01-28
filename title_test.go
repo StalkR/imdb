@@ -129,7 +129,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"France", "USA"},
 				Description:   "In Paris, a young employee in the office of the US Ambassador hooks up with an American spy looking to stop a terrorist attack in the city.",
 				Poster:        Media{ID: "rm2505674496", TitleID: "tt1179034", URL: "http://www.imdb.com/media/rm2505674496/tt1179034", ContentURL: "http://ia.media-imdb.com/images/M/MV5BNDUyMzExOTAyM15BMl5BanBnXkFtZTcwMTU0NjAyMw@@._V1_SX214_AL_.jpg"},
-				AKA:           []string{"Apo to Parisi me agapi", "Armastusega Pariisist", "Bons baisers de Paris", "De Paris com Amor", "Desde París con amor", "Dupla Implacável", "From Paris with Love", "Iz Pariza s ljubavlju", "MiParis be'ahava", "Paris'ten sevgilerle", "París en la Mira", "París en la mira", "Pozdrowienia z Paryza", "Párizsból szeretettel", "Sangre y amor en París", "З Парижу з любов'ю", "Из Парижа с любовью"},
+				AKA:           []string{"Apo to Parisi me agapi", "Armastusega Pariisist", "Bons baisers de Paris", "De Paris com Amor", "Desde París con amor", "Dupla Implacável", "From Paris with Love", "Iz Pariza s ljubavlju", "MiParis be'ahava", "Paris'ten sevgilerle", "París en la Mira", "París en la mira", "Pozdrowienia z Paryza", "Párizsból szeretettel", "Sangre y amor en París", "Από το Παρίσι με αγάπη", "З Парижу з любов'ю", "Из Парижа с любовью"},
 			},
 		},
 		{
@@ -277,6 +277,29 @@ func TestTitle(t *testing.T) {
 				ID:   "tt3038708",
 				URL:  "http://www.imdb.com/title/tt3038708",
 				Name: "Iron Sky the Coming Race",
+				Year: 2016,
+				Directors: []Name{
+					Name{ID: "nm1993322", URL: "http://www.imdb.com/name/nm1993322", FullName: "Timo Vuorensola"},
+				},
+				Writers: []Name{
+					Name{ID: "nm0615914", URL: "http://www.imdb.com/name/nm0615914", FullName: "Dalan Musson"},
+					Name{ID: "nm1993322", URL: "http://www.imdb.com/name/nm1993322", FullName: "Timo Vuorensola"},
+				},
+				Actors: []Name{
+					Name{ID: "nm1087430", URL: "http://www.imdb.com/name/nm1087430", FullName: "Julia Dietze"},
+					Name{ID: "nm0338381", URL: "http://www.imdb.com/name/nm0338381", FullName: "Tom Green"},
+					Name{ID: "nm0001424", URL: "http://www.imdb.com/name/nm0001424", FullName: "Udo Kier"},
+					Name{ID: "nm0442207", URL: "http://www.imdb.com/name/nm0442207", FullName: "Lloyd Kaufman"},
+					Name{ID: "nm1094184", URL: "http://www.imdb.com/name/nm1094184", FullName: "Stephanie Paul"},
+					Name{ID: "nm1385437", URL: "http://www.imdb.com/name/nm1385437", FullName: "Jukka Hilden"},
+					Name{ID: "nm0450540", URL: "http://www.imdb.com/name/nm0450540", FullName: "Kari Ketonen"},
+					Name{ID: "nm0442381", URL: "http://www.imdb.com/name/nm0442381", FullName: "Tero Kaukomaa"},
+					Name{ID: "nm0615914", URL: "http://www.imdb.com/name/nm0615914", FullName: "Dalan Musson"},
+				},
+				Genres:        []string{"Fantasy"},
+				Languages:     []string{"English"},
+				Nationalities: []string{"Finland", "Germany"},
+				Description:   "A follow-up to the 2012 film, \"iron Sky\", in which Nazis plan to take over the world after lying dormant in a secret military base on the moon.",
 			},
 		},
 	} {
