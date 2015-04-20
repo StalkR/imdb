@@ -23,7 +23,7 @@ func TestSearchTitle(t *testing.T) {
 	}
 	year := 2001
 	if r[0].Year != year {
-		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].Year, year)
+		t.Errorf("SearchTitle(%s)[0] = %d; want %d", title, r[0].Year, year)
 	}
 	typ := "Video Game"
 	if r[1].Type != typ {
