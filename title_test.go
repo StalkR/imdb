@@ -171,7 +171,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"USA", "Australia"},
 				Description:   "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
 				Poster:        Media{ID: "rm461886464", TitleID: "tt0133093", URL: "http://www.imdb.com/media/rm461886464/tt0133093", ContentURL: "http://ia.media-imdb.com/images/M/MV5BMTkxNDYxOTA4M15BMl5BanBnXkFtZTgwNTk0NzQxMTE@._V1_SX214_AL_.jpg"},
-				AKA:           []string{"La matrice", "Ma Tran", "Maatriks", "Matrica", "Matriks", "Matrix", "Mátrix", "The Matrix", "Матрикс", "Матрица", "Матрицата"},
+				AKA:           []string{"Fylkið", "La matrice", "Ma Tran", "Maatriks", "Matrica", "Matriks", "Matrix", "Mátrix", "The Matrix", "Матрикс", "Матрица", "Матрицата"},
 			},
 		},
 		{
@@ -286,11 +286,11 @@ func TestTitle(t *testing.T) {
 					Name{ID: "nm1993322", URL: "http://www.imdb.com/name/nm1993322", FullName: "Timo Vuorensola"},
 				},
 				Actors: []Name{
-					Name{ID: "nm0338381", URL: "http://www.imdb.com/name/nm0338381", FullName: "Tom Green"},
 					Name{ID: "nm1087430", URL: "http://www.imdb.com/name/nm1087430", FullName: "Julia Dietze"},
+					Name{ID: "nm0338381", URL: "http://www.imdb.com/name/nm0338381", FullName: "Tom Green"},
 					Name{ID: "nm0001424", URL: "http://www.imdb.com/name/nm0001424", FullName: "Udo Kier"},
-					Name{ID: "nm0442207", URL: "http://www.imdb.com/name/nm0442207", FullName: "Lloyd Kaufman"},
 					Name{ID: "nm1094184", URL: "http://www.imdb.com/name/nm1094184", FullName: "Stephanie Paul"},
+					Name{ID: "nm0442207", URL: "http://www.imdb.com/name/nm0442207", FullName: "Lloyd Kaufman"},
 					Name{ID: "nm1385437", URL: "http://www.imdb.com/name/nm1385437", FullName: "Jukka Hilden"},
 					Name{ID: "nm0450540", URL: "http://www.imdb.com/name/nm0450540", FullName: "Kari Ketonen"},
 					Name{ID: "nm0442381", URL: "http://www.imdb.com/name/nm0442381", FullName: "Tero Kaukomaa"},
@@ -302,6 +302,7 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English"},
 				Nationalities: []string{"Finland", "Germany"},
 				Description:   "A follow-up to the 2012 film, \"iron Sky\", in which Nazis plan to take over the world after lying dormant in a secret military base on the moon.",
+				AKA:           []string{"Iron Sky 2"},
 			},
 		},
 	} {
