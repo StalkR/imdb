@@ -21,5 +21,4 @@ _testmain.go
 
 *.exe
 
-/appengine/app/.appcfg_oauth2_tokens
 /cache
