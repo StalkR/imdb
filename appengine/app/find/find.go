@@ -1,3 +1,5 @@
+// +build appengine
+
 // Package find implements the /find handler to find titles.
 package find
 
@@ -8,6 +10,7 @@ import (
 
 	"github.com/StalkR/aecache"
 	"github.com/StalkR/imdb"
+
 	"appengine"
 	"appengine/urlfetch"
 )

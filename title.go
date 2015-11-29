@@ -131,7 +131,7 @@ var (
 	titleLanguagesRE     = regexp.MustCompile(`(?s)Language:</h4>(.*?)</div>`)
 	titleLanguageRE      = regexp.MustCompile(`itemprop=.url.>([^<]+)</a>`)
 	titleNationalitiesRE = regexp.MustCompile(`href="/country/[^"]+"[^>]+>([^<]+)`)
-	titleDescriptionRE   = regexp.MustCompile(`<p itemprop="description">([^<]+)`)
+	titleDescriptionRE   = regexp.MustCompile(`<meta property="og:description" content="(?:(?:Created|Directed) by .*?\w\w\.\s*)*(?:With .*?\w\w\.\s*)?([^"]*)`)
 	titlePosterRE        = regexp.MustCompile(`(?s)href="/media/(rm\d+).*?src="([^"]+)"\s*itemprop="image"`)
 )
 

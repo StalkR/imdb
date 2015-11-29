@@ -1,3 +1,5 @@
+// +build appengine
+
 // Package clean implements clean up of datastore cache.
 package clean
 
@@ -5,8 +7,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"appengine"
 	"github.com/StalkR/aecache"
+
+	"appengine"
 )
 
 func init() {

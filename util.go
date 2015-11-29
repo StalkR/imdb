@@ -2,11 +2,18 @@ package imdb
 
 import (
 	"html"
+	"regexp"
 	"strings"
 )
 
 func decode(s string) string {
 	return strings.TrimSpace(html.UnescapeString(s))
+}
+
+var stripTagsRE = regexp.MustCompile(`<[^>]*>`)
+
+func stripTags(s string) string {
+	return stripTagsRE.ReplaceAllString(s, "")
 }
 
 type nameSlice []Name

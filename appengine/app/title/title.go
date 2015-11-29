@@ -1,3 +1,5 @@
+// +build appengine
+
 // Package title implements the /title handler to query a title.
 package title
 
@@ -10,6 +12,7 @@ import (
 
 	"github.com/StalkR/aecache"
 	"github.com/StalkR/imdb"
+
 	"appengine"
 	"appengine/urlfetch"
 )

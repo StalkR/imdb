@@ -1,3 +1,5 @@
+# goapp get -u github.com/StalkR/imdb
+# goapp deploy
 application: movie-db-api
 version: go
 runtime: go
