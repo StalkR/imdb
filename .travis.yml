@@ -8,7 +8,9 @@ before_install:
 
 install:
   - go get -t -v . ./appengine ./appengine/examples ./examples
+  - go build -v . ./appengine ./appengine/examples ./examples
   - $HOME/go_appengine/goapp get -t -v ./appengine/app/...
+  - $HOME/go_appengine/goapp build -v ./appengine/app/...
 
 script:
   - go test -v . ./appengine ./appengine/examples ./examples
