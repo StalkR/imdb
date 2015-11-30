@@ -1,5 +1,3 @@
-// +build appengine
-
 // Package title implements the /title handler to query a title.
 package title
 

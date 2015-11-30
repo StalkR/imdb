@@ -1,5 +1,3 @@
-// +build appengine
-
 // Package clean implements clean up of datastore cache.
 package clean
 

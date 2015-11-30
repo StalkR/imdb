@@ -1,5 +1,3 @@
-// +build appengine
-
 // Package find implements the /find handler to find titles.
 package find
 
