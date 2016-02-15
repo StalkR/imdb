@@ -52,16 +52,16 @@ func TestSearchTitlePositions(t *testing.T) {
 	if err != nil {
 		t.Fatalf("SearchTitle(%s) error: %v", title, err)
 	}
-	if len(r) < 2 {
+	if len(r) < 3 {
 		t.Fatalf("SearchTitle(%s) len = %d; want %d", title, len(r), 1)
 	}
-	id := "tt1126591"
+	id := "tt1126591" // Burlesque (I) (2010)
 	if r[0].ID != id {
 		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, id)
 	}
-	id = "tt1586713"
-	if r[1].ID != id {
-		t.Errorf("SearchTitle(%s)[1] = %s; want %s", title, r[1].ID, id)
+	id = "tt1586713" // Burlesque (II) (2010)
+	if r[2].ID != id {
+		t.Errorf("SearchTitle(%s)[1] = %s; want %s", title, r[2].ID, id)
 	}
 }
 
