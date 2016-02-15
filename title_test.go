@@ -309,6 +309,47 @@ func TestTitle(t *testing.T) {
 				AKA:           []string{"Iron Sky 2"},
 			},
 		},
+		{
+			ID: "tt0423866",
+			want: Title{
+				ID:       "tt0423866",
+				URL:      "http://www.imdb.com/title/tt0423866",
+				Name:     "3-Iron",
+				OrigName: "Bin-jip",
+				Year:     2004,
+				Rating:   "8.1",
+				Duration: "88m",
+				Directors: []Name{
+					Name{ID: "nm1104118", URL: "http://www.imdb.com/name/nm1104118", FullName: "Ki-duk Kim"},
+				},
+				Writers: []Name{
+					Name{ID: "nm1104118", URL: "http://www.imdb.com/name/nm1104118", FullName: "Ki-duk Kim"},
+				},
+				Actors: []Name{
+					Name{ID: "nm1165901", URL: "http://www.imdb.com/name/nm1165901", FullName: "Seung-yeon Lee"},
+					Name{ID: "nm1030819", URL: "http://www.imdb.com/name/nm1030819", FullName: "Hyun-kyoon Lee"},
+					Name{ID: "nm1891528", URL: "http://www.imdb.com/name/nm1891528", FullName: "Hyuk-ho Kwon"},
+					Name{ID: "nm1873389", URL: "http://www.imdb.com/name/nm1873389", FullName: "Jeong-ho Choi"},
+					Name{ID: "nm1450477", URL: "http://www.imdb.com/name/nm1450477", FullName: "Ju-seok Lee"},
+					Name{ID: "nm1064338", URL: "http://www.imdb.com/name/nm1064338", FullName: "Mi-suk Lee"},
+					Name{ID: "nm1875737", URL: "http://www.imdb.com/name/nm1875737", FullName: "Sung-hyuk Moon"},
+					Name{ID: "nm1280733", URL: "http://www.imdb.com/name/nm1280733", FullName: "Ji-a Park"},
+					Name{ID: "nm1876659", URL: "http://www.imdb.com/name/nm1876659", FullName: "Jae-yong Jang"},
+					Name{ID: "nm1872776", URL: "http://www.imdb.com/name/nm1872776", FullName: "Dah-hae Lee"},
+					Name{ID: "nm1873110", URL: "http://www.imdb.com/name/nm1873110", FullName: "Han Kim"},
+					Name{ID: "nm1833990", URL: "http://www.imdb.com/name/nm1833990", FullName: "Se-jin Park"},
+					Name{ID: "nm1873533", URL: "http://www.imdb.com/name/nm1873533", FullName: "Dong-jin Park"},
+					Name{ID: "nm1048008", URL: "http://www.imdb.com/name/nm1048008", FullName: "Jong-su Lee"},
+					Name{ID: "nm1879243", URL: "http://www.imdb.com/name/nm1879243", FullName: "Ui-soo Lee"},
+				},
+				Genres:        []string{"Crime", "Drama", "Romance"},
+				Languages:     []string{"Korean"},
+				Nationalities: []string{"South Korea", "Japan"},
+				Description:   "A transient young man breaks into empty homes to partake of the vacationing residents' lives for a few days.",
+				Poster:        Media{ID: "rm880057600", TitleID: "tt0423866", URL: "http://www.imdb.com/media/rm880057600/tt0423866", ContentURL: "http://ia.media-imdb.com/images/M/MV5BMTM1ODIwNzM5OV5BMl5BanBnXkFtZTcwNjk5MDkyMQ@@._V1_UX182_CR0,0,182,268_AL_.jpg"},
+				AKA:           []string{"3-Iron", "Bin jib", "Bin-Jip - Der Schattenmann", "Bin-Jip - Leere Häuser", "Bin-jip", "Bin-jip - tomme huse", "Bos ev", "Bosh Evler", "Casa Vazia", "El espíritu de la pasión", "Empty Houses", "Ferro 3", "Ferro 3 - La casa vuota", "Hierro 3", "Hierro-3", "Järn 3:an", "Järntrean", "Lehargish B'Bayit", "Locataires", "Lopakodó lelkek", "Olomonahoi mazi", "Provalnik", "Pusty dom", "Rautakolmonen", "Tomme hus", "Ολομόναχοι Μαζί", "Пустой дом", "Стик Nо 3"},
+			},
+		},
 	} {
 		got, err := NewTitle(client, tt.ID)
 		if err != nil {

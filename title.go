@@ -15,6 +15,7 @@ type Title struct {
 	ID            string   `json:",omitempty"`
 	URL           string   `json:",omitempty"`
 	Name          string   `json:",omitempty"`
+	OrigName      string   `json:",omitempty"`
 	Type          string   `json:",omitempty"`
 	Year          int      `json:",omitempty"`
 	Rating        string   `json:",omitempty"`
@@ -312,7 +313,7 @@ func (t *Title) Parse(page []byte) error {
 // Regular expressions to parse a Title release info.
 var (
 	titleAKAsRE = regexp.MustCompile(`(?s)<table id="akas"(.*?)</table>`)
-	titleAKARE  = regexp.MustCompile(`(?s)<td>([^<]+)</td>\s*</tr>`)
+	titleAKARE  = regexp.MustCompile(`(?s)<td>([^<]*)</td>\s*<td>([^<]+)</td>\s*</tr>`)
 )
 
 // ParseRls parses a Title release info from its page.
@@ -326,7 +327,11 @@ func (t *Title) ParseRls(page []byte) error {
 		}
 		t.AKA = nil
 		for _, m := range s {
-			aka := decode(string(m[1]))
+			comment := decode(string(m[1]))
+			aka := decode(string(m[2]))
+			if comment == "(original title)" {
+				t.OrigName = aka
+			}
 			if stringSlice(t.AKA).Has(aka) {
 				continue
 			}
