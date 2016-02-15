@@ -2,6 +2,7 @@ package imdb
 
 import (
 	"fmt"
+	"strconv"
 	"testing"
 )
 
@@ -87,7 +88,7 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English"},
 				Nationalities: []string{"USA"},
 				Description:   "Earth is attacked by the Kulkus, a hostile breed infected by a lethal virus and needing human blood to develop an antidote. Earth's governments negotiate peace terms with the Kulku ambassador, giving eight million humans shared between the nations to the invaders and in return they would spare the planet. When Heather Chase, the daughter of the scientist Stephen Chase, is one of the selected, her...",
-				Poster:        Media{ID: "rm3287190272", TitleID: "tt0437803", URL: "http://www.imdb.com/media/rm3287190272/tt0437803", ContentURL: "http://ia.media-imdb.com/images/M/MV5BMTk1MTA4NDMwMF5BMl5BanBnXkFtZTcwNTM2MTIzMg@@._V1_SY317_CR5,0,214,317_AL_.jpg"},
+				Poster:        Media{ID: "rm3287190272", TitleID: "tt0437803", URL: "http://www.imdb.com/media/rm3287190272/tt0437803", ContentURL: "http://ia.media-imdb.com/images/M/MV5BMTk1MTA4NDMwMF5BMl5BanBnXkFtZTcwNTM2MTIzMg@@._V1_UY268_CR4,0,182,268_AL_.jpg"},
 				AKA:           []string{"A Föld ostroma", "Alien Blood", "Alien Siege", "Alien Siege - Tod aus dem All", "Etat de siège", "O Perigo Alienígena", "Obca krew"},
 			},
 		},
@@ -128,7 +129,7 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English", "French", "Mandarin", "German"},
 				Nationalities: []string{"France"},
 				Description:   "In Paris, a young employee in the office of the US Ambassador hooks up with an American spy looking to stop a terrorist attack in the city.",
-				Poster:        Media{ID: "rm2505674496", TitleID: "tt1179034", URL: "http://www.imdb.com/media/rm2505674496/tt1179034", ContentURL: "http://ia.media-imdb.com/images/M/MV5BNDUyMzExOTAyM15BMl5BanBnXkFtZTcwMTU0NjAyMw@@._V1_SX214_AL_.jpg"},
+				Poster:        Media{ID: "rm2505674496", TitleID: "tt1179034", URL: "http://www.imdb.com/media/rm2505674496/tt1179034", ContentURL: "http://ia.media-imdb.com/images/M/MV5BNDUyMzExOTAyM15BMl5BanBnXkFtZTcwMTU0NjAyMw@@._V1_UX182_CR0,0,182,268_AL_.jpg"},
 				AKA:           []string{"Apo to Parisi me agapi", "Armastusega Pariisist", "Bons baisers de Paris", "De Paris com Amor", "Desde París con amor", "Dupla Implacável", "From Paris with Love", "Iz Pariza s ljubavlju", "Iz Pariza z ljubeznijo", "MiParis be'ahava", "Paris'ten sevgilerle", "París en la Mira", "París en la mira", "Pozdrowienia z Paryza", "Párizsból szeretettel", "Sangre y amor en París", "Από το Παρίσι με αγάπη", "З Парижу з любов'ю", "Из Парижа с любовью", "От Париж с любов"},
 			},
 		},
@@ -170,8 +171,8 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English"},
 				Nationalities: []string{"USA", "Australia"},
 				Description:   "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
-				Poster:        Media{ID: "rm461886464", TitleID: "tt0133093", URL: "http://www.imdb.com/media/rm461886464/tt0133093", ContentURL: "http://ia.media-imdb.com/images/M/MV5BMTkxNDYxOTA4M15BMl5BanBnXkFtZTgwNTk0NzQxMTE@._V1_SX214_AL_.jpg"},
-				AKA:           []string{"Fylkið", "La matrice", "Maatriks", "Matorikkusu", "Matrica", "Matriks", "Matrix", "Mátrix", "The Matrix", "Матрикс", "Матрица", "Матрицата", "Матриця"},
+				Poster:        Media{ID: "rm461886464", TitleID: "tt0133093", URL: "http://www.imdb.com/media/rm461886464/tt0133093", ContentURL: "http://ia.media-imdb.com/images/M/MV5BMTkxNDYxOTA4M15BMl5BanBnXkFtZTgwNTk0NzQxMTE@._V1_UX182_CR0,0,182,268_AL_.jpg"},
+				AKA:           []string{"Fylkið", "La matrice", "La matriz", "Maatriks", "Matorikkusu", "Matrica", "Matriks", "Matrikss", "Matrix", "Mátrix", "The Matrix", "Матрикс", "Матрица", "Матрицата", "Матриця"},
 			},
 		},
 		{
@@ -221,7 +222,7 @@ func TestTitle(t *testing.T) {
 					Name{ID: "nm0907107", URL: "http://www.imdb.com/name/nm0907107", FullName: "Robert Walden"},
 					Name{ID: "nm0716618", URL: "http://www.imdb.com/name/nm0716618", FullName: "Paul Regina"},
 					Name{ID: "nm0535933", URL: "http://www.imdb.com/name/nm0535933", FullName: "Brandon Maggart"},
-					Name{ID: "nm0865177", URL: "http://www.imdb.com/name/nm0865177", FullName: "Hallie Todd"},
+					Name{ID: "nm0604699", URL: "http://www.imdb.com/name/nm0604699", FullName: "Hallie Todd"},
 					Name{ID: "nm0533383", URL: "http://www.imdb.com/name/nm0533383", FullName: "Philip Charles MacKenzie"},
 					Name{ID: "nm0726939", URL: "http://www.imdb.com/name/nm0726939", FullName: "Robin Riker"},
 					Name{ID: "nm0664289", URL: "http://www.imdb.com/name/nm0664289", FullName: "Mary Ann Pascal"},
@@ -279,7 +280,6 @@ func TestTitle(t *testing.T) {
 				Name: "Iron Sky: The Coming Race",
 				Year: 2017,
 				Directors: []Name{
-					Name{ID: "nm3635384", URL: "http://www.imdb.com/name/nm3635384", FullName: "Jean Louis"},
 					Name{ID: "nm1993322", URL: "http://www.imdb.com/name/nm1993322", FullName: "Timo Vuorensola"},
 				},
 				Writers: []Name{
@@ -299,7 +299,7 @@ func TestTitle(t *testing.T) {
 					Name{ID: "nm3893266", URL: "http://www.imdb.com/name/nm3893266", FullName: "Edward Judge"},
 					Name{ID: "nm2953208", URL: "http://www.imdb.com/name/nm2953208", FullName: "Martin Swabey"},
 					Name{ID: "nm0122095", URL: "http://www.imdb.com/name/nm0122095", FullName: "Vladimir Burlakov"},
-					Name{ID: "nm0450540", URL: "http://www.imdb.com/name/nm0450540", FullName: "Kari Ketonen"},
+					Name{ID: "nm1993322", URL: "http://www.imdb.com/name/nm1993322", FullName: "Timo Vuorensola"},
 					Name{ID: "nm1712811", URL: "http://www.imdb.com/name/nm1712811", FullName: "John Flanders"},
 					Name{ID: "nm5861947", URL: "http://www.imdb.com/name/nm5861947", FullName: "Yves Robert Schaaf"},
 				},
@@ -315,7 +315,14 @@ func TestTitle(t *testing.T) {
 		if err != nil {
 			t.Errorf("NewTitle(%s) error: %v", tt.ID, err)
 		} else {
-			diffStruct(t, fmt.Sprintf("NewTitle(%s)", tt.ID), tt.want, *got)
+			diffStruct(t, fmt.Sprintf("NewTitle(%s)", tt.ID), tt.want, *got, "Rating")
+			if tt.want.Rating != "" {
+				if got.Rating == "" {
+					t.Errorf("NewTitle(%s): Missing Rating field", tt.ID)
+				} else if _, err := strconv.ParseFloat(got.Rating, 32); err != nil {
+					t.Errorf("NewTitle(%s): Bad rating value %q: %v", tt.ID, got.Rating, err)
+				}
+			}
 		}
 	}
 }
