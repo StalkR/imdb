@@ -131,9 +131,9 @@ var (
 	titleGenreRE         = regexp.MustCompile(`>(.*?)</a>`)
 	titleLanguagesRE     = regexp.MustCompile(`(?s)Language:</h4>(.*?)</div>`)
 	titleLanguageRE      = regexp.MustCompile(`itemprop=.url.>([^<]+)</a>`)
-	titleNationalitiesRE = regexp.MustCompile(`href="/country/[^"]+"[^>]+>([^<]+)`)
+	titleNationalitiesRE = regexp.MustCompile(`href="/search/title\?country_of_origin[^"]+"[^>]+>([^<]+)`)
 	titleDescriptionRE   = regexp.MustCompile(`<meta property="og:description" content="(?:(?:Created|Directed) by .*?\w\w\.\s*)*(?:With .*?\w\w\.\s*)?([^"]*)`)
-	titlePosterRE        = regexp.MustCompile(`(?s)href="/media/(rm\d+).*?src="([^"]+)"\s*itemprop="image"`)
+	titlePosterRE        = regexp.MustCompile(`(?s)href="/title/tt\d+/mediaviewer/(rm\d+).*?src="([^"]+)"\s*itemprop="image"`)
 )
 
 // Parse parses a Title from its page.
@@ -302,7 +302,7 @@ func (t *Title) Parse(page []byte) error {
 		t.Poster = Media{
 			ID:         id,
 			TitleID:    t.ID,
-			URL:        fmt.Sprintf(mediaURL, id, t.ID),
+			URL:        fmt.Sprintf(mediaURL, t.ID, id),
 			ContentURL: string(s[2]),
 		}
 	}
@@ -320,25 +320,25 @@ var (
 func (t *Title) ParseRls(page []byte) error {
 	// AKA
 	b := titleAKAsRE.FindSubmatch(page)
-	if b != nil {
-		s := titleAKARE.FindAllSubmatch(b[1], -1)
-		if s == nil {
-			return NewErrParse("aka")
-		}
-		t.AKA = nil
-		for _, m := range s {
-			comment := decode(string(m[1]))
-			aka := decode(string(m[2]))
-			if comment == "(original title)" {
-				t.OrigName = aka
-			}
-			if stringSlice(t.AKA).Has(aka) {
-				continue
-			}
-			t.AKA = append(t.AKA, aka)
-		}
-		sort.StringSlice(t.AKA).Sort()
+	if b == nil {
+		return nil
 	}
-
+	s := titleAKARE.FindAllSubmatch(b[1], -1)
+	if s == nil {
+		return NewErrParse("aka")
+	}
+	t.AKA = nil
+	for _, m := range s {
+		comment := decode(string(m[1]))
+		aka := decode(string(m[2]))
+		if comment == "(original title)" {
+			t.OrigName = aka
+		}
+		if stringSlice(t.AKA).Has(aka) {
+			continue
+		}
+		t.AKA = append(t.AKA, aka)
+	}
+	sort.StringSlice(t.AKA).Sort()
 	return nil
 }

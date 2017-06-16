@@ -60,8 +60,8 @@ func TestSearchTitlePositions(t *testing.T) {
 		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, id)
 	}
 	id = "tt1586713" // Burlesque (II) (2010)
-	if r[2].ID != id {
-		t.Errorf("SearchTitle(%s)[1] = %s; want %s", title, r[2].ID, id)
+	if r[1].ID != id {
+		t.Errorf("SearchTitle(%s)[1] = %s; want %s", title, r[1].ID, id)
 	}
 }
 

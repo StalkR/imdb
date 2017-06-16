@@ -24,4 +24,16 @@ func init() {
 	} else {
 		client = httpcache.NewVolatileClient(ttl, 1024)
 	}
+	client.Transport = &englishTransport{client.Transport}
+}
+
+// englishTransport implements http.RoundTripper interface
+// to add "Accept-Language: en" header on all requests.
+type englishTransport struct {
+	http.RoundTripper
+}
+
+func (e *englishTransport) RoundTrip(r *http.Request) (*http.Response, error) {
+	r.Header.Add("Accept-Language", "en")
+	return e.RoundTripper.RoundTrip(r)
 }

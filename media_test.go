@@ -17,13 +17,13 @@ func TestMedia(t *testing.T) {
 		want    Media
 	}{
 		{
-			ID:      "rm1064868096",
+			ID:      "rm3523884288",
 			TitleID: "tt0167261",
 			want: Media{
-				ID:         "rm1064868096",
+				ID:         "rm3523884288",
 				TitleID:    "tt0167261",
-				URL:        "http://www.imdb.com/media/rm1064868096/tt0167261",
-				ContentURL: "http://ia.media-imdb.com/images/M/MV5BMTAyNDU0NjY4NTheQTJeQWpwZ15BbWU2MDk4MTY2Nw@@._V1_SX640_SY720_.jpg",
+				URL:        "http://www.imdb.com/title/tt0167261/mediaviewer/rm3523884288",
+				ContentURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BMDY0NmI4ZjctN2VhZS00YzExLTkyZGItMTJhOTU5NTg4MDU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
 			},
 		},
 	} {

@@ -28,7 +28,7 @@ func TestName(t *testing.T) {
 			want: Name{
 				ID:       "nm0905152",
 				URL:      "http://www.imdb.com/name/nm0905152",
-				FullName: "Andy Wachowski",
+				FullName: "Lilly Wachowski",
 			},
 		},
 	} {
