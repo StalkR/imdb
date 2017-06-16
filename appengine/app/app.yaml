@@ -9,12 +9,15 @@ handlers:
 - url: /
   static_files: index.htm
   upload: index.htm
+  secure: always
 
 - url: /find
   script: _go_app
+  secure: always
 
 - url: /title/tt\d+
   script: _go_app
+  secure: always
 
 - url: /cache/clean
   script: _go_app
