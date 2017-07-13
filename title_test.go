@@ -230,7 +230,7 @@ func TestTitle(t *testing.T) {
 				Genres:        []string{"Comedy"},
 				Languages:     []string{"English"},
 				Nationalities: []string{"USA"},
-				Description:   "Joe Waters is an ex-place kicker for the Philadelphia Eagles. Now retired, he's opened up a restaurant. Lou is his older brother, a gruff construction worker. Both Joe and Lou receive the shock of their lives when their kid brother Cliff reveals that he's gay. Humorous situations follow as Joe and Lou alternately try to accept Cliff's homosexuality or cure him of it.",
+				Description:   "Two conservative men support their younger brother when he comes out as gay, and help him navigate being openly homosexual in 1980s Philadelphia.",
 				Poster:        Media{ID: "rm1328617472", TitleID: "tt0086677", URL: "http://www.imdb.com/title/tt0086677/mediaviewer/rm1328617472", ContentURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BNDM3N2IxY2UtMDc4MS00ZDM5LWJjODUtMjQ5ODg2YWIxMTE4XkEyXkFqcGdeQXVyMDYxMTUwNg@@._V1_UY268_CR87,0,182,268_AL_.jpg"},
 				AKA:           []string{"Brothers", "Unter Brüdern"},
 			},
@@ -243,7 +243,7 @@ func TestTitle(t *testing.T) {
 				Name:   "Iron Man 2",
 				Type:   "Video Game",
 				Year:   2010,
-				Rating: "6.3",
+				Rating: "6.2",
 				Directors: []Name{
 					Name{ID: "nm4157448", URL: "http://www.imdb.com/name/nm4157448", FullName: "Michael McCormick"},
 					Name{ID: "nm4157551", URL: "http://www.imdb.com/name/nm4157551", FullName: "Robert Taylor"},
