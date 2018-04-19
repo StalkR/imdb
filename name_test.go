@@ -19,7 +19,7 @@ func TestName(t *testing.T) {
 			ID: "nm0130952",
 			want: Name{
 				ID:       "nm0130952",
-				URL:      "http://www.imdb.com/name/nm0130952",
+				URL:      "https://www.imdb.com/name/nm0130952",
 				FullName: "José Calvo",
 			},
 		},
@@ -27,7 +27,7 @@ func TestName(t *testing.T) {
 			ID: "nm0905152",
 			want: Name{
 				ID:       "nm0905152",
-				URL:      "http://www.imdb.com/name/nm0905152",
+				URL:      "https://www.imdb.com/name/nm0905152",
 				FullName: "Lilly Wachowski",
 			},
 		},

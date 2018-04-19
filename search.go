@@ -9,7 +9,7 @@ import (
 	"strconv"
 )
 
-const searchURL = "http://www.imdb.com/find?%s"
+const searchURL = "https://www.imdb.com/find?%s"
 
 var (
 	// searchTitleListRE matches on results list. (?s) for multi-line.
@@ -17,7 +17,7 @@ var (
 	// searchTitleRE matches on titles.
 	searchTitleRE = regexp.MustCompile(`<a href="/title/(tt\d+).*?>([^<]+)</a>([^<]+)`)
 	searchYearRE  = regexp.MustCompile(`\((\d+)\)`)
-	searchTypeRE = regexp.MustCompile(`\)\s+\((.+)\)`)
+	searchTypeRE  = regexp.MustCompile(`\)\s+\((.+)\)`)
 )
 
 // SearchTitle searches for titles matching name.

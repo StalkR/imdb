@@ -1,9 +1,6 @@
 package imdb
 
-import (
-	"fmt"
-	"testing"
-)
+import "testing"
 
 func TestMedia(t *testing.T) {
 	_, err := NewMedia(client, "wrong", "wrong")
@@ -22,8 +19,8 @@ func TestMedia(t *testing.T) {
 			want: Media{
 				ID:         "rm3523884288",
 				TitleID:    "tt0167261",
-				URL:        "http://www.imdb.com/title/tt0167261/mediaviewer/rm3523884288",
-				ContentURL: "https://images-na.ssl-images-amazon.com/images/M/MV5BMDY0NmI4ZjctN2VhZS00YzExLTkyZGItMTJhOTU5NTg4MDU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
+				URL:        "https://www.imdb.com/title/tt0167261/mediaviewer/rm3523884288",
+				ContentURL: "https://ia.media-imdb.com/images/M/MV5BMDY0NmI4ZjctN2VhZS00YzExLTkyZGItMTJhOTU5NTg4MDU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
 			},
 		},
 	} {
@@ -31,7 +28,9 @@ func TestMedia(t *testing.T) {
 		if err != nil {
 			t.Errorf("NewMedia(%s) error: %v", tt.ID, err)
 		} else {
-			diffStruct(t, fmt.Sprintf("NewMedia(%s)", tt.ID), tt.want, *got)
+			if err := diffStruct(tt.want, *got); err != nil {
+				t.Errorf("NewMedia(%s): %v", tt.ID, err)
+			}
 		}
 	}
 }

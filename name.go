@@ -21,7 +21,7 @@ func (n *Name) String() string {
 
 var nmRE = regexp.MustCompile(`^nm\d+$`)
 
-const nameURL = "http://www.imdb.com/name/%s"
+const nameURL = "https://www.imdb.com/name/%s"
 
 // NewName gets, parses and returns a Name by its ID.
 func NewName(c *http.Client, id string) (*Name, error) {
@@ -46,7 +46,7 @@ func NewName(c *http.Client, id string) (*Name, error) {
 
 // Regular expressions to parse a Name.
 var (
-	nameIDRE       = regexp.MustCompile(`<link rel="canonical" href="http://www.imdb.com/name/(nm\d+)/"`)
+	nameIDRE       = regexp.MustCompile(`<link rel="canonical" href="https://www.imdb.com/name/(nm\d+)/"`)
 	nameFullNameRE = regexp.MustCompile(`<meta property=.og:title. content="(.*?)"`)
 )
 

@@ -77,7 +77,7 @@ func (t *Title) String() string {
 
 var ttRE = regexp.MustCompile(`^tt\d+$`)
 
-const titleURL = "http://www.imdb.com/title/%s"
+const titleURL = "https://www.imdb.com/title/%s"
 
 // NewTitle gets, parses and returns a Title by its ID.
 func NewTitle(c *http.Client, id string) (*Title, error) {
@@ -116,7 +116,7 @@ func NewTitle(c *http.Client, id string) (*Title, error) {
 
 // Regular expressions to parse a Title.
 var (
-	titleIDRE            = regexp.MustCompile(`<link rel="canonical" href="http://www.imdb.com/title/(tt\d+)/"`)
+	titleIDRE            = regexp.MustCompile(`<link rel="canonical" href="https://www.imdb.com/title/(tt\d+)/"`)
 	titleNameRE          = regexp.MustCompile(`property=.og:title. content="(.*?)( \(|")`)
 	titleTypeRE          = regexp.MustCompile(`property=.og:title. content="[^(]+ \((.*?) [0-9]{4}.*?\)" />`)
 	titleProdYearRE      = regexp.MustCompile(`property=.og:title. content="[^(]+ \(.*?([0-9]{4}).*?\)" />`)

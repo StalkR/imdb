@@ -24,7 +24,7 @@ func (m *Media) String() string {
 
 var rmRE = regexp.MustCompile(`^rm\d+$`)
 
-const mediaURL = "http://www.imdb.com/title/%s/mediaviewer/%s"
+const mediaURL = "https://www.imdb.com/title/%s/mediaviewer/%s"
 
 // NewMedia gets, parses and returns a Media by its ID and Title ID.
 func NewMedia(c *http.Client, id, titleid string) (*Media, error) {
@@ -49,7 +49,7 @@ func NewMedia(c *http.Client, id, titleid string) (*Media, error) {
 
 // Regular expressions to identify and parse a Media.
 var (
-	mediaIDRE   = regexp.MustCompile(`c4:"http://www.imdb.com/title/(tt\d+)/mediaviewer/(rm\d+)"`)
+	mediaIDRE   = regexp.MustCompile(`c4:"https://www.imdb.com/title/(tt\d+)/mediaviewer/(rm\d+)"`)
 	mediaJSONRE = regexp.MustCompile(`(?s){'mediaviewer': (.*?)}\);`)
 )
 
