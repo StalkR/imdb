@@ -335,7 +335,7 @@ func (t *Title) Parse(page []byte) error {
 // Regular expressions to parse a Title release info.
 var (
 	titleAKAsRE = regexp.MustCompile(`(?s)<table id="akas"(.*?)</table>`)
-	titleAKARE  = regexp.MustCompile(`(?s)<td>([^<]*)</td>\s*<td>([^<]+)</td>\s*</tr>`)
+	titleAKARE  = regexp.MustCompile(`(?s)<td>[^<]*</td>\s*<td>([^<]+)</td>\s*</tr>`)
 )
 
 // ParseRls parses a Title release info from its page.
@@ -351,8 +351,7 @@ func (t *Title) ParseRls(page []byte) error {
 	}
 	t.AKA = nil
 	for _, m := range s {
-		comment := decode(string(m[1]))
-		aka := decode(string(m[2]))
+		aka := decode(string(m[1]))
 		if stringSlice(t.AKA).Has(aka) {
 			continue
 		}
