@@ -8,6 +8,7 @@ import (
 
 	"github.com/StalkR/aecache"
 	"github.com/StalkR/imdb"
+	"golang.org/x/net/context"
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/urlfetch"
 )
@@ -44,7 +45,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	w.Write(b)
 }
 
-func find(c appengine.Context, query string) ([]byte, error) {
+func find(c context.Context, query string) ([]byte, error) {
 	client := &http.Client{
 		Transport: &urlfetch.Transport{
 			Context:  c,
