@@ -13,21 +13,17 @@ func TestSearchTitle(t *testing.T) {
 	if len(r) < 50 {
 		t.Fatalf("SearchTitle(%s) len < 50: %d", title, len(r))
 	}
-	id := "tt0120737"
-	if r[0].ID != id {
-		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, id)
+	if want := "tt0120737"; r[0].ID != want {
+		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, want)
 	}
-	name := "The Lord of the Rings: The Fellowship of the Ring"
-	if r[0].Name != name {
-		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].Name, name)
+	if want := "The Lord of the Rings: The Fellowship of the Ring"; r[0].Name != want {
+		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].Name, want)
 	}
-	year := 2001
-	if r[0].Year != year {
-		t.Errorf("SearchTitle(%s)[0] = %d; want %d", title, r[0].Year, year)
+	if want := 2001; r[0].Year != want {
+		t.Errorf("SearchTitle(%s)[0] = %d; want %d", title, r[0].Year, want)
 	}
-	typ := "Video Game"
-	if r[1].Type != typ {
-		t.Errorf("SearchTitle(%s)[1] = %s; want %s", title, r[1].Type, typ)
+	if want := "TV Series"; r[1].Type != want {
+		t.Errorf("SearchTitle(%s)[1] = %s; want %s", title, r[1].Type, want)
 	}
 }
 
@@ -40,9 +36,8 @@ func TestSearchTitleUnicode(t *testing.T) {
 	if len(r) == 0 {
 		t.Fatalf("SearchTitle(%s) len = %d; want %d", title, len(r), 1)
 	}
-	id := "tt0244764"
-	if r[0].ID != id {
-		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, id)
+	if want := "tt0244764"; r[0].ID != want {
+		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, want)
 	}
 }
 
@@ -55,13 +50,11 @@ func TestSearchTitlePositions(t *testing.T) {
 	if len(r) < 3 {
 		t.Fatalf("SearchTitle(%s) len = %d; want %d", title, len(r), 1)
 	}
-	id := "tt1126591" // Burlesque (I) (2010)
-	if r[0].ID != id {
-		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, id)
+	if want := "tt1126591"; r[0].ID != want { // Burlesque (I) (2010)
+		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, want)
 	}
-	id = "tt1586713" // Burlesque (II) (2010)
-	if r[1].ID != id {
-		t.Errorf("SearchTitle(%s)[1] = %s; want %s", title, r[1].ID, id)
+	if want := "tt1586713"; r[1].ID != want { // Burlesque (II) (2010)
+		t.Errorf("SearchTitle(%s)[1] = %s; want %s", title, r[1].ID, want)
 	}
 }
 
@@ -74,8 +67,7 @@ func TestMachete(t *testing.T) {
 	if len(r) != 1 {
 		t.Fatalf("SearchTitle(%s) len = %d; want %d", title, len(r), 1)
 	}
-	id := "tt2002719"
-	if r[0].ID != id {
-		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, id)
+	if want := "tt2002719"; r[0].ID != want {
+		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, want)
 	}
 }

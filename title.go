@@ -1,6 +1,7 @@
 package imdb
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -15,7 +16,6 @@ type Title struct {
 	ID            string   `json:",omitempty"`
 	URL           string   `json:",omitempty"`
 	Name          string   `json:",omitempty"`
-	OrigName      string   `json:",omitempty"`
 	Type          string   `json:",omitempty"`
 	Year          int      `json:",omitempty"`
 	Rating        string   `json:",omitempty"`
@@ -116,150 +116,178 @@ func NewTitle(c *http.Client, id string) (*Title, error) {
 
 // Regular expressions to parse a Title.
 var (
-	titleIDRE            = regexp.MustCompile(`<link rel="canonical" href="https://www.imdb.com/title/(tt\d+)/"`)
-	titleNameRE          = regexp.MustCompile(`property=.og:title. content="(.*?)( \(|")`)
-	titleTypeRE          = regexp.MustCompile(`property=.og:title. content="[^(]+ \((.*?) [0-9]{4}.*?\)" />`)
-	titleProdYearRE      = regexp.MustCompile(`property=.og:title. content="[^(]+ \(.*?([0-9]{4}).*?\)" />`)
-	titlePubYearRE       = regexp.MustCompile(`itemprop="datePublished" content="([0-9]{4})`)
-	titleRatingRE        = regexp.MustCompile(`itemprop="ratingValue">([0-9.]+)</span>`)
-	titleDurationRE      = regexp.MustCompile(`itemprop="duration" datetime="(?:PT)?([0-9HM]+)"`)
-	titlePersonRE        = regexp.MustCompile(`(?s)<a href="/name/(nm\d+).*?itemprop="name">([^<]+)`)
-	titleDirectorsRE     = regexp.MustCompile(`(?s)itemprop="director" itemscope itemtype="http://schema.org/Person">(.*?)</div>`)
-	titleWritersRE       = regexp.MustCompile(`(?s)itemprop="creator" itemscope itemtype="http://schema.org/Person">(.*?)</div>`)
-	titleActorsRE        = regexp.MustCompile(`(?s)<td class="itemprop" itemprop="actor".*?href="/name/(nm\d+)/.*?itemprop="name">([^<]+)`)
-	titleGenresRE        = regexp.MustCompile(`(?s)<div class="[^"]+" itemprop="genre">(.*?)</div>`)
-	titleGenreRE         = regexp.MustCompile(`>(.*?)</a>`)
+	schemaRE             = regexp.MustCompile(`(?s)<script type="application/ld\+json">(.*?)</script>`)
+	titleYearRE          = regexp.MustCompile(`<a href="/year/(\d+)/`)
+	titleDurationRE      = regexp.MustCompile(`<time datetime="(?:PT)?([0-9HM]+)"`)
 	titleLanguagesRE     = regexp.MustCompile(`(?s)Language:</h4>(.*?)</div>`)
-	titleLanguageRE      = regexp.MustCompile(`itemprop=.url.>([^<]+)</a>`)
+	titleLanguageRE      = regexp.MustCompile(`<a[^>]*>([^<]+)</a>`)
 	titleNationalitiesRE = regexp.MustCompile(`href="/search/title\?country_of_origin[^"]+"[^>]+>([^<]+)`)
 	titleDescriptionRE   = regexp.MustCompile(`<meta property="og:description" content="(?:(?:Created|Directed) by .*?\w\w\.\s*)*(?:With .*?\w\w\.\s*)?([^"]*)`)
-	titlePosterRE        = regexp.MustCompile(`(?s)href="/title/tt\d+/mediaviewer/(rm\d+).*?src="([^"]+)"\s*itemprop="image"`)
+	titlePosterRE        = regexp.MustCompile(`(?s)<div class="poster">\s*<a href="/title/tt\d+/mediaviewer/(rm\d+)[^"]*"[^>]*>\s*<img.*?src="([^"]+)"`)
 )
+
+type schemaJSON struct {
+	Type            string `json:"@type"`
+	Url             string
+	Name            string
+	Image           string
+	Genre           genreJSON
+	Actor           personsJSON
+	Director        personsJSON
+	Creator         personsJSON
+	Description     string
+	DatePublished   string
+	AggregateRating struct {
+		RatingValue string
+	}
+	Duration string
+}
+
+// Some types are either single or list, so we need to handle that.
+type genreJSON []string
+
+func (s *genreJSON) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err == nil {
+		*s = []string{v}
+		return nil
+	}
+	var w []string
+	if err := json.Unmarshal(data, &w); err != nil {
+		return err
+	}
+	*s = w
+	return nil
+}
+
+type personsJSON []personJSON
+
+func (s *personsJSON) UnmarshalJSON(data []byte) error {
+	var v personJSON
+	if err := json.Unmarshal(data, &v); err == nil {
+		*s = []personJSON{v}
+		return nil
+	}
+	var w []personJSON
+	if err := json.Unmarshal(data, &w); err != nil {
+		return err
+	}
+	*s = w
+	return nil
+}
+
+type personJSON struct {
+	Type string `json:"@type"`
+	Url  string
+	Name string
+}
 
 // Parse parses a Title from its page.
 func (t *Title) Parse(page []byte) error {
-	// ID, URL
-	s := titleIDRE.FindSubmatch(page)
+	s := schemaRE.FindSubmatch(page)
 	if s == nil {
+		return NewErrParse("schema")
+	}
+	var v schemaJSON
+	if err := json.Unmarshal(s[1], &v); err != nil {
+		return NewErrParse(err.Error())
+	}
+
+	p := strings.Split(v.Url, "/")
+	if len(p) != 4 {
 		return NewErrParse("id")
 	}
-	t.ID = string(s[1])
+	t.ID = p[2]
 	t.URL = fmt.Sprintf(titleURL, t.ID)
+	t.Name = v.Name
+	t.Type = v.Type
 
-	// Name
-	s = titleNameRE.FindSubmatch(page)
-	if s == nil {
-		return NewErrParse("name")
-	}
-	if len(s[1]) == 0 {
-		return NewErrParse("name empty")
-	}
-	t.Name = decode(string(s[1]))
-
-	// Type
-	s = titleTypeRE.FindSubmatch(page)
-	if s != nil {
-		t.Type = string(s[1])
-	}
-
-	// Year
-	s = titleProdYearRE.FindSubmatch(page)
-	if s == nil {
-		s = titlePubYearRE.FindSubmatch(page)
-	}
-	if s != nil {
-		t.Year, _ = strconv.Atoi(string(s[1])) // Regexp matches digits.
-	}
-
-	// Rating
-	s = titleRatingRE.FindSubmatch(page)
-	if s != nil {
-		t.Rating = string(s[1])
-	}
-
-	// Duration
-	s = titleDurationRE.FindSubmatch(page)
-	if s != nil {
-		t.Duration = strings.ToLower(string(s[1]))
-	}
-
-	// Directors
-	s = titleDirectorsRE.FindSubmatch(page)
-	if s != nil {
-		s := titlePersonRE.FindAllSubmatch(s[1], -1)
+	if len(v.DatePublished) >= 4 {
+		year, err := strconv.Atoi(v.DatePublished[:4])
+		if err != nil {
+			return NewErrParse(fmt.Sprintf("date: %v", err))
+		}
+		t.Year = year
+	} else {
+		s := titleYearRE.FindSubmatch(page)
 		if s == nil {
-			return NewErrParse("directors")
+			return NewErrParse("year")
 		}
-		t.Directors = nil
-		for _, m := range s {
-			id := string(m[1])
-			if nameSlice(t.Directors).Has(id) {
-				continue
-			}
-			t.Directors = append(t.Directors, Name{
-				ID:       id,
-				URL:      fmt.Sprintf(nameURL, id),
-				FullName: decode(string(m[2])),
-			})
+		t.Year, _ = strconv.Atoi(string(s[1])) // regexp matches digits
+	}
+
+	t.Rating = v.AggregateRating.RatingValue
+	if v.Duration != "" {
+		t.Duration = strings.ToLower(strings.TrimLeft(v.Duration, "PT"))
+	} else {
+		s := titleDurationRE.FindSubmatch(page)
+		if s != nil {
+			t.Duration = strings.ToLower(string(s[1]))
 		}
 	}
 
-	// Writers
-	s = titleWritersRE.FindSubmatch(page)
-	if s != nil {
-		s := titlePersonRE.FindAllSubmatch(s[1], -1)
-		if s == nil {
-			return NewErrParse("writers")
+	t.Directors = nil
+	for _, e := range v.Director {
+		if e.Type != "Person" {
+			continue
 		}
-		t.Writers = nil
-		for _, m := range s {
-			id := string(m[1])
-			if nameSlice(t.Writers).Has(id) {
-				continue
-			}
-			t.Writers = append(t.Writers, Name{
-				ID:       id,
-				URL:      fmt.Sprintf(nameURL, id),
-				FullName: decode(string(m[2])),
-			})
+		p := strings.Split(e.Url, "/")
+		if len(p) != 4 {
+			return NewErrParse("director id")
 		}
+		id := p[2]
+		if nameSlice(t.Directors).Has(id) {
+			continue
+		}
+		t.Directors = append(t.Directors, Name{
+			ID:       id,
+			URL:      fmt.Sprintf(nameURL, id),
+			FullName: e.Name,
+		})
 	}
 
-	// Actors
-	as := titleActorsRE.FindAllSubmatch(page, -1)
-	if as != nil {
-		t.Actors = nil
-		for _, m := range as {
-			id := string(m[1])
-			if nameSlice(t.Actors).Has(id) {
-				continue
-			}
-			t.Actors = append(t.Actors, Name{
-				ID:       id,
-				URL:      fmt.Sprintf(nameURL, id),
-				FullName: decode(string(m[2])),
-			})
+	t.Writers = nil
+	for _, e := range v.Creator {
+		if e.Type != "Person" {
+			continue
 		}
+		p := strings.Split(e.Url, "/")
+		if len(p) != 4 {
+			return NewErrParse("writer id")
+		}
+		id := p[2]
+		if nameSlice(t.Writers).Has(id) {
+			continue
+		}
+		t.Writers = append(t.Writers, Name{
+			ID:       id,
+			URL:      fmt.Sprintf(nameURL, id),
+			FullName: e.Name,
+		})
 	}
 
-	// Genres
-	s = titleGenresRE.FindSubmatch(page)
-	if s != nil {
-		s := titleGenreRE.FindAllSubmatch(s[1], -1)
-		if s == nil {
-			return NewErrParse("genres")
+	t.Actors = nil
+	for _, e := range v.Actor {
+		if e.Type != "Person" {
+			continue
 		}
-		t.Genres = nil
-		for _, m := range s {
-			genre := decode(string(m[1]))
-			if stringSlice(t.Genres).Has(genre) {
-				continue
-			}
-			t.Genres = append(t.Genres, genre)
+		p := strings.Split(e.Url, "/")
+		if len(p) != 4 {
+			return NewErrParse("actor id")
 		}
+		id := p[2]
+		if nameSlice(t.Actors).Has(id) {
+			continue
+		}
+		t.Actors = append(t.Actors, Name{
+			ID:       id,
+			URL:      fmt.Sprintf(nameURL, id),
+			FullName: e.Name,
+		})
 	}
 
-	// Languages
+	t.Genres = v.Genre
+
 	s = titleLanguagesRE.FindSubmatch(page)
 	if s != nil {
 		s := titleLanguageRE.FindAllSubmatch(s[1], -1)
@@ -268,16 +296,15 @@ func (t *Title) Parse(page []byte) error {
 		}
 		t.Languages = nil
 		for _, m := range s {
-			genre := decode(string(m[1]))
-			if stringSlice(t.Languages).Has(genre) {
+			language := decode(string(m[1]))
+			if stringSlice(t.Languages).Has(language) {
 				continue
 			}
-			t.Languages = append(t.Languages, genre)
+			t.Languages = append(t.Languages, language)
 		}
 	}
 
-	// Nationalities
-	as = titleNationalitiesRE.FindAllSubmatch(page, -1)
+	as := titleNationalitiesRE.FindAllSubmatch(page, -1)
 	if as != nil {
 		t.Nationalities = nil
 		for _, m := range as {
@@ -289,13 +316,8 @@ func (t *Title) Parse(page []byte) error {
 		}
 	}
 
-	// Description
-	s = titleDescriptionRE.FindSubmatch(page)
-	if s != nil {
-		t.Description = decode(string(s[1]))
-	}
+	t.Description = v.Description
 
-	// Poster
 	s = titlePosterRE.FindSubmatch(page)
 	if s != nil {
 		id := string(s[1])
@@ -331,9 +353,6 @@ func (t *Title) ParseRls(page []byte) error {
 	for _, m := range s {
 		comment := decode(string(m[1]))
 		aka := decode(string(m[2]))
-		if comment == "(original title)" {
-			t.OrigName = aka
-		}
 		if stringSlice(t.AKA).Has(aka) {
 			continue
 		}
