@@ -12,6 +12,7 @@ import (
 	"github.com/StalkR/imdb"
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
+	"google.golang.org/appengine/log"
 	"google.golang.org/appengine/urlfetch"
 )
 
@@ -29,26 +30,26 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 	id := m[1]
 
-	c := appengine.NewContext(r)
-	b, err := aecache.Get(c, "title:"+id)
+	ctx := appengine.NewContext(r)
+	b, err := aecache.Get(ctx, "title:"+id)
 	if err != nil {
-		b, err = title(c, id)
+		b, err = title(ctx, id)
 		if err != nil {
-			c.Errorf("title: %v", err)
+			log.Errorf(ctx, "title: %v", err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		go aecache.Set(c, "title:"+id, b, 24*time.Hour)
+		go aecache.Set(ctx, "title:"+id, b, 24*time.Hour)
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(b)
 }
 
-func title(c context.Context, id string) ([]byte, error) {
+func title(ctx context.Context, id string) ([]byte, error) {
 	client := &http.Client{
 		Transport: &urlfetch.Transport{
-			Context:  c,
+			Context:  ctx,
 			Deadline: 15 * time.Second,
 		},
 	}

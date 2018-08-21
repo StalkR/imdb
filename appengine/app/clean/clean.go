@@ -7,6 +7,7 @@ import (
 
 	"github.com/StalkR/aecache"
 	"google.golang.org/appengine"
+	"google.golang.org/appengine/log"
 )
 
 func init() {
@@ -15,10 +16,10 @@ func init() {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/plain")
-	c := appengine.NewContext(r)
-	err := aecache.GC(c)
+	ctx := appengine.NewContext(r)
+	err := aecache.GC(ctx)
 	if err != nil {
-		c.Errorf("%v", err)
+		log.Errorf(ctx, "%v", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}

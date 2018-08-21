@@ -10,6 +10,7 @@ import (
 	"github.com/StalkR/imdb"
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
+	"google.golang.org/appengine/log"
 	"google.golang.org/appengine/urlfetch"
 )
 
@@ -29,26 +30,26 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	c := appengine.NewContext(r)
-	b, err := aecache.Get(c, "find:"+query)
+	ctx := appengine.NewContext(r)
+	b, err := aecache.Get(ctx, "find:"+query)
 	if err != nil {
-		b, err = find(c, query)
+		b, err = find(ctx, query)
 		if err != nil {
-			c.Errorf("find: %v", err)
+			log.Errorf(ctx, "find: %v", err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		go aecache.Set(c, "find:"+query, b, 24*time.Hour)
+		go aecache.Set(ctx, "find:"+query, b, 24*time.Hour)
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(b)
 }
 
-func find(c context.Context, query string) ([]byte, error) {
+func find(ctx context.Context, query string) ([]byte, error) {
 	client := &http.Client{
 		Transport: &urlfetch.Transport{
-			Context:  c,
+			Context:  ctx,
 			Deadline: 15 * time.Second,
 		},
 	}
