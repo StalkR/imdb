@@ -47,10 +47,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func find(ctx context.Context, query string) ([]byte, error) {
+	ctx, _ = context.WithTimeout(ctx, 15*time.Second)
 	client := &http.Client{
 		Transport: &urlfetch.Transport{
-			Context:  ctx,
-			Deadline: 15 * time.Second,
+			Context: ctx,
 		},
 	}
 	titles, err := imdb.SearchTitle(client, query)

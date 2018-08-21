@@ -47,10 +47,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func title(ctx context.Context, id string) ([]byte, error) {
+	ctx, _ = context.WithTimeout(ctx, 15*time.Second)
 	client := &http.Client{
 		Transport: &urlfetch.Transport{
-			Context:  ctx,
-			Deadline: 15 * time.Second,
+			Context: ctx,
 		},
 	}
 	t, err := imdb.NewTitle(client, id)
