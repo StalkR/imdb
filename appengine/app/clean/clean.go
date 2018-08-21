@@ -6,8 +6,7 @@ import (
 	"net/http"
 
 	"github.com/StalkR/aecache"
-
-	"appengine"
+	"google.golang.org/appengine"
 )
 
 func init() {

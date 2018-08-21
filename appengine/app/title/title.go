@@ -10,9 +10,8 @@ import (
 
 	"github.com/StalkR/aecache"
 	"github.com/StalkR/imdb"
-
-	"appengine"
-	"appengine/urlfetch"
+	"google.golang.org/appengine"
+	"google.golang.org/appengine/urlfetch"
 )
 
 func init() {
