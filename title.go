@@ -334,22 +334,13 @@ func (t *Title) Parse(page []byte) error {
 
 // Regular expressions to parse a Title release info.
 var (
-	titleAKAsRE = regexp.MustCompile(`(?s)<table id="akas"(.*?)</table>`)
-	titleAKARE  = regexp.MustCompile(`(?s)<td>[^<]*</td>\s*<td>([^<]+)</td>\s*</tr>`)
+	titleAKARE = regexp.MustCompile(`<td class="aka-item__title">([^<]+)</td>`)
 )
 
 // ParseRls parses a Title release info from its page.
 func (t *Title) ParseRls(page []byte) error {
-	// AKA
-	b := titleAKAsRE.FindSubmatch(page)
-	if b == nil {
-		return nil
-	}
-	s := titleAKARE.FindAllSubmatch(b[1], -1)
-	if s == nil {
-		return NewErrParse("aka")
-	}
 	t.AKA = nil
+	s := titleAKARE.FindAllSubmatch(page, -1)
 	for _, m := range s {
 		aka := decode(string(m[1]))
 		if stringSlice(t.AKA).Has(aka) {
