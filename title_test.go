@@ -205,7 +205,7 @@ func TestTitle(t *testing.T) {
 				Name:   "Iron Man 2",
 				Type:   "VideoGame",
 				Year:   2010,
-				Rating: "6.2",
+				Rating: "6.1",
 				Directors: []Name{
 					Name{ID: "nm4157448", URL: "https://www.imdb.com/name/nm4157448", FullName: "Michael McCormick"},
 					Name{ID: "nm4157551", URL: "https://www.imdb.com/name/nm4157551", FullName: "Robert Taylor"},
@@ -236,7 +236,7 @@ func TestTitle(t *testing.T) {
 				Name:     "Iron Sky: The Coming Race",
 				Type:     "Movie",
 				Year:     2019,
-				Rating:   "5.4",
+				Rating:   "5.3",
 				Duration: "1h30m",
 				Directors: []Name{
 					Name{ID: "nm1993322", URL: "https://www.imdb.com/name/nm1993322", FullName: "Timo Vuorensola"},
