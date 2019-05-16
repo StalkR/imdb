@@ -236,7 +236,7 @@ func TestTitle(t *testing.T) {
 				Name:     "Iron Sky: The Coming Race",
 				Type:     "Movie",
 				Year:     2019,
-				Rating:   "5.3",
+				Rating:   "5.1",
 				Duration: "1h30m",
 				Directors: []Name{
 					Name{ID: "nm1993322", URL: "https://www.imdb.com/name/nm1993322", FullName: "Timo Vuorensola"},
@@ -258,7 +258,7 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English"},
 				Nationalities: []string{"Finland", "Germany", "Belgium"},
 				Description:   "Iron Sky: The Coming Race is a movie starring Lara Rossi, Vladimir Burlakov, and Kit Dale. A follow-up to the film Iron Sky (2012) in which Nazis plan to take over the world after lying dormant in a secret military base on the moon.",
-				Poster:        Media{ID: "rm3515771392", TitleID: "tt3038708", URL: "https://www.imdb.com/title/tt3038708/mediaviewer/rm3515771392", ContentURL: "https://m.media-amazon.com/images/M/MV5BZDVhNDQxYzktMjUyMS00Njk0LWJjMDAtZWM3M2ZkZGI1M2Q2XkEyXkFqcGdeQXVyOTc0NjcxNzM@._V1_UX182_CR0,0,182,268_AL_.jpg"},
+				Poster:        Media{ID: "rm3212078592", TitleID: "tt3038708", URL: "https://www.imdb.com/title/tt3038708/mediaviewer/rm3212078592", ContentURL: "https://m.media-amazon.com/images/M/MV5BZThkYjM1ZDEtMjE1Ni00OWIxLTljZTktMDdlNjk5OWVlNjQ2XkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_UY268_CR3,0,182,268_AL_.jpg"},
 				AKA:           []string{"Iron Sky 2", "Iron Sky. Inwazja", "Iron Sky: The Coming Race", "Железное небо: Грядущая раса"},
 			},
 		},
