@@ -229,40 +229,6 @@ func TestTitle(t *testing.T) {
 			},
 		},
 		{
-			ID: "tt3038708",
-			want: Title{
-				ID:       "tt3038708",
-				URL:      "https://www.imdb.com/title/tt3038708",
-				Name:     "Iron Sky: The Coming Race",
-				Type:     "Movie",
-				Year:     2019,
-				Rating:   "5.1",
-				Duration: "1h30m",
-				Directors: []Name{
-					Name{ID: "nm1993322", URL: "https://www.imdb.com/name/nm1993322", FullName: "Timo Vuorensola"},
-				},
-				Writers: []Name{
-					Name{ID: "nm0615914", URL: "https://www.imdb.com/name/nm0615914", FullName: "Dalan Musson"},
-					Name{ID: "nm1990490", URL: "https://www.imdb.com/name/nm1990490", FullName: "Jarmo Puskala"},
-					Name{ID: "nm1242274", URL: "https://www.imdb.com/name/nm1242274", FullName: "Johanna Sinisalo"},
-					Name{ID: "nm1994659", URL: "https://www.imdb.com/name/nm1994659", FullName: "Samuli Torssonen"},
-					Name{ID: "nm1993322", URL: "https://www.imdb.com/name/nm1993322", FullName: "Timo Vuorensola"},
-				},
-				Actors: []Name{
-					Name{ID: "nm4468181", URL: "https://www.imdb.com/name/nm4468181", FullName: "Lara Rossi"},
-					Name{ID: "nm0122095", URL: "https://www.imdb.com/name/nm0122095", FullName: "Vladimir Burlakov"},
-					Name{ID: "nm7610067", URL: "https://www.imdb.com/name/nm7610067", FullName: "Kit Dale"},
-					Name{ID: "nm0338381", URL: "https://www.imdb.com/name/nm0338381", FullName: "Tom Green"},
-				},
-				Genres:        []string{"Action", "Adventure", "Comedy", "Sci-Fi"},
-				Languages:     []string{"English"},
-				Nationalities: []string{"Finland", "Germany", "Belgium"},
-				Description:   "Iron Sky: The Coming Race is a movie starring Lara Rossi, Vladimir Burlakov, and Kit Dale. A follow-up to the film Iron Sky (2012) in which Nazis plan to take over the world after lying dormant in a secret military base on the moon.",
-				Poster:        Media{ID: "rm3212078592", TitleID: "tt3038708", URL: "https://www.imdb.com/title/tt3038708/mediaviewer/rm3212078592", ContentURL: "https://m.media-amazon.com/images/M/MV5BZThkYjM1ZDEtMjE1Ni00OWIxLTljZTktMDdlNjk5OWVlNjQ2XkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_UY268_CR3,0,182,268_AL_.jpg"},
-				AKA:           []string{"Iron Sky 2", "Iron Sky. Inwazja", "Iron Sky: The Coming Race", "Железное небо: Грядущая раса"},
-			},
-		},
-		{
 			ID: "tt0423866",
 			want: Title{
 				ID:       "tt0423866",
