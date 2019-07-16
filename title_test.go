@@ -220,7 +220,7 @@ func TestTitle(t *testing.T) {
 					Name{ID: "nm0000168", URL: "https://www.imdb.com/name/nm0000168", FullName: "Samuel L. Jackson"},
 					Name{ID: "nm0482851", URL: "https://www.imdb.com/name/nm0482851", FullName: "Phil LaMarr"},
 				},
-				Genres:        []string{"Action", "Adventure", "Sci-Fi"},
+				Genres:        []string{"Action", "Adventure", "Crime", "Fantasy", "Sci-Fi", "Thriller"},
 				Languages:     []string{"English"},
 				Nationalities: []string{"USA"},
 				Description:   "Iron Man 2 is a video game starring Don Cheadle, Eric Loomis, and Samuel L. Jackson. Video game based upon the film of the same name.",
