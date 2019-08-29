@@ -36,7 +36,7 @@ func TestSearchTitleUnicode(t *testing.T) {
 	if len(r) == 0 {
 		t.Fatalf("SearchTitle(%s) len = %d; want %d", title, len(r), 1)
 	}
-	if want := "tt0244764"; r[0].ID != want {
+	if want := "tt0252792"; r[0].ID != want {
 		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, want)
 	}
 }
