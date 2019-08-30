@@ -49,7 +49,7 @@ func NewMedia(c *http.Client, id, titleid string) (*Media, error) {
 
 // Regular expressions to identify and parse a Media.
 var (
-	mediaIDRE   = regexp.MustCompile(`c4:"https://www.imdb.com/title/(tt\d+)/mediaviewer/(rm\d+)"`)
+	mediaIDRE   = regexp.MustCompile(`<meta property="og:url" content="https://www.imdb.com/title/(tt\d+)/mediaviewer/(rm\d+)"`)
 	mediaJSONRE = regexp.MustCompile(`(?s){'mediaviewer': (.*?)};`)
 )
 
