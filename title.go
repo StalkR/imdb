@@ -19,6 +19,7 @@ type Title struct {
 	Type          string   `json:",omitempty"`
 	Year          int      `json:",omitempty"`
 	Rating        string   `json:",omitempty"`
+	RatingCount   int      `json:",omitempty"`
 	Duration      string   `json:",omitempty"`
 	Directors     []Name   `json:",omitempty"`
 	Writers       []Name   `json:",omitempty"`
@@ -139,6 +140,7 @@ type schemaJSON struct {
 	DatePublished   string
 	AggregateRating struct {
 		RatingValue string
+		RatingCount int
 	}
 	Duration string
 }
@@ -217,6 +219,8 @@ func (t *Title) Parse(page []byte) error {
 	}
 
 	t.Rating = v.AggregateRating.RatingValue
+	t.RatingCount = v.AggregateRating.RatingCount
+
 	if v.Duration != "" {
 		t.Duration = strings.ToLower(strings.TrimLeft(v.Duration, "PT"))
 	} else {
