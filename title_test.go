@@ -15,13 +15,14 @@ func TestTitle(t *testing.T) {
 		{
 			ID: "tt0073845",
 			want: Title{
-				ID:       "tt0073845",
-				URL:      "https://www.imdb.com/title/tt0073845",
-				Name:     "L'uomo che sfidò l'organizzazione",
-				Type:     "Movie",
-				Year:     1975,
-				Rating:   "5.2",
-				Duration: "1h27m",
+				ID:          "tt0073845",
+				URL:         "https://www.imdb.com/title/tt0073845",
+				Name:        "L'uomo che sfidò l'organizzazione",
+				Type:        "Movie",
+				Year:        1975,
+				Rating:      "5.2",
+				RatingCount: 25,
+				Duration:    "1h27m",
 				Directors: []Name{
 					Name{ID: "nm0340894", URL: "https://www.imdb.com/name/nm0340894", FullName: "Sergio Grieco"},
 				},
@@ -46,13 +47,14 @@ func TestTitle(t *testing.T) {
 		{
 			ID: "tt0437804",
 			want: Title{
-				ID:       "tt0437803", // ID redirect.
-				URL:      "https://www.imdb.com/title/tt0437803",
-				Name:     "Alien Siege",
-				Type:     "Movie",
-				Year:     2005,
-				Rating:   "3.5",
-				Duration: "1h30m",
+				ID:          "tt0437803", // ID redirect.
+				URL:         "https://www.imdb.com/title/tt0437803",
+				Name:        "Alien Siege",
+				Type:        "Movie",
+				Year:        2005,
+				Rating:      "3.5",
+				RatingCount: 799,
+				Duration:    "1h30m",
 				Directors: []Name{
 					Name{ID: "nm0821100", URL: "https://www.imdb.com/name/nm0821100", FullName: "Robert Stadd"},
 				},
@@ -79,13 +81,14 @@ func TestTitle(t *testing.T) {
 		{
 			ID: "tt1179034",
 			want: Title{
-				ID:       "tt1179034",
-				URL:      "https://www.imdb.com/title/tt1179034",
-				Name:     "From Paris with Love",
-				Type:     "Movie",
-				Year:     2010,
-				Rating:   "6.5",
-				Duration: "1h32m",
+				ID:          "tt1179034",
+				URL:         "https://www.imdb.com/title/tt1179034",
+				Name:        "From Paris with Love",
+				Type:        "Movie",
+				Year:        2010,
+				Rating:      "6.5",
+				RatingCount: 107802,
+				Duration:    "1h32m",
 				Directors: []Name{
 					Name{ID: "nm0603628", URL: "https://www.imdb.com/name/nm0603628", FullName: "Pierre Morel"},
 				},
@@ -110,13 +113,14 @@ func TestTitle(t *testing.T) {
 		{
 			ID: "tt0133093",
 			want: Title{
-				ID:       "tt0133093",
-				URL:      "https://www.imdb.com/title/tt0133093",
-				Name:     "The Matrix",
-				Type:     "Movie",
-				Year:     1999,
-				Rating:   "8.7",
-				Duration: "2h16m",
+				ID:          "tt0133093",
+				URL:         "https://www.imdb.com/title/tt0133093",
+				Name:        "The Matrix",
+				Type:        "Movie",
+				Year:        1999,
+				Rating:      "8.7",
+				RatingCount: 1536356,
+				Duration:    "2h16m",
 				Directors: []Name{
 					Name{ID: "nm0905154", URL: "https://www.imdb.com/name/nm0905154", FullName: "Lana Wachowski"},
 					Name{ID: "nm0905152", URL: "https://www.imdb.com/name/nm0905152", FullName: "Lilly Wachowski"},
@@ -172,13 +176,14 @@ func TestTitle(t *testing.T) {
 		{
 			ID: "tt0086677",
 			want: Title{
-				ID:       "tt0086677",
-				URL:      "https://www.imdb.com/title/tt0086677",
-				Name:     "Brothers",
-				Type:     "TVSeries",
-				Year:     1984,
-				Rating:   "8.0",
-				Duration: "22m",
+				ID:          "tt0086677",
+				URL:         "https://www.imdb.com/title/tt0086677",
+				Name:        "Brothers",
+				Type:        "TVSeries",
+				Year:        1984,
+				Rating:      "8.0",
+				RatingCount: 267,
+				Duration:    "22m",
 				Writers: []Name{
 					Name{ID: "nm0515953", URL: "https://www.imdb.com/name/nm0515953", FullName: "David Lloyd"},
 					Name{ID: "nm0031246", URL: "https://www.imdb.com/name/nm0031246", FullName: "Greg Antonacci"},
@@ -200,12 +205,13 @@ func TestTitle(t *testing.T) {
 		{
 			ID: "tt1371159",
 			want: Title{
-				ID:     "tt1371159",
-				URL:    "https://www.imdb.com/title/tt1371159",
-				Name:   "Iron Man 2",
-				Type:   "VideoGame",
-				Year:   2010,
-				Rating: "6.2",
+				ID:          "tt1371159",
+				URL:         "https://www.imdb.com/title/tt1371159",
+				Name:        "Iron Man 2",
+				Type:        "VideoGame",
+				Year:        2010,
+				Rating:      "6.2",
+				RatingCount: 641,
 				Directors: []Name{
 					Name{ID: "nm4157448", URL: "https://www.imdb.com/name/nm4157448", FullName: "Michael McCormick"},
 					Name{ID: "nm4157551", URL: "https://www.imdb.com/name/nm4157551", FullName: "Robert Taylor"},
@@ -231,13 +237,14 @@ func TestTitle(t *testing.T) {
 		{
 			ID: "tt0423866",
 			want: Title{
-				ID:       "tt0423866",
-				URL:      "https://www.imdb.com/title/tt0423866",
-				Name:     "Bin-jip",
-				Type:     "Movie",
-				Year:     2004,
-				Rating:   "8.0",
-				Duration: "1h28m",
+				ID:          "tt0423866",
+				URL:         "https://www.imdb.com/title/tt0423866",
+				Name:        "Bin-jip",
+				Type:        "Movie",
+				Year:        2004,
+				Rating:      "8.0",
+				RatingCount: 45493,
+				Duration:    "1h28m",
 				Directors: []Name{
 					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Ki-duk Kim"},
 				},
@@ -263,6 +270,9 @@ func TestTitle(t *testing.T) {
 		if err != nil {
 			t.Errorf("NewTitle(%s) error: %v", tt.ID, err)
 		} else {
+			if got.RatingCount > tt.want.RatingCount && tt.want.RatingCount > 0 {
+				tt.want.RatingCount = got.RatingCount
+			}
 			if err := diffStruct(*got, tt.want); err != nil {
 				t.Errorf("NewTitle(%s): %v", tt.ID, err)
 			}
