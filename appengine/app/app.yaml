@@ -1,23 +1,5 @@
-# gcloud seems broken to deploy go app, I get "cannot find import" on deps.
-# Go 1.11+ requires enabling the Cloud Build API which requires
-# adding a billing account with a credit card, on which you cannot
-# set a limit of zero. They claim free tier but it's risky.
-# So stick with legacy AppEngine SDK and goapp, which works, really free.
-
-# # GCLOUD
-# # gcloud app deploy --project movie-db-api --version 1 --quiet
-# runtime: go
-# api_version: go1
-# # For Go 1.11+ (runtime: go111) it also needs a main.go,
-# # to listen on port and import subpackages.
-
-# GOAPP
-# goapp get -u github.com/StalkR/imdb
-# HOME=. goapp deploy
-application: movie-db-api
-version: go
-runtime: go
-api_version: go1
+# gcloud app deploy --project movie-db-api --version 1 --quiet
+runtime: go112
 
 handlers:
 - url: /
@@ -26,17 +8,9 @@ handlers:
   secure: always
 
 - url: /find
-  script: _go_app
+  script: auto
   secure: always
 
 - url: /title/tt\d+
-  script: _go_app
+  script: auto
   secure: always
-
-- url: /cache/clean
-  script: _go_app
-  secure: always
-  login: admin
-
-skip_files:
-- ^(.*/)?\..*
