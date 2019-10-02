@@ -14,16 +14,38 @@ func TestSearchTitle(t *testing.T) {
 		t.Fatalf("SearchTitle(%s) len < 50: %d", title, len(r))
 	}
 	if want := "tt0120737"; r[0].ID != want {
-		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, want)
+		t.Errorf("SearchTitle(%s)[0].ID = %s; want %s", title, r[0].ID, want)
 	}
 	if want := "The Lord of the Rings: The Fellowship of the Ring"; r[0].Name != want {
-		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].Name, want)
+		t.Errorf("SearchTitle(%s)[0].Name = %s; want %s", title, r[0].Name, want)
 	}
-	if want := 2001; r[0].Year != want {
-		t.Errorf("SearchTitle(%s)[0] = %d; want %d", title, r[0].Year, want)
+	for i, want := range []int{
+		2001,
+		0,
+		2014,
+		2017,
+		2007,
+		1990,
+		1986,
+		2003,
+	} {
+		if r[i].Year != want {
+			t.Errorf("SearchTitle(%s)[%d].Year = %d; want %d", title, i, r[i].Year, want)
+		}
 	}
-	if want := "TV Series"; r[1].Type != want {
-		t.Errorf("SearchTitle(%s)[1] = %s; want %s", title, r[1].Type, want)
+	for i, want := range []string{
+		"",
+		"TV Series",
+		"TV Series",
+		"Short",
+		"Video Game",
+		"Video Game",
+		"Video Game",
+		"Short",
+	} {
+		if r[i].Type != want {
+			t.Errorf("SearchTitle(%s)[%d].Type = %s; want %s", title, i, r[i].Type, want)
+		}
 	}
 }
 
