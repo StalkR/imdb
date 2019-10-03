@@ -5,7 +5,9 @@ import (
 	"log"
 	"net/http"
 	"regexp"
+	"time"
 
+	"github.com/StalkR/aecache"
 	"github.com/StalkR/imdb"
 )
 
@@ -22,12 +24,21 @@ func handleTitle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	id := m[1]
-	b, err := title(id)
+	ctx := r.Context()
+
+	b, _, err := aecache.Get(ctx, "title:"+id)
 	if err != nil {
-		log.Printf("title: %v", err)
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+		b, err = title(id)
+		if err != nil {
+			log.Printf("title: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		if err := aecache.Set(ctx, "title:"+id, b, 24*time.Hour); err != nil {
+			log.Printf("title: set: %v", err)
+		}
 	}
+
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(b)
 }

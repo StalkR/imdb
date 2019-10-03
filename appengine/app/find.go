@@ -4,7 +4,9 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"time"
 
+	"github.com/StalkR/aecache"
 	"github.com/StalkR/imdb"
 )
 
@@ -22,12 +24,21 @@ func handleFind(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "missing ?q=", http.StatusBadRequest)
 		return
 	}
-	b, err := find(query)
+	ctx := r.Context()
+
+	b, _, err := aecache.Get(ctx, "find:"+query)
 	if err != nil {
-		log.Printf("find: %v", err)
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+		b, err = find(query)
+		if err != nil {
+			log.Printf("find: %v", err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		if err := aecache.Set(ctx, "find:"+query, b, 24*time.Hour); err != nil {
+			log.Printf("find: set: %v", err)
+		}
 	}
+
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(b)
 }
