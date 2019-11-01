@@ -26,8 +26,8 @@ func TestSearchTitle(t *testing.T) {
 		2017,
 		2007,
 		1990,
-		1986,
 		2003,
+		1986,
 	} {
 		if r[i].Year != want {
 			t.Errorf("SearchTitle(%s)[%d].Year = %d; want %d", title, i, r[i].Year, want)
@@ -40,8 +40,8 @@ func TestSearchTitle(t *testing.T) {
 		"Short",
 		"Video Game",
 		"Video Game",
-		"Video Game",
 		"Short",
+		"Video Game",
 	} {
 		if r[i].Type != want {
 			t.Errorf("SearchTitle(%s)[%d].Type = %s; want %s", title, i, r[i].Type, want)
