@@ -197,7 +197,7 @@ func TestTitle(t *testing.T) {
 				Genres:        []string{"Comedy"},
 				Languages:     []string{"English"},
 				Nationalities: []string{"USA"},
-				Description:   "Brothers is a TV series starring Robert Walden, Paul Regina, and Brandon Maggart. Two conservative men support their younger brother when he comes out as gay, and help him navigate being openly homosexual in 1980s Philadelphia.",
+				Description:   "Brothers is a TV series starring Robert Walden, Paul Regina, and Brandon Maggart. 2 conservative men support their younger brother when he comes out as gay. The brothers help him navigate being openly gay in 1980s Philadelphia.",
 				Poster:        Media{ID: "rm1328617472", TitleID: "tt0086677", URL: "https://www.imdb.com/title/tt0086677/mediaviewer/rm1328617472", ContentURL: "https://m.media-amazon.com/images/M/MV5BNDM3N2IxY2UtMDc4MS00ZDM5LWJjODUtMjQ5ODg2YWIxMTE4XkEyXkFqcGdeQXVyMDYxMTUwNg@@._V1_UY268_CR87,0,182,268_AL_.jpg"},
 				AKA:           []string{"Braća", "Brothers", "Unter Brüdern"},
 			},
