@@ -75,7 +75,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"USA"},
 				Description:   "Alien Siege is a TV movie starring Brad Johnson, Erin Ross, and Lilas Lane. Earth is attacked by the Kulkus, a hostile breed infected by a lethal virus and needing human blood to develop an antidote. Earth's governments negotiate...",
 				Poster:        Media{ID: "rm3287190272", TitleID: "tt0437803", URL: "https://www.imdb.com/title/tt0437803/mediaviewer/rm3287190272", ContentURL: "https://m.media-amazon.com/images/M/MV5BMTk1MTA4NDMwMF5BMl5BanBnXkFtZTcwNTM2MTIzMg@@._V1_UY268_CR4,0,182,268_AL_.jpg"},
-				AKA:           []string{"A Föld ostroma", "Alien Blood", "Alien Siege", "Alien Siege - Tod aus dem All", "Etat de siège", "O Perigo Alienígena", "Obca krew"},
+				AKA:           []string{"A Föld ostroma", "Alien Blood", "Alien Siege", "Alien Siege - Tod aus dem All", "Etat de siège", "O Perigo Alienígena", "Obca krew", "Осада пришельцев"},
 			},
 		},
 		{

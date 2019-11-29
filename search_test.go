@@ -13,15 +13,15 @@ func TestSearchTitle(t *testing.T) {
 	if len(r) < 50 {
 		t.Fatalf("SearchTitle(%s) len < 50: %d", title, len(r))
 	}
-	if want := "tt0120737"; r[0].ID != want {
+	if want := "tt7631058"; r[0].ID != want {
 		t.Errorf("SearchTitle(%s)[0].ID = %s; want %s", title, r[0].ID, want)
 	}
-	if want := "The Lord of the Rings: The Fellowship of the Ring"; r[0].Name != want {
+	if want := "The Lord of the Rings"; r[0].Name != want {
 		t.Errorf("SearchTitle(%s)[0].Name = %s; want %s", title, r[0].Name, want)
 	}
 	for i, want := range []int{
-		2001,
 		0,
+		2001,
 		2014,
 		2017,
 		2007,
@@ -31,8 +31,8 @@ func TestSearchTitle(t *testing.T) {
 		}
 	}
 	for i, want := range []string{
-		"",
 		"TV Series",
+		"",
 		"TV Series",
 		"Short",
 		"Video Game",
