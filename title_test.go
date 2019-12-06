@@ -107,7 +107,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"France"},
 				Description:   "From Paris with Love is a movie starring John Travolta, Jonathan Rhys Meyers, and Kasia Smutniak. In Paris, a young employee in the office of the US Ambassador hooks up with an American spy looking to stop a terrorist attack in the...",
 				Poster:        Media{ID: "rm30481408", TitleID: "tt1179034", URL: "https://www.imdb.com/title/tt1179034/mediaviewer/rm30481408", ContentURL: "https://m.media-amazon.com/images/M/MV5BODAwMDFjNjktMWY2Mi00MmVhLWI0MjYtNzg4OTI0NzA5YzBjXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_UX182_CR0,0,182,268_AL_.jpg"},
-				AKA:           []string{"Apo to Parisi me agapi", "Armastusega Pariisist", "Bez soucitu", "Bons baisers de Paris", "De Paris com Amor", "Desde París con amor", "Din Paris, cu dragoste", "Dupla Implacável", "From Paris with Love", "Iz Pariza s ljubavlju", "Iz Pariza z ljubeznijo", "Linkejimai is Paryziaus", "MiParis be'ahava", "Paris'ten sevgilerle", "París en la Mira", "París en la mira", "Pozdrowienia z Paryza", "Párizsból szeretettel", "Sangre y amor en París", "Από το Παρίσι με αγάπη", "З Парижу з любов'ю", "Из Парижа с любовью", "От Париж с любов"},
+				AKA:           []string{"Apo to Parisi me agapi", "Armastusega Pariisist", "Bez soucitu", "Bons baisers de Paris", "De Paris com Amor", "Desde París con amor", "Din Paris, cu dragoste", "Dupla Implacável", "From Paris with Love", "Iz Pariza s ljubavlju", "Iz Pariza z ljubeznijo", "Linkejimai is Paryziaus", "MiParis be'ahava", "Paris'ten sevgilerle", "París en la Mira", "París en la mira", "Pozdrowienia z Paryza", "Párizsból szeretettel", "Sangre y amor en París", "Από το Παρίσι με αγάπη", "З Парижу з любов'ю", "Из Парижа с любовью", "От Париж с любов", "パリより愛をこめて"},
 			},
 		},
 		{
@@ -140,7 +140,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"USA"},
 				Description:   "The Matrix is a movie starring Keanu Reeves, Laurence Fishburne, and Carrie-Anne Moss. A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
 				Poster:        Media{ID: "rm525547776", TitleID: "tt0133093", URL: "https://www.imdb.com/title/tt0133093/mediaviewer/rm525547776", ContentURL: "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg"},
-				AKA:           []string{"Fylkið", "La matrice", "La matriz", "Maatriks", "Matorikkusu", "Matrica", "Matriks", "Matrikss", "Matrix", "Mátrix", "The Matrix", "Матрикс", "Матрица", "Матрицата", "Матриця"},
+				AKA:           []string{"Fylkið", "La matrice", "La matriz", "Maatriks", "Matorikkusu", "Matrica", "Matriks", "Matrikss", "Matrix", "Mátrix", "The Matrix", "Матрикс", "Матрица", "Матрицата", "Матриця", "マトリックス"},
 			},
 		},
 		{
@@ -262,7 +262,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"South Korea", "Japan"},
 				Description:   "Bin-jip is a movie starring Seung-Yun Lee, Hee Jae, and Hyuk-ho Kwon. A transient young man breaks into empty homes to partake of the vacationing residents' lives for a few days.",
 				Poster:        Media{ID: "rm880057600", TitleID: "tt0423866", URL: "https://www.imdb.com/title/tt0423866/mediaviewer/rm880057600", ContentURL: "https://m.media-amazon.com/images/M/MV5BMTM1ODIwNzM5OV5BMl5BanBnXkFtZTcwNjk5MDkyMQ@@._V1_UX182_CR0,0,182,268_AL_.jpg"},
-				AKA:           []string{"3-Iron", "3-iron", "Bin jib", "Bin-Jip - Der Schattenmann", "Bin-Jip - Leere Häuser", "Bin-jip", "Bin-jip - tomme huse", "Bosh Evler", "Boş ev", "Casa Vazia", "El espíritu de la pasión", "Empty Houses", "Ferro 3", "Ferro 3 - La casa vuota", "Hierro 3", "Hierro-3", "Järn 3:an", "Järntrean", "Khanehaye Khali", "Lehargish B'Bayit", "Locataires", "Lopakodó lelkek", "Menaj in trei", "Olomonahoi mazi", "Provalnik", "Pusty dom", "Rautakolmonen", "Tomme hus", "Tusti namai", "Utsusemi", "Ολομόναχοι Μαζί", "Порожнiй будинок", "Пустой дом", "Стик Nо 3"},
+				AKA:           []string{"3-Iron", "3-iron", "Bin jib", "Bin-Jip - Der Schattenmann", "Bin-Jip - Leere Häuser", "Bin-jip", "Bin-jip - tomme huse", "Bosh Evler", "Boş ev", "Casa Vazia", "El espíritu de la pasión", "Empty Houses", "Ferro 3", "Ferro 3 - La casa vuota", "Hierro 3", "Hierro-3", "Järn 3:an", "Järntrean", "Khanehaye Khali", "Lehargish B'Bayit", "Locataires", "Lopakodó lelkek", "Menaj in trei", "Olomonahoi mazi", "Provalnik", "Pusty dom", "Rautakolmonen", "Tomme hus", "Tusti namai", "Utsusemi", "Ολομόναχοι Μαζί", "Порожнiй будинок", "Пустой дом", "Стик Nо 3", "うつせみ"},
 			},
 		},
 	} {
