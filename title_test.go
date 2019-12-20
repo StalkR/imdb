@@ -262,7 +262,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"South Korea", "Japan"},
 				Description:   "Bin-jip is a movie starring Seung-Yun Lee, Hee Jae, and Hyuk-ho Kwon. A transient young man breaks into empty homes to partake of the vacationing residents' lives for a few days.",
 				Poster:        Media{ID: "rm880057600", TitleID: "tt0423866", URL: "https://www.imdb.com/title/tt0423866/mediaviewer/rm880057600", ContentURL: "https://m.media-amazon.com/images/M/MV5BMTM1ODIwNzM5OV5BMl5BanBnXkFtZTcwNjk5MDkyMQ@@._V1_UX182_CR0,0,182,268_AL_.jpg"},
-				AKA:           []string{"3-Iron", "3-iron", "Bin jib", "Bin-Jip - Der Schattenmann", "Bin-Jip - Leere Häuser", "Bin-jip", "Bin-jip - tomme huse", "Bosh Evler", "Boş ev", "Casa Vazia", "El espíritu de la pasión", "Empty Houses", "Ferro 3", "Ferro 3 - La casa vuota", "Hierro 3", "Hierro-3", "Järn 3:an", "Järntrean", "Khanehaye Khali", "Lehargish B'Bayit", "Locataires", "Lopakodó lelkek", "Menaj in trei", "Olomonahoi mazi", "Provalnik", "Pusty dom", "Rautakolmonen", "Tomme hus", "Tusti namai", "Utsusemi", "Ολομόναχοι Μαζί", "Порожнiй будинок", "Пустой дом", "Стик Nо 3", "うつせみ"},
+				AKA:           []string{"3-Iron", "3-iron", "Bin jib", "Bin-Jip - Der Schattenmann", "Bin-Jip - Leere Häuser", "Bin-jip", "Bin-jip - tomme huse", "Bosh Evler", "Boş ev", "Casa Vazia", "El espíritu de la pasión", "Empty Houses", "Ferro 3", "Ferro 3 - La casa vuota", "Hierro 3", "Hierro-3", "Järn 3:an", "Järntrean", "Khanehaye Khali", "Lehargish B'Bayit", "Locataires", "Lopakodó lelkek", "Menaj in trei", "Olomonahoi mazi", "Provalnik", "Pusty dom", "Rautakolmonen", "Tomme hus", "Tusti namai", "Utsusemi", "Ολομόναχοι Μαζί", "Порожній будинок", "Пустой дом", "Стик Nо 3", "うつせみ"},
 			},
 		},
 	} {
