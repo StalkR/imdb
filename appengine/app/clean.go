@@ -18,7 +18,7 @@ func handleClean(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if r.Header.Get("X-Appengine-Cron") != "true" {
-		http.Error(w, "", http.StatusForbidden)
+		http.Error(w, http.StatusText(http.StatusForbidden), http.StatusForbidden)
 		return
 	}
 	ctx := r.Context()
