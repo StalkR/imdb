@@ -7,14 +7,6 @@ handlers:
   upload: index.htm
   secure: always
 
-- url: /find
-  script: auto
-  secure: always
-
-- url: /title/tt\d+
-  script: auto
-  secure: always
-
-- url: /clean
+- url: /.*
   script: auto
   secure: always
