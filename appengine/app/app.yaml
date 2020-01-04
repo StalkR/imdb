@@ -1,8 +1,5 @@
 # gcloud app deploy --project movie-db-api --version 1 --quiet
-runtime: go112
-
-env_variables:
-  GOOGLE_APPLICATION_CREDENTIALS: "datastore.json"
+runtime: go113
 
 handlers:
 - url: /
