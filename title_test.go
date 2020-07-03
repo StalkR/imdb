@@ -40,7 +40,7 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"Italian"},
 				Nationalities: []string{"Italy", "France", "Spain"},
 				Description:   "L'uomo che sfidò l'organizzazione is a movie starring Howard Ross, Karin Schubert, and Jean-Claude Dreyfus. An airport employee switches a pack of drugs for baking soda and absconds to Barcelona, meanwhile the drug-runners are on...",
-				Poster:        Media{ID: "rm143003904", TitleID: "tt0073845", URL: "https://www.imdb.com/title/tt0073845/mediaviewer/rm143003904", ContentURL: "https://m.media-amazon.com/images/M/MV5BOWVmYzRiZTAtOTRkMS00MDQxLTljNTItM2E2NjhmZGFmZDNkXkEyXkFqcGdeQXVyNTI0NjExNjA@._V1_UX182_CR0,0,182,268_AL_.jpg"},
+				Poster:        Media{ID: "rm3600132097", TitleID: "tt0073845", URL: "https://www.imdb.com/title/tt0073845/mediaviewer/rm3600132097", ContentURL: "https://m.media-amazon.com/images/M/MV5BMzJmM2E0ZTEtYmJhMy00Nzc2LTgyMDUtODViNzQyZDczODc0XkEyXkFqcGdeQXVyMTQ3Njg3MQ@@._V1_UX182_CR0,0,182,268_AL_.jpg"},
 				AKA:           []string{"Antimetopos me tin mafia", "El hombre que desafió a la organización", "L'homme qui défia l'organisation", "L'uomo che sfidò l'organizzazione", "One Man Against the Organization"},
 			},
 		},
