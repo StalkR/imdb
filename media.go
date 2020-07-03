@@ -49,12 +49,70 @@ func NewMedia(c *http.Client, id, titleid string) (*Media, error) {
 
 // Regular expressions to identify and parse a Media.
 var (
-	mediaIDRE   = regexp.MustCompile(`<meta property="og:url" content="https://www.imdb.com/title/(tt\d+)/mediaviewer/(rm\d+)"`)
-	mediaJSONRE = regexp.MustCompile(`(?s){'mediaviewer': (.*?)};`)
+	mediaJSONRE = regexp.MustCompile(`(?s)<script id="__NEXT_DATA__" type="application/json">(.*?)</script>`)
 )
 
 // Parse parses a Media from its page.
 func (m *Media) Parse(page []byte) error {
+	s := mediaJSONRE.FindSubmatch(page)
+	if s == nil {
+		return m.parseOld(page)
+	}
+	var v struct {
+		Query struct {
+			Img        string `json:"img"`
+			VanityOrId string `json:"vanityOrId"`
+		} `json:"query"`
+		Props struct {
+			UrqlState map[string]struct {
+				Data struct {
+					Title struct {
+						Images struct {
+							Edges []struct {
+								Node struct {
+									Url string `json:"url"`
+								} `json:"node"`
+							} `json:"edges"`
+						} `json:"images"`
+					} `json:"title"`
+				} `json:"data"`
+			} `json:"urqlState"`
+		} `json:"props"`
+	}
+
+	if err := json.Unmarshal(s[1], &v); err != nil {
+		return err
+	}
+	m.TitleID = v.Query.VanityOrId
+	m.ID = v.Query.Img
+	m.URL = fmt.Sprintf(mediaURL, m.TitleID, m.ID)
+	var key string
+	for k := range v.Props.UrqlState {
+		key = k
+		break
+	}
+	if key == "" {
+		return NewErrParse("content URL, empty urqlState")
+	}
+	edges := v.Props.UrqlState[key].Data.Title.Images.Edges
+	if len(edges) == 0 {
+		return NewErrParse("content URL, empty edges")
+	}
+	m.ContentURL = edges[0].Node.Url
+	if m.ContentURL == "" {
+		return NewErrParse("content URL, empty")
+	}
+	return nil
+}
+
+// Regular expressions for old format, sometimes still appearing.
+// Remove after a while, as well as from media_test.go.
+var (
+	mediaIDRE     = regexp.MustCompile(`<meta property="og:url" content="https://www.imdb.com/title/(tt\d+)/mediaviewer/(rm\d+)"`)
+	mediaViewerRE = regexp.MustCompile(`(?s){'mediaviewer': (.*?)};`)
+)
+
+func (m *Media) parseOld(page []byte) error {
 	// TitleID, ID, URL
 	s := mediaIDRE.FindSubmatch(page)
 	if s == nil {
@@ -65,7 +123,7 @@ func (m *Media) Parse(page []byte) error {
 	m.URL = fmt.Sprintf(mediaURL, m.TitleID, m.ID)
 
 	// ContentURL
-	s = mediaJSONRE.FindSubmatch(page)
+	s = mediaViewerRE.FindSubmatch(page)
 	if s == nil || len(s[1]) == 0 {
 		return NewErrParse("JSON")
 	}
