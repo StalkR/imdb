@@ -1,9 +1,8 @@
 module github.com/StalkR/imdb
 
-go 1.12
+go 1.14
 
 require (
-	github.com/StalkR/aecache v1.2.0
 	github.com/StalkR/httpcache v1.0.0
-	golang.org/x/tools v0.0.0-20191002234911-9ade4c73f2af // indirect
+	github.com/golang/groupcache v0.0.0-20191002201903-404acd9df4cc // indirect
 )
