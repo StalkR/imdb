@@ -1,5 +1,5 @@
 # gcloud app deploy --project movie-db-api --version 1 --quiet
-runtime: go113
+runtime: go114
 
 handlers:
 - url: /
