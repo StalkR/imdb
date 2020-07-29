@@ -119,6 +119,7 @@ func NewTitle(c *http.Client, id string) (*Title, error) {
 var (
 	schemaRE             = regexp.MustCompile(`(?s)<script type="application/ld\+json">(.*?)</script>`)
 	titleYearRE          = regexp.MustCompile(`<a href="/year/(\d+)/`)
+	titleYear2RE         = regexp.MustCompile(`(?s)<h4[^>]*>\s*Release Date:\s*</h4>\s*(\d+)\s+`)
 	titleDurationRE      = regexp.MustCompile(`<time datetime="(?:PT)?([0-9HM]+)"`)
 	titleLanguagesRE     = regexp.MustCompile(`(?s)Language:</h4>(.*?)</div>`)
 	titleLanguageRE      = regexp.MustCompile(`<a[^>]*>([^<]+)</a>`)
@@ -204,18 +205,21 @@ func (t *Title) Parse(page []byte) error {
 	t.Name = v.Name
 	t.Type = v.Type
 
+	titleYear := titleYearRE.FindSubmatch(page)
+	titleYear2 := titleYear2RE.FindSubmatch(page)
+
 	if len(v.DatePublished) >= 4 {
 		year, err := strconv.Atoi(v.DatePublished[:4])
 		if err != nil {
 			return NewErrParse(fmt.Sprintf("date: %v", err))
 		}
 		t.Year = year
+	} else if titleYear != nil {
+		t.Year, _ = strconv.Atoi(string(titleYear[1])) // regexp matches digits
+	} else if titleYear2 != nil {
+		t.Year, _ = strconv.Atoi(string(titleYear2[1])) // regexp matches digits
 	} else {
-		s := titleYearRE.FindSubmatch(page)
-		if s == nil {
-			return NewErrParse("year")
-		}
-		t.Year, _ = strconv.Atoi(string(s[1])) // regexp matches digits
+		return NewErrParse("year")
 	}
 
 	t.Rating = v.AggregateRating.RatingValue

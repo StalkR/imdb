@@ -265,6 +265,25 @@ func TestTitle(t *testing.T) {
 				AKA:           []string{"3-Iron", "3-iron", "Bin jib", "Bin-Jip - Der Schattenmann", "Bin-Jip - Leere Häuser", "Bin-jip", "Bin-jip - tomme huse", "Bosh Evler", "Boş ev", "Casa Vazia", "El espíritu de la pasión", "Empty Houses", "Ferro 3", "Ferro 3 - La casa vuota", "Hierro 3", "Hierro-3", "Järn 3:an", "Järntrean", "Khanehaye Khali", "Lehargish B'Bayit", "Locataires", "Lopakodó lelkek", "Menaj in trei", "Provalnik", "Pusty dom", "Rautakolmonen", "Tomme hus", "Tušti namai", "Utsusemi", "Ολομόναχοι μαζί", "Порожній будинок", "Пустой дом", "Стик Nо 3", "うつせみ", "空屋情人"},
 			},
 		},
+		{
+			ID: "tt0900059",
+			want: Title{
+				ID:   "tt0900059",
+				URL:  "https://www.imdb.com/title/tt0900059",
+				Name: "Mayans",
+				Type: "TVEpisode",
+				Year: 2002,
+				Writers: []Name{
+					Name{ID: "nm2422546", URL: "https://www.imdb.com/name/nm2422546", FullName: "Nick Greenaway"},
+					Name{ID: "nm0646855", URL: "https://www.imdb.com/name/nm0646855", FullName: "Harley Oliver"},
+				},
+				Actors: []Name{
+					Name{ID: "nm2426039", URL: "https://www.imdb.com/name/nm2426039", FullName: "Jo Rush"},
+					Name{ID: "nm2423121", URL: "https://www.imdb.com/name/nm2423121", FullName: "Matt Tomaszewski"},
+				},
+				Genres: []string{"Documentary"},
+			},
+		},
 	} {
 		got, err := NewTitle(client, tt.ID)
 		if err != nil {

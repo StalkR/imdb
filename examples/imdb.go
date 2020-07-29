@@ -20,7 +20,7 @@ func main() {
 	client := http.DefaultClient
 	title, err := imdb.SearchTitle(client, flag.Arg(0))
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error: %v", err)
+		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 		os.Exit(2)
 	}
 	if len(title) == 0 {
@@ -29,7 +29,7 @@ func main() {
 	}
 	t, err := imdb.NewTitle(client, title[0].ID)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error: %v", err)
+		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 		os.Exit(2)
 	}
 
