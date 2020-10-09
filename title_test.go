@@ -102,7 +102,7 @@ func TestTitle(t *testing.T) {
 					Name{ID: "nm0810738", URL: "https://www.imdb.com/name/nm0810738", FullName: "Kasia Smutniak"},
 					Name{ID: "nm0243983", URL: "https://www.imdb.com/name/nm0243983", FullName: "Richard Durden"},
 				},
-				Genres:        []string{"Action", "Adventure", "Crime", "Thriller"},
+				Genres:        []string{"Action", "Crime", "Thriller"},
 				Languages:     []string{"English", "French", "Mandarin", "German"},
 				Nationalities: []string{"France", "UK", "USA"},
 				Description:   "From Paris with Love is a movie starring John Travolta, Jonathan Rhys Meyers, and Kasia Smutniak. In Paris, a young employee in the office of the US Ambassador hooks up with an American spy looking to stop a terrorist attack in the...",
