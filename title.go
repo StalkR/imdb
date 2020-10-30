@@ -219,7 +219,7 @@ func (t *Title) Parse(page []byte) error {
 	} else if titleYear2 != nil {
 		t.Year, _ = strconv.Atoi(string(titleYear2[1])) // regexp matches digits
 	} else {
-		return NewErrParse("year")
+		// sometimes there's just no year, e.g. https://www.imdb.com/title/tt12592252/
 	}
 
 	t.Rating = v.AggregateRating.RatingValue
