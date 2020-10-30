@@ -181,7 +181,7 @@ func TestTitle(t *testing.T) {
 				Name:        "Brothers",
 				Type:        "TVSeries",
 				Year:        1984,
-				Rating:      "7.9",
+				Rating:      "8.0",
 				RatingCount: 267,
 				Duration:    "22m",
 				Writers: []Name{
