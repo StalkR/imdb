@@ -20,7 +20,7 @@ func TestTitle(t *testing.T) {
 				Name:        "L'uomo che sfidò l'organizzazione",
 				Type:        "Movie",
 				Year:        1975,
-				Rating:      "5.3",
+				Rating:      "5.4",
 				RatingCount: 25,
 				Duration:    "1h27m",
 				Directors: []Name{
@@ -246,16 +246,16 @@ func TestTitle(t *testing.T) {
 				RatingCount: 45493,
 				Duration:    "1h28m",
 				Directors: []Name{
-					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Ki-duk Kim"},
+					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Kim Ki-duk"},
 				},
 				Writers: []Name{
-					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Ki-duk Kim"},
+					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Kim Ki-duk"},
 				},
 				Actors: []Name{
 					{ID: "nm1165901", URL: "https://www.imdb.com/name/nm1165901", FullName: "Seung-Yun Lee"},
 					{ID: "nm1030819", URL: "https://www.imdb.com/name/nm1030819", FullName: "Hee Jae"},
 					{ID: "nm1891528", URL: "https://www.imdb.com/name/nm1891528", FullName: "Hyuk-ho Kwon"},
-					{ID: "nm1873389", URL: "https://www.imdb.com/name/nm1873389", FullName: "Jeong-ho Choi"},
+					{ID: "nm2810190", URL: "https://www.imdb.com/name/nm2810190", FullName: "Jin-mo Joo"},
 				},
 				Genres:        []string{"Crime", "Drama", "Romance"},
 				Languages:     []string{"Korean"},
