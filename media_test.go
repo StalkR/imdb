@@ -32,7 +32,7 @@ func TestMedia(t *testing.T) {
 					ID:         "rm2813508096",
 					TitleID:    "tt0167261",
 					URL:        "https://www.imdb.com/title/tt0167261/mediaviewer/rm2813508096",
-					ContentURL: "https://m.media-amazon.com/images/M/MV5BMjA3NDk3NjI5MF5BMl5BanBnXkFtZTcwMTI2MjY0NA@@._V1_SX1777_CR0,0,1777,760_AL_.jpg",
+					ContentURL: "https://m.media-amazon.com/images/M/MV5BMjA3NDk3NjI5MF5BMl5BanBnXkFtZTcwMTI2MjY0NA@@._V1_.jpg",
 				},
 			},
 		},
