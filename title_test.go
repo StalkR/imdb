@@ -246,10 +246,10 @@ func TestTitle(t *testing.T) {
 				RatingCount: 45493,
 				Duration:    "1h28m",
 				Directors: []Name{
-					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Kim Ki-duk"},
+					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Ki-duk Kim"},
 				},
 				Writers: []Name{
-					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Kim Ki-duk"},
+					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Ki-duk Kim"},
 				},
 				Actors: []Name{
 					{ID: "nm1165901", URL: "https://www.imdb.com/name/nm1165901", FullName: "Seung-Yun Lee"},
