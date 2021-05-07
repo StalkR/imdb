@@ -230,7 +230,7 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English"},
 				Nationalities: []string{"USA"},
 				Description:   "Iron Man 2 is a video game starring Don Cheadle, Eric Loomis, and Samuel L. Jackson. Video game based upon the film of the same name.",
-				Poster:        Media{ID: "rm1884363776", TitleID: "tt1371159", URL: "https://www.imdb.com/title/tt1371159/mediaviewer/rm1884363776", ContentURL: "https://m.media-amazon.com/images/M/MV5BMWNkYWIyZjctMGFmZi00NGYyLWIzY2QtNGEwNDQ2MDgwOWZiXkEyXkFqcGdeQXVyNTk5Nzg0MDE@._V1_UY268_CR17,0,182,268_AL_.jpg"},
+				Poster:        Media{ID: "rm946460161", TitleID: "tt1371159", URL: "https://www.imdb.com/title/tt1371159/mediaviewer/rm946460161", ContentURL: "https://m.media-amazon.com/images/M/MV5BYWI4MTZkMjItYmM2Zi00YmUzLWE0ZWEtNjIyMjcyZmJhYTAxXkEyXkFqcGdeQXVyOTkwMTc4ODQ@._V1_UY268_CR58,0,182,268_AL_.jpg"},
 				AKA:           []string{"Iron Man 2"},
 			},
 		},
