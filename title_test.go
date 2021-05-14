@@ -86,7 +86,7 @@ func TestTitle(t *testing.T) {
 				Name:        "From Paris with Love",
 				Type:        "Movie",
 				Year:        2010,
-				Rating:      "6.5",
+				Rating:      "6.4",
 				RatingCount: 107802,
 				Duration:    "1h32m",
 				Directors: []Name{
