@@ -120,12 +120,15 @@ var (
 	schemaRE             = regexp.MustCompile(`(?s)<script type="application/ld\+json">(.*?)</script>`)
 	titleYearRE          = regexp.MustCompile(`<a href="/year/(\d+)/`)
 	titleYear2RE         = regexp.MustCompile(`(?s)<h4[^>]*>\s*Release Date:\s*</h4>\s*(\d+)\s+`)
+	titleYear3RE         = regexp.MustCompile(`(?s)<title[^>]*>[^<]*TV Episode (\d{4})[^<]*</title>`)
 	titleDurationRE      = regexp.MustCompile(`<time datetime="(?:PT)?([0-9HM]+)"`)
-	titleLanguagesRE     = regexp.MustCompile(`(?s)Language:</h4>(.*?)</div>`)
+	titleDuration2RE     = regexp.MustCompile(`(?s)<span[^>]*>Runtime</span><div[^>]*><ul[^>]*><li[^>]*><span[^>]*>(\d+m)in</span>`)
+	titleLanguagesRE     = regexp.MustCompile(`(?s)<[^>]+>Language:?</[^>]+>(.*?)</div>`)
 	titleLanguageRE      = regexp.MustCompile(`<a[^>]*>([^<]+)</a>`)
-	titleNationalitiesRE = regexp.MustCompile(`href="/search/title\?country_of_origin[^"]+"[^>]+>([^<]+)`)
+	titleNationalitiesRE = regexp.MustCompile(`href="/search/title/?\?country_of_origin[^"]*"[^>]*>([^<]+)`)
 	titleDescriptionRE   = regexp.MustCompile(`<meta property="og:description" content="(?:(?:Created|Directed) by .*?\w\w\.\s*)*(?:With .*?\w\w\.\s*)?([^"]*)`)
 	titlePosterRE        = regexp.MustCompile(`(?s)<div class="poster">\s*<a href="/title/tt\d+/mediaviewer/(rm\d+)[^"]*"[^>]*>\s*<img.*?src="([^"]+)"`)
+	titlePoster2RE       = regexp.MustCompile(`(?s)"primaryImage":{"id":"([^"]*)","__typename":"Image"}`)
 )
 
 type schemaJSON struct {
@@ -140,7 +143,7 @@ type schemaJSON struct {
 	Description     string
 	DatePublished   string
 	AggregateRating struct {
-		RatingValue string
+		RatingValue json.RawMessage
 		RatingCount int
 	}
 	Duration string
@@ -193,7 +196,7 @@ func (t *Title) Parse(page []byte) error {
 	}
 	var v schemaJSON
 	if err := json.Unmarshal(s[1], &v); err != nil {
-		return NewErrParse(err.Error())
+		return NewErrParse(err.Error() + "; schema was: " + string(s[1]))
 	}
 
 	p := strings.Split(v.Url, "/")
@@ -202,11 +205,12 @@ func (t *Title) Parse(page []byte) error {
 	}
 	t.ID = p[2]
 	t.URL = fmt.Sprintf(titleURL, t.ID)
-	t.Name = v.Name
+	t.Name = decode(v.Name)
 	t.Type = v.Type
 
 	titleYear := titleYearRE.FindSubmatch(page)
 	titleYear2 := titleYear2RE.FindSubmatch(page)
+	titleYear3 := titleYear3RE.FindSubmatch(page)
 
 	if len(v.DatePublished) >= 4 {
 		year, err := strconv.Atoi(v.DatePublished[:4])
@@ -218,11 +222,20 @@ func (t *Title) Parse(page []byte) error {
 		t.Year, _ = strconv.Atoi(string(titleYear[1])) // regexp matches digits
 	} else if titleYear2 != nil {
 		t.Year, _ = strconv.Atoi(string(titleYear2[1])) // regexp matches digits
+	} else if titleYear3 != nil {
+		t.Year, _ = strconv.Atoi(string(titleYear3[1])) // regexp matches digits
 	} else {
 		// sometimes there's just no year, e.g. https://www.imdb.com/title/tt12592252/
 	}
 
-	t.Rating = v.AggregateRating.RatingValue
+	var rating string
+	if err := json.Unmarshal(v.AggregateRating.RatingValue, &rating); err == nil {
+		t.Rating = rating
+	}
+	var ratingf float64
+	if err := json.Unmarshal(v.AggregateRating.RatingValue, &ratingf); err == nil && ratingf > 0 {
+		t.Rating = fmt.Sprintf("%.1f", ratingf)
+	}
 	t.RatingCount = v.AggregateRating.RatingCount
 
 	if v.Duration != "" {
@@ -231,6 +244,11 @@ func (t *Title) Parse(page []byte) error {
 		s := titleDurationRE.FindSubmatch(page)
 		if s != nil {
 			t.Duration = strings.ToLower(string(s[1]))
+		} else {
+			s := titleDuration2RE.FindSubmatch(page)
+			if s != nil {
+				t.Duration = string(s[1])
+			}
 		}
 	}
 
@@ -334,6 +352,24 @@ func (t *Title) Parse(page []byte) error {
 			TitleID:    t.ID,
 			URL:        fmt.Sprintf(mediaURL, t.ID, id),
 			ContentURL: string(s[2]),
+		}
+	} else {
+		s = titlePoster2RE.FindSubmatch(page)
+		if s != nil {
+			id := string(s[1])
+			re, err := regexp.Compile(`(?s)"primaryImage":{"id":"` + id + `","width":\d+,"height":\d+,"url":"([^"]+)"`)
+			if err != nil {
+				return NewErrParse("poster RE")
+			}
+			s = re.FindSubmatch(page)
+			if s != nil {
+				t.Poster = Media{
+					ID:         id,
+					TitleID:    t.ID,
+					URL:        fmt.Sprintf(mediaURL, t.ID, id),
+					ContentURL: string(s[1]),
+				}
+			}
 		}
 	}
 
