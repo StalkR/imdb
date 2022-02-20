@@ -59,13 +59,11 @@ func (m *Media) Parse(page []byte) error {
 		return m.parseOld(page)
 	}
 	var v struct {
-		Query struct {
-			Img        string `json:"img"`
-			VanityOrId string `json:"vanityOrId"`
-		} `json:"query"`
 		Props struct {
-			UrqlState map[string]struct {
-				Data struct {
+			PageProps struct {
+				ID               string `json:"id"`
+				Img              string `json:"img"`
+				InitialQueryData struct {
 					Title struct {
 						Images struct {
 							Edges []struct {
@@ -75,26 +73,18 @@ func (m *Media) Parse(page []byte) error {
 							} `json:"edges"`
 						} `json:"images"`
 					} `json:"title"`
-				} `json:"data"`
-			} `json:"urqlState"`
+				} `json:"initialQueryData"`
+			} `json:"pageProps"`
 		} `json:"props"`
 	}
 
 	if err := json.Unmarshal(s[1], &v); err != nil {
 		return err
 	}
-	m.TitleID = v.Query.VanityOrId
-	m.ID = v.Query.Img
+	m.TitleID = v.Props.PageProps.ID
+	m.ID = v.Props.PageProps.Img
 	m.URL = fmt.Sprintf(mediaURL, m.TitleID, m.ID)
-	var key string
-	for k := range v.Props.UrqlState {
-		key = k
-		break
-	}
-	if key == "" {
-		return NewErrParse("content URL, empty urqlState")
-	}
-	edges := v.Props.UrqlState[key].Data.Title.Images.Edges
+	edges := v.Props.PageProps.InitialQueryData.Title.Images.Edges
 	if len(edges) == 0 {
 		return NewErrParse("content URL, empty edges")
 	}
