@@ -23,16 +23,17 @@ func TestSearchTitle(t *testing.T) {
 	if accepted := map[string]bool{
 		"The Lord of the Rings":                             true,
 		"The Lord of the Rings: The Fellowship of the Ring": true,
+		"The Lord of the Rings: The Rings of Power":         true,
 	}; !accepted[r[0].Name] {
 		t.Errorf("SearchTitle(%s)[0].Name = %v; want any of %v", title, r[0].Name, accepted)
 	}
 	errors := []string{}
 	for i, want := range []int{
+		2022,
 		2001,
-		0,
-		2014,
+		1990,
+		2002,
 		2017,
-		2007,
 	} {
 		if r[i].Year != want {
 			errors = append(errors, fmt.Sprintf("SearchTitle(%s)[%d].Year = %d; want %d", title, i, r[i].Year, want))
@@ -43,11 +44,11 @@ func TestSearchTitle(t *testing.T) {
 	}
 	errors = []string{}
 	for i, want := range []string{
-		"",
 		"TV Series",
 		"TV Series",
-		"Short",
 		"Video Game",
+		"TV Short",
+		"Short",
 	} {
 		if r[i].Type != want {
 			errors = append(errors, fmt.Sprintf("SearchTitle(%s)[%d].Type = %s; want %s", title, i, r[i].Type, want))
@@ -84,7 +85,7 @@ func TestSearchTitlePositions(t *testing.T) {
 	if want := "tt1126591"; r[0].ID != want { // Burlesque (I) (2010)
 		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, want)
 	}
-	if want := "tt0019798"; r[1].ID != want { // The Dance of Life (1929) aka Burlesque
+	if want := "tt1586713"; r[1].ID != want { // Burlesque (II) (2010)
 		t.Errorf("SearchTitle(%s)[1] = %s; want %s", title, r[1].ID, want)
 	}
 }
