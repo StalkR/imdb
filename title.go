@@ -121,9 +121,11 @@ var (
 	titleYearRE          = regexp.MustCompile(`<a href="/year/(\d+)/`)
 	titleYear2RE         = regexp.MustCompile(`(?s)<h4[^>]*>\s*Release Date:\s*</h4>\s*(\d+)\s+`)
 	titleYear3RE         = regexp.MustCompile(`(?s)<title[^>]*>[^<]*TV Episode (\d{4})[^<]*</title>`)
+	titleYear4RE         = regexp.MustCompile(`(?s)<a href="/title/tt\d+/releaseinfo[^"]*"[^>]*>(\d{4})[^<]*</a>`)
 	titleDurationRE      = regexp.MustCompile(`<time datetime="(?:PT)?([0-9HM]+)"`)
 	titleDuration2RE     = regexp.MustCompile(`(?s)<span[^>]*>Runtime</span><div[^>]*><ul[^>]*><li[^>]*><span[^>]*>(\d+m)in</span>`)
-	titleLanguagesRE     = regexp.MustCompile(`(?s)<[^>]+>Language:?</[^>]+>(.*?)</div>`)
+	titleDuration3RE     = regexp.MustCompile(`(?s)<span[^>]*>Runtime</span><div[^>]*>(\d+)(:?<![^>]*>\s*)*minutes</div>`)
+	titleLanguagesRE     = regexp.MustCompile(`(?s)<[^>]+>Languages?:?</[^>]+>(.*?)</div>`)
 	titleLanguageRE      = regexp.MustCompile(`<a[^>]*>([^<]+)</a>`)
 	titleNationalitiesRE = regexp.MustCompile(`href="/search/title/?\?country_of_origin[^"]*"[^>]*>([^<]+)`)
 	titleDescriptionRE   = regexp.MustCompile(`<meta property="og:description" content="(?:(?:Created|Directed) by .*?\w\w\.\s*)*(?:With .*?\w\w\.\s*)?([^"]*)`)
@@ -211,6 +213,7 @@ func (t *Title) Parse(page []byte) error {
 	titleYear := titleYearRE.FindSubmatch(page)
 	titleYear2 := titleYear2RE.FindSubmatch(page)
 	titleYear3 := titleYear3RE.FindSubmatch(page)
+	titleYear4 := titleYear4RE.FindSubmatch(page)
 
 	if len(v.DatePublished) >= 4 {
 		year, err := strconv.Atoi(v.DatePublished[:4])
@@ -224,6 +227,8 @@ func (t *Title) Parse(page []byte) error {
 		t.Year, _ = strconv.Atoi(string(titleYear2[1])) // regexp matches digits
 	} else if titleYear3 != nil {
 		t.Year, _ = strconv.Atoi(string(titleYear3[1])) // regexp matches digits
+	} else if titleYear4 != nil {
+		t.Year, _ = strconv.Atoi(string(titleYear4[1])) // regexp matches digits
 	} else {
 		// sometimes there's just no year, e.g. https://www.imdb.com/title/tt12592252/
 	}
@@ -241,14 +246,15 @@ func (t *Title) Parse(page []byte) error {
 	if v.Duration != "" {
 		t.Duration = strings.ToLower(strings.TrimLeft(v.Duration, "PT"))
 	} else {
-		s := titleDurationRE.FindSubmatch(page)
-		if s != nil {
-			t.Duration = strings.ToLower(string(s[1]))
-		} else {
-			s := titleDuration2RE.FindSubmatch(page)
-			if s != nil {
-				t.Duration = string(s[1])
-			}
+		duration1 := titleDurationRE.FindSubmatch(page)
+		duration2 := titleDuration2RE.FindSubmatch(page)
+		duration3 := titleDuration3RE.FindSubmatch(page)
+		if duration1 != nil {
+			t.Duration = strings.ToLower(string(duration1[1]))
+		} else if duration2 != nil {
+			t.Duration = string(duration2[1])
+		} else if duration3 != nil {
+			t.Duration = string(duration3[1]) + "m"
 		}
 	}
 
