@@ -206,7 +206,7 @@ func TestTitle(t *testing.T) {
 				Name:        "Iron Man 2",
 				Type:        "VideoGame",
 				Year:        2010,
-				Rating:      "6.2",
+				Rating:      "6.1",
 				RatingCount: 641,
 				Directors: []Name{
 					Name{ID: "nm4157448", URL: "https://www.imdb.com/name/nm4157448", FullName: "Michael McCormick"},
@@ -236,8 +236,8 @@ func TestTitle(t *testing.T) {
 				URL:         "https://www.imdb.com/title/tt0423866",
 				Name:        "Bin-jip",
 				Type:        "Movie",
-				Year:        2004,
-				Rating:      "8.0",
+				Year:        2005,
+				Rating:      "7.9",
 				RatingCount: 45493,
 				Duration:    "1h28m",
 				Directors: []Name{
