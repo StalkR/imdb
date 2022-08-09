@@ -135,7 +135,7 @@ var (
 
 type schemaJSON struct {
 	Type            string `json:"@type"`
-	Url             string
+	URL             string
 	Name            string
 	Image           string
 	Genre           genreJSON
@@ -186,7 +186,7 @@ func (s *personsJSON) UnmarshalJSON(data []byte) error {
 
 type personJSON struct {
 	Type string `json:"@type"`
-	Url  string
+	URL  string
 	Name string
 }
 
@@ -201,7 +201,7 @@ func (t *Title) Parse(page []byte) error {
 		return NewErrParse(err.Error() + "; schema was: " + string(s[1]))
 	}
 
-	p := strings.Split(v.Url, "/")
+	p := strings.Split(v.URL, "/")
 	if len(p) != 4 {
 		return NewErrParse("id")
 	}
@@ -263,7 +263,7 @@ func (t *Title) Parse(page []byte) error {
 		if e.Type != "Person" {
 			continue
 		}
-		p := strings.Split(e.Url, "/")
+		p := strings.Split(e.URL, "/")
 		if len(p) != 4 {
 			return NewErrParse("director id")
 		}
@@ -283,7 +283,7 @@ func (t *Title) Parse(page []byte) error {
 		if e.Type != "Person" {
 			continue
 		}
-		p := strings.Split(e.Url, "/")
+		p := strings.Split(e.URL, "/")
 		if len(p) != 4 {
 			return NewErrParse("writer id")
 		}
@@ -303,7 +303,7 @@ func (t *Title) Parse(page []byte) error {
 		if e.Type != "Person" {
 			continue
 		}
-		p := strings.Split(e.Url, "/")
+		p := strings.Split(e.URL, "/")
 		if len(p) != 4 {
 			return NewErrParse("actor id")
 		}

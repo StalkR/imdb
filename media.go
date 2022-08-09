@@ -68,7 +68,7 @@ func (m *Media) Parse(page []byte) error {
 						Images struct {
 							Edges []struct {
 								Node struct {
-									Url string `json:"url"`
+									URL string `json:"url"`
 								} `json:"node"`
 							} `json:"edges"`
 						} `json:"images"`
@@ -88,7 +88,7 @@ func (m *Media) Parse(page []byte) error {
 	if len(edges) == 0 {
 		return NewErrParse("content URL, empty edges")
 	}
-	m.ContentURL = edges[0].Node.Url
+	m.ContentURL = edges[0].Node.URL
 	if m.ContentURL == "" {
 		return NewErrParse("content URL, empty")
 	}
@@ -120,7 +120,7 @@ func (m *Media) parseOld(page []byte) error {
 	var r struct {
 		Galleries map[string]struct {
 			AllImages []struct {
-				Id  string
+				ID  string
 				Src string
 			}
 		}
@@ -129,7 +129,7 @@ func (m *Media) parseOld(page []byte) error {
 		return NewErrParse(fmt.Sprintf("unmarshal: %v", err))
 	}
 	for _, e := range r.Galleries[m.TitleID].AllImages {
-		if e.Id == m.ID {
+		if e.ID == m.ID {
 			m.ContentURL = e.Src
 		}
 	}

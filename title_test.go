@@ -20,7 +20,7 @@ func TestTitle(t *testing.T) {
 				Name:        "L'uomo che sfidò l'organizzazione",
 				Type:        "Movie",
 				Year:        1975,
-				Rating:      "5.3",
+				Rating:      "5.4",
 				RatingCount: 25,
 				Duration:    "1h27m",
 				Directors: []Name{
@@ -103,7 +103,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"France", "United Kingdom", "United States"},
 				Description:   "In Paris, a young employee in the office of the US Ambassador hooks up with an American spy looking to stop a terrorist attack in the city.",
 				Poster:        Media{ID: "rm30481408", TitleID: "tt1179034", URL: "https://www.imdb.com/title/tt1179034/mediaviewer/rm30481408", ContentURL: "https://m.media-amazon.com/images/M/MV5BODAwMDFjNjktMWY2Mi00MmVhLWI0MjYtNzg4OTI0NzA5YzBjXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg"},
-				AKA:           []string{"Apo to Parisi me agapi", "Armastusega Pariisist", "Bez soucitu", "Bons baisers de Paris", "De Paris com Amor", "Desde París con amor", "Din Paris, cu dragoste", "Dupla Implacável", "From Paris with Love", "Iz Pariza s ljubavlju", "Iz Pariza z ljubeznijo", "Linkejimai is Paryziaus", "MiParis be'ahava", "No Parīzes ar mīlestību", "Paris'ten sevgilerle", "París en la Mira", "París en la mira", "Pozdrowienia z Paryża", "Párizsból szeretettel", "Sangre y amor en París", "Από το Παρίσι με αγάπη", "З Парижу з любов'ю", "Из Парижа с любовью", "От Париж с любов", "パリより愛をこめて"},
+				AKA:           []string{"Apo to Parisi me agapi", "Armastusega Pariisist", "Bez soucitu", "Bons baisers de Paris", "De Paris com Amor", "Desde París con amor", "Din Paris, cu dragoste", "Dupla Implacável", "From Paris with Love", "Iz Pariza s ljubavlju", "Iz Pariza z ljubeznijo", "Linkejimai is Paryziaus", "MiParis be'ahava", "No Parīzes ar mīlestību", "Paris Rực Lửa", "Paris'ten sevgilerle", "París en la Mira", "París en la mira", "Pozdrowienia z Paryża", "Párizsból szeretettel", "Sangre y amor en París", "Από το Παρίσι με αγάπη", "З Парижу з любов'ю", "Из Парижа с любовью", "От Париж с любов", "パリより愛をこめて"},
 			},
 		},
 		{
@@ -135,7 +135,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"United States", "Australia"},
 				Description:   "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
 				Poster:        Media{ID: "rm525547776", TitleID: "tt0133093", URL: "https://www.imdb.com/title/tt0133093/mediaviewer/rm525547776", ContentURL: "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg"},
-				AKA:           []string{"22世紀殺人網絡", "Fylkið", "La matrice", "La matriz", "Ma Trận", "Maatriks", "Matorikkusu", "Matrica", "Matrikss", "Matritsa", "Matrix", "Mátrix", "Phôphan Manut Neūa Lôk 2199", "The Matrix", "Матрикс", "Матрица", "Матрицата", "Матриця", "マトリックス", "駭客任務", "黑客帝国"},
+				AKA:           []string{"22世紀殺人網絡", "Fylkið", "La matrice", "La matriz", "Ma Trận", "Maatriks", "Matorikkusu", "Matrica", "Matrikss", "Matritsa", "Matrix", "Mátrix", "Phôphan Manut Neūa Lôk 2199", "The Matrix", "Матрикс", "Матрица", "Матрицата", "Матриця", "ماتريكس", "マトリックス", "駭客任務", "黑客帝国"},
 			},
 		},
 		{
@@ -306,7 +306,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"United Kingdom", "United States"},
 				Description:   "In the early years of the 20th century, the Kingsman agency is formed to stand against a cabal plotting a war to wipe out millions.",
 				Poster:        Media{ID: "rm1942154753", TitleID: "tt6856242", URL: "https://www.imdb.com/title/tt6856242/mediaviewer/rm1942154753", ContentURL: "https://m.media-amazon.com/images/M/MV5BMDEzZDY2ZDktNTlmOS00NThjLThkNTEtMjE5MzI5NWEwZmRjXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_.jpg"},
-				AKA:           []string{"King's Man. Pradžia", "King's Man: A Origem", "King's Man: A kezdetek", "King's Man: El origen", "King's Man: Pierwsza misja", "King's Man: Начало", "King's Man: Първа мисия", "Kings man: Ha'Hatkhala", "Kings's Man: Početak", "Kingsman 3", "Kingsman: First Agent", "Kingsman: Khởi Nguồn", "Kingsman: O Grande Jogo", "Kingsman: Première mission", "Kingsman: První mise", "Kingsman: The Great Game", "The Beginning", "The King's Man", "The King's Man - Le origini", "The King's Man - The Beginning", "The King's Man: Başlangıç", "The King's Man: Khởi Nguồn", "The King's Man: La primera misión", "The King's Man: O Início", "The King's Man: Première mission", "The King's Man: Prvá misia", "The King's Man: Zacetek", "The King's Man: Începutul", "The King's Man: Почетак", "The king's man: pirmā misija", "Ο Άνθρωπος του Βασιλιά: Το Ξεκίνημα", "Кінгс Мен", "Кінґс Мен", "キングスマン：ファースト・エージェント", "皇家特工：第一任務", "金牌特務：金士曼起源", "킹스맨: 퍼스트 에이전트"},
+				AKA:           []string{"King's Man. Pradžia", "King's Man: A Origem", "King's Man: A kezdetek", "King's Man: El origen", "King's Man: Pierwsza misja", "King's Man: Начало", "King's Man: Първа мисия", "Kings man: Ha'Hatkhala", "Kings's Man: Početak", "Kingsman 3", "Kingsman: First Agent", "Kingsman: Khởi Nguồn", "Kingsman: O Grande Jogo", "Kingsman: Première mission", "Kingsman: První mise", "Kingsman: The Great Game", "The Beginning", "The King's Man", "The King's Man - Le origini", "The King's Man - The Beginning", "The King's Man: Başlangıç", "The King's Man: Khởi Nguồn", "The King's Man: La primera misión", "The King's Man: O Início", "The King's Man: Première mission", "The King's Man: Prvá misia", "The King's Man: Zacetek", "The King's Man: Începutul", "The King's Man: Почетак", "The king's man: pirmā misija", "Ο άνθρωπος του Bασιλιά: Το ξεκίνημα", "Кінгс Мен", "Кінґс Мен", "ذا كينقزمان", "キングスマン：ファースト・エージェント", "皇家特工：第一任務", "金牌特務：金士曼起源", "킹스맨: 퍼스트 에이전트"},
 			},
 		},
 	} {
