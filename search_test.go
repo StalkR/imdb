@@ -85,7 +85,7 @@ func TestSearchTitlePositions(t *testing.T) {
 	if want := "tt1126591"; r[0].ID != want { // Burlesque (I) (2010)
 		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, want)
 	}
-	if want := "tt1586713"; r[1].ID != want { // Burlesque (II) (2010)
+	if want := "tt11288016"; r[1].ID != want { // Jak si nepodelat zivot (2019) (TV Mini Series) aka "Burlesque"
 		t.Errorf("SearchTitle(%s)[1] = %s; want %s", title, r[1].ID, want)
 	}
 }
