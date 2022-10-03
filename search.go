@@ -16,7 +16,7 @@ var (
 	// searchTitleListRE matches on results list. (?s) for multi-line.
 	searchTitleListRE = regexp.MustCompile(`(?s)<table class="findList">(.*?)</table>`)
 	// searchTitleRE matches on titles.
-	searchTitleRE = regexp.MustCompile(`<a .*?href="/title/(tt\d+).*?>([^<]+)</a>([^<]*)`)
+	searchTitleRE = regexp.MustCompile(`<a href="/title/(tt\d+).*?>([^<]+)</a>([^<]+)`)
 	searchExtraRE = regexp.MustCompile(`\(([^(]+)\)`)
 	searchYearRE  = regexp.MustCompile(`\d{4}`)
 	// Ignore roman numerals used for duplicates in a year, e.g. Title (II) (2000) (TV Series)
@@ -40,10 +40,10 @@ func SearchTitle(c *http.Client, name string) ([]Title, error) {
 	}
 
 	list := searchTitleListRE.FindSubmatch(page)
-	if list != nil {
-		page = list[1]
+	if list == nil {
+		return newSearchTitle(page)
 	}
-	results := searchTitleRE.FindAllSubmatch(page, -1)
+	results := searchTitleRE.FindAllSubmatch(list[1], -1)
 	if results == nil {
 		return nil, nil // No results.
 	}
@@ -72,6 +72,54 @@ func SearchTitle(c *http.Client, name string) ([]Title, error) {
 			}
 		}
 		id := string(r[1])
+		t = append(t, Title{
+			ID:   id,
+			URL:  fmt.Sprintf(titleURL, id),
+			Name: decode(string(r[2])),
+			Year: titleYear,
+			Type: titleType,
+		})
+	}
+	return t, nil
+}
+
+var (
+	// searchTitleListRE matches on each result in the list.
+	newSearchTitleListRE = regexp.MustCompile(`<div class="ipc-metadata-list-summary-item__tc">(.*?)</div>`)
+	// searchTitleRE matches on titles.
+	newSearchTitleRE = regexp.MustCompile(`<a .*?href="/title/(tt\d+).*?>([^<]+)</a>`)
+	newSearchYearRE  = regexp.MustCompile(`<ul\s*[^>]*>.*?<span\s*[^>]*>(\d{4})[^<]*</span>(.*?)</ul>`)
+	newSearchTypeRE  = regexp.MustCompile(`<span\s*[^>]*>([^<]*)</span>`) // from within the year 2nd capture group
+)
+
+func newSearchTitle(page []byte) ([]Title, error) {
+	list := newSearchTitleListRE.FindAllSubmatch(page, -1)
+	if list == nil {
+		return nil, NewErrParse("list")
+	}
+
+	var t []Title
+	for _, e := range list {
+		r := newSearchTitleRE.FindSubmatch(e[1])
+		if r == nil {
+			return nil, NewErrParse("list title")
+		}
+		id := string(r[1])
+
+		var titleYear int
+		var titleType string
+
+		if m := newSearchYearRE.FindSubmatch(e[1]); m != nil {
+			year, err := strconv.Atoi(string(m[1]))
+			if err != nil {
+				return nil, err // should not happen as regexp matches digits
+			}
+			titleYear = year
+			if m := newSearchTypeRE.FindSubmatch(m[2]); m != nil {
+				titleType = string(m[1])
+			}
+		}
+
 		t = append(t, Title{
 			ID:   id,
 			URL:  fmt.Sprintf(titleURL, id),

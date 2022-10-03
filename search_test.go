@@ -31,9 +31,9 @@ func TestSearchTitle(t *testing.T) {
 	for i, want := range []int{
 		2022,
 		2001,
-		1990,
+		2003,
 		2002,
-		2017,
+		2022,
 	} {
 		if r[i].Year != want {
 			errors = append(errors, fmt.Sprintf("SearchTitle(%s)[%d].Year = %d; want %d", title, i, r[i].Year, want))
@@ -45,10 +45,10 @@ func TestSearchTitle(t *testing.T) {
 	errors = []string{}
 	for i, want := range []string{
 		"TV Series",
+		"",
+		"",
+		"",
 		"TV Series",
-		"Video Game",
-		"TV Short",
-		"Short",
 	} {
 		if r[i].Type != want {
 			errors = append(errors, fmt.Sprintf("SearchTitle(%s)[%d].Type = %s; want %s", title, i, r[i].Type, want))
