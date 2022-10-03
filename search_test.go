@@ -68,8 +68,11 @@ func TestSearchTitleUnicode(t *testing.T) {
 	if len(r) == 0 {
 		t.Fatalf("SearchTitle(%s) len = %d; want %d", title, len(r), 1)
 	}
-	if want := "tt0244764"; r[0].ID != want {
-		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, want)
+	if accepted := map[string]bool{
+		"tt5761478": true, // Harlots (TV Series) (2017-2019)
+		"tt0244764": true, // Rip Girls (TV Movie) (2000)
+	}; !accepted[r[0].ID] {
+		t.Errorf("SearchTitle(%s)[0] = %v; want any of %v", title, r[0].ID, accepted)
 	}
 }
 
@@ -82,11 +85,12 @@ func TestSearchTitlePositions(t *testing.T) {
 	if len(r) < 3 {
 		t.Fatalf("SearchTitle(%s) len = %d; want %d", title, len(r), 1)
 	}
-	if want := "tt1126591"; r[0].ID != want { // Burlesque (I) (2010)
-		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, want)
-	}
-	if want := "tt1586713"; r[1].ID != want { // Burlesque (II) (2010)
-		t.Errorf("SearchTitle(%s)[1] = %s; want %s", title, r[1].ID, want)
+	if accepted := map[string]bool{
+		"tt1126591":  true, // Burlesque (I) (2010)
+		"tt1586713":  true, // Burlesque (II) (2010)
+		"tt11288016": true, // Jak si nepodelat zivot (2019) (TV Mini Series) aka "Burlesque"
+	}; !accepted[r[0].ID] {
+		t.Errorf("SearchTitle(%s)[0] = %v; want any of %v", title, r[0].ID, accepted)
 	}
 }
 

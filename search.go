@@ -16,7 +16,7 @@ var (
 	// searchTitleListRE matches on results list. (?s) for multi-line.
 	searchTitleListRE = regexp.MustCompile(`(?s)<table class="findList">(.*?)</table>`)
 	// searchTitleRE matches on titles.
-	searchTitleRE = regexp.MustCompile(`<a href="/title/(tt\d+).*?>([^<]+)</a>([^<]+)`)
+	searchTitleRE = regexp.MustCompile(`<a .*?href="/title/(tt\d+).*?>([^<]+)</a>([^<]*)`)
 	searchExtraRE = regexp.MustCompile(`\(([^(]+)\)`)
 	searchYearRE  = regexp.MustCompile(`\d{4}`)
 	// Ignore roman numerals used for duplicates in a year, e.g. Title (II) (2000) (TV Series)
@@ -40,10 +40,10 @@ func SearchTitle(c *http.Client, name string) ([]Title, error) {
 	}
 
 	list := searchTitleListRE.FindSubmatch(page)
-	if list == nil {
-		return nil, NewErrParse("list")
+	if list != nil {
+		page = list[1]
 	}
-	results := searchTitleRE.FindAllSubmatch(list[1], -1)
+	results := searchTitleRE.FindAllSubmatch(page, -1)
 	if results == nil {
 		return nil, nil // No results.
 	}
