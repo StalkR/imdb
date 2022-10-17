@@ -71,6 +71,7 @@ func TestSearchTitleUnicode(t *testing.T) {
 	if accepted := map[string]bool{
 		"tt5761478": true, // Harlots (TV Series) (2017-2019)
 		"tt0244764": true, // Rip Girls (TV Movie) (2000)
+		"tt0098797": true, // Les filles de Caleb (TV Series) (1990-)
 	}; !accepted[r[0].ID] {
 		t.Errorf("SearchTitle(%s)[0] = %v; want any of %v", title, r[0].ID, accepted)
 	}
@@ -100,10 +101,12 @@ func TestMachete(t *testing.T) {
 	if err != nil {
 		t.Fatalf("SearchTitle(%s) error: %v", title, err)
 	}
-	if len(r) != 1 {
-		t.Fatalf("SearchTitle(%s) len = %d; want %d", title, len(r), 1)
+	if len(r) == 0 {
+		t.Fatalf("SearchTitle(%s) len = %d; want > 0", title, len(r))
 	}
-	if want := "tt2002719"; r[0].ID != want {
-		t.Errorf("SearchTitle(%s)[0] = %s; want %s", title, r[0].ID, want)
+	if accepted := map[string]bool{
+		"tt2002719": true,
+	}; !accepted[r[0].ID] {
+		t.Errorf("SearchTitle(%s)[0] = %v; want any of %v", title, r[0].ID, accepted)
 	}
 }
