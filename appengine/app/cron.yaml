@@ -1,4 +1,0 @@
-cron:
-- description: daily cache cleanup
-  url: /clean
-  schedule: every 24 hours
