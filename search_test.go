@@ -11,7 +11,7 @@ func TestSearchTitle(t *testing.T) {
 	if err != nil {
 		t.Fatalf("SearchTitle(%s) error: %v", title, err)
 	}
-	if len(r) < 50 {
+	if len(r) < 10 {
 		t.Fatalf("SearchTitle(%s) len < 50: %d", title, len(r))
 	}
 	if accepted := map[string]bool{
