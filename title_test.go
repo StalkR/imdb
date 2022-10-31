@@ -20,7 +20,7 @@ func TestTitle(t *testing.T) {
 				Name:        "L'uomo che sfidò l'organizzazione",
 				Type:        "Movie",
 				Year:        1975,
-				Rating:      "5.5",
+				Rating:      "5.4",
 				RatingCount: 25,
 				Duration:    "1h27m",
 				Directors: []Name{
@@ -135,7 +135,7 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"United States", "Australia"},
 				Description:   "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
 				Poster:        Media{ID: "rm525547776", TitleID: "tt0133093", URL: "https://www.imdb.com/title/tt0133093/mediaviewer/rm525547776", ContentURL: "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg"},
-				AKA:           []string{"22世紀殺人網絡", "Fylkið", "La matrice", "La matriz", "Ma Trận", "Maatriks", "Matorikkusu", "Matrica", "Matrikss", "Matritsa", "Matrix", "Mátrix", "Phôphan Manut Neūa Lôk 2199", "The Matrix", "Матрикс", "Матрица", "Матрицата", "Матриця", "ماتريكس", "マトリックス", "駭客任務", "黑客帝国", "매트릭스"},
+				AKA:           []string{"22世紀殺人網絡", "Fylkið", "La matrice", "La matriz", "Ma Trận", "Maatriks", "Matorikkusu", "Matrica", "Matrikss", "Matritsa", "Matrix", "Mátrix", "Phôphan Manut Neūa Lôk 2199", "The Matrix", "Матрикс", "Матрица", "Матрицата", "Матриця", "מטריקס", "ماتريكس", "महाशक्तिमान", "マトリックス", "駭客任務", "黑客帝国", "매트릭스"},
 			},
 		},
 		{
