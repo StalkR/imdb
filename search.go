@@ -88,7 +88,7 @@ var (
 	newSearchTitleListRE = regexp.MustCompile(`<div class="ipc-metadata-list-summary-item__tc">(.*?)</div>`)
 	// searchTitleRE matches on titles.
 	newSearchTitleRE = regexp.MustCompile(`<a .*?href="/title/(tt\d+).*?>([^<]+)</a>`)
-	newSearchYearRE  = regexp.MustCompile(`<ul\s*[^>]*>.*?<span\s*[^>]*>(\d{4})[^<]*</span>(.*?)</ul>`)
+	newSearchYearRE  = regexp.MustCompile(`<ul\s*[^>]*>.*?<(?:span|label)\s*[^>]*>(\d{4})[^<]*</(?:span|label)>(.*?)</ul>`)
 	newSearchTypeRE  = regexp.MustCompile(`<span\s*[^>]*>([^<]*)</span>`) // from within the year 2nd capture group
 )
 
