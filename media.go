@@ -2,6 +2,7 @@ package imdb
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -36,6 +37,12 @@ func NewMedia(c *http.Client, id, titleid string) (*Media, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
+	if resp.StatusCode != http.StatusOK {
+		if resp.StatusCode == http.StatusForbidden {
+			return nil, errors.New("forbidden (e.g. denied by AWS WAF)")
+		}
+		return nil, fmt.Errorf("imdb: status not ok: %v", resp.Status)
+	}
 	page, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err

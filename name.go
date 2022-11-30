@@ -1,6 +1,7 @@
 package imdb
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -33,6 +34,12 @@ func NewName(c *http.Client, id string) (*Name, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
+	if resp.StatusCode != http.StatusOK {
+		if resp.StatusCode == http.StatusForbidden {
+			return nil, errors.New("forbidden (e.g. denied by AWS WAF)")
+		}
+		return nil, fmt.Errorf("imdb: status not ok: %v", resp.Status)
+	}
 	page, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
