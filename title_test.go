@@ -224,7 +224,7 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English"},
 				Nationalities: []string{"United States"},
 				Description:   "Video game based upon the film of the same name.",
-				Poster:        Media{ID: "rm946460161", TitleID: "tt1371159", URL: "https://www.imdb.com/title/tt1371159/mediaviewer/rm946460161", ContentURL: "https://m.media-amazon.com/images/M/MV5BYWI4MTZkMjItYmM2Zi00YmUzLWE0ZWEtNjIyMjcyZmJhYTAxXkEyXkFqcGdeQXVyOTkwMTc4ODQ@._V1_.jpg"},
+				Poster:        Media{ID: "rm1013569025", TitleID: "tt1371159", URL: "https://www.imdb.com/title/tt1371159/mediaviewer/rm1013569025", ContentURL: "https://m.media-amazon.com/images/M/MV5BMTU2NWIyN2YtODgzNS00MzYxLWJhOTgtODhlOTI4NDE2OGUwXkEyXkFqcGdeQXVyOTkwMTc4ODQ@._V1_.jpg"},
 				AKA:           []string{"Iron Man 2"},
 			},
 		},
