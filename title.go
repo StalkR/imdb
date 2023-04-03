@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"regexp"
-	"sort"
 	"strconv"
 	"strings"
 )
@@ -30,7 +29,6 @@ type Title struct {
 	Nationalities []string `json:",omitempty"`
 	Description   string   `json:",omitempty"`
 	Poster        Media    `json:",omitempty"`
-	AKA           []string `json:",omitempty"`
 }
 
 // String formats a Title on one line.
@@ -103,25 +101,6 @@ func NewTitle(c *http.Client, id string) (*Title, error) {
 	}
 	t := Title{}
 	if err := t.Parse(page); err != nil {
-		return nil, err
-	}
-
-	resp, err = c.Get(t.URL + "/releaseinfo")
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		if resp.StatusCode == http.StatusForbidden {
-			return nil, errors.New("forbidden (e.g. denied by AWS WAF)")
-		}
-		return nil, fmt.Errorf("imdb: status not ok: %v", resp.Status)
-	}
-	rls, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-	if err := t.ParseRls(rls); err != nil {
 		return nil, err
 	}
 
@@ -392,25 +371,5 @@ func (t *Title) Parse(page []byte) error {
 		}
 	}
 
-	return nil
-}
-
-// Regular expressions to parse a Title release info.
-var (
-	titleAKARE = regexp.MustCompile(`<td class="aka-item__title">([^<]+)</td>`)
-)
-
-// ParseRls parses a Title release info from its page.
-func (t *Title) ParseRls(page []byte) error {
-	t.AKA = nil
-	s := titleAKARE.FindAllSubmatch(page, -1)
-	for _, m := range s {
-		aka := decode(string(m[1]))
-		if stringSlice(t.AKA).Has(aka) {
-			continue
-		}
-		t.AKA = append(t.AKA, aka)
-	}
-	sort.StringSlice(t.AKA).Sort()
 	return nil
 }

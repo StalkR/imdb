@@ -40,7 +40,6 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"Italy", "France", "Spain"},
 				Description:   "An airport employee switches a pack of drugs for baking soda and absconds to Barcelona, meanwhile the drug-runners are on his trail.",
 				Poster:        Media{ID: "rm3600132097", TitleID: "tt0073845", URL: "https://www.imdb.com/title/tt0073845/mediaviewer/rm3600132097", ContentURL: "https://m.media-amazon.com/images/M/MV5BMzJmM2E0ZTEtYmJhMy00Nzc2LTgyMDUtODViNzQyZDczODc0XkEyXkFqcGdeQXVyMTQ3Njg3MQ@@._V1_.jpg"},
-				AKA:           []string{"Antimetopos me tin mafia", "El hombre que desafió a la organización", "L'homme qui défia l'organisation", "L'uomo che sfidò l'organizzazione", "Olay Adamı", "One Man Against the Organization"},
 			},
 		},
 		{
@@ -72,7 +71,6 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"United States"},
 				Description:   "An advanced race of aliens descends upon Earth with a single goal - the blood of eight million humans to save their own dying planet.",
 				Poster:        Media{ID: "rm804357633", TitleID: "tt0437803", URL: "https://www.imdb.com/title/tt0437803/mediaviewer/rm804357633", ContentURL: "https://m.media-amazon.com/images/M/MV5BZTEwZDBmNTgtMTg3OC00MDJiLTkzZTgtZGYwYzcwMWMwZTBjXkEyXkFqcGdeQXVyMTY5Nzc4MDY@._V1_.jpg"},
-				AKA:           []string{"A Föld ostroma", "Alien Blood", "Alien Siege", "Alien Siege - Tod aus dem All", "Etat de siège", "O Perigo Alienígena", "Obca krew", "Осада пришельцев"},
 			},
 		},
 		{
@@ -103,7 +101,6 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"France", "United Kingdom", "United States"},
 				Description:   "In Paris, a young employee in the office of the US Ambassador hooks up with an American spy looking to stop a terrorist attack in the city.",
 				Poster:        Media{ID: "rm30481408", TitleID: "tt1179034", URL: "https://www.imdb.com/title/tt1179034/mediaviewer/rm30481408", ContentURL: "https://m.media-amazon.com/images/M/MV5BODAwMDFjNjktMWY2Mi00MmVhLWI0MjYtNzg4OTI0NzA5YzBjXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg"},
-				AKA:           []string{"Apo to Parisi me agapi", "Armastusega Pariisist", "Bez soucitu", "Bons baisers de Paris", "De Paris com Amor", "Desde París con amor", "Din Paris, cu dragoste", "Dupla Implacável", "From Paris with Love", "Iz Pariza s ljubavlju", "Iz Pariza z ljubeznijo", "Linkejimai is Paryziaus", "MiParis be'ahava", "No Parīzes ar mīlestību", "Paris Rực Lửa", "Paris'ten sevgilerle", "París en la Mira", "París en la mira", "Pozdrowienia z Paryża", "Párizsból szeretettel", "Sangre y amor en París", "Από το Παρίσι με αγάπη", "З Парижу з любов'ю", "Из Парижа с любовью", "От Париж с любов", "パリより愛をこめて"},
 			},
 		},
 		{
@@ -135,7 +132,6 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"United States", "Australia"},
 				Description:   "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
 				Poster:        Media{ID: "rm525547776", TitleID: "tt0133093", URL: "https://www.imdb.com/title/tt0133093/mediaviewer/rm525547776", ContentURL: "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg"},
-				AKA:           []string{"22世紀殺人網絡", "Fylkið", "La matrice", "La matriz", "Ma Trận", "Maatriks", "Matorikkusu", "Matrica", "Matrikss", "Matritsa", "Matrix", "Mátrix", "Phôphan Manut Neūa Lôk 2199", "The Matrix", "Матрикс", "Матрица", "Матрицата", "Матриця", "महाशक्तिमान", "マトリックス", "駭客任務", "黑客帝国", "매트릭스"},
 			},
 		},
 		{
@@ -166,7 +162,6 @@ func TestTitle(t *testing.T) {
 				Genres:        []string{"Documentary"},
 				Languages:     []string{"Spanish"},
 				Nationalities: []string{"Spain"},
-				AKA:           []string{"El clima y las cuatro estaciones"},
 			},
 		},
 		{
@@ -194,7 +189,6 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"United States"},
 				Description:   "When their youngest brother comes out as gay, two conservative men support him and help him navigate being openly gay in 1980s Philadelphia.",
 				Poster:        Media{ID: "rm1328617472", TitleID: "tt0086677", URL: "https://www.imdb.com/title/tt0086677/mediaviewer/rm1328617472", ContentURL: "https://m.media-amazon.com/images/M/MV5BNDM3N2IxY2UtMDc4MS00ZDM5LWJjODUtMjQ5ODg2YWIxMTE4XkEyXkFqcGdeQXVyMDYxMTUwNg@@._V1_.jpg"},
-				AKA:           []string{"Braća", "Brothers", "Unter Brüdern"},
 			},
 		},
 		{
@@ -225,7 +219,6 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"United States"},
 				Description:   "Video game based upon the film of the same name.",
 				Poster:        Media{ID: "rm1013569025", TitleID: "tt1371159", URL: "https://www.imdb.com/title/tt1371159/mediaviewer/rm1013569025", ContentURL: "https://m.media-amazon.com/images/M/MV5BMTU2NWIyN2YtODgzNS00MzYxLWJhOTgtODhlOTI4NDE2OGUwXkEyXkFqcGdeQXVyOTkwMTc4ODQ@._V1_.jpg"},
-				AKA:           []string{"Iron Man 2"},
 			},
 		},
 		{
@@ -255,7 +248,6 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"South Korea", "Japan"},
 				Description:   "A transient young man breaks into empty homes to partake of the vacationing residents&apos; lives for a few days.",
 				Poster:        Media{ID: "rm1708246785", TitleID: "tt0423866", URL: "https://www.imdb.com/title/tt0423866/mediaviewer/rm1708246785", ContentURL: "https://m.media-amazon.com/images/M/MV5BYzBmODdkMzItNTk0NS00MDc5LWFmZjgtNmNlZmNhMzFlMmQ3XkEyXkFqcGdeQXVyMTI3ODAyMzE2._V1_.jpg"},
-				AKA:           []string{"3-Iron", "3-iron", "Bin jib", "Bin-Jip - Der Schattenmann", "Bin-Jip - Leere Häuser", "Bin-jip", "Bin-jip - tomme huse", "Bosh Evler", "Boş ev", "Casa Vazia", "El espíritu de la pasión", "Empty Houses", "Ferro 3", "Ferro 3 - La casa vuota", "Hierro 3 (Bin-jip)", "Hierro-3", "Järn 3:an", "Järntrean", "Khanehaye Khali", "Lehargish B'Bayit", "Locataires", "Lopakodó lelkek", "Menaj in trei", "Provalnik", "Pusty dom", "Rautakolmonen", "Tomme hus", "Tušti namai", "Utsusemi", "Ολομόναχοι μαζί", "Порожній будинок", "Пустой дом", "Стик Nо 3", "うつせみ", "感官樂園", "空屋情人", "空房间"},
 			},
 		},
 		{
@@ -306,7 +298,6 @@ func TestTitle(t *testing.T) {
 				Nationalities: []string{"United Kingdom", "United States"},
 				Description:   "In the early years of the 20th century, the Kingsman agency is formed to stand against a cabal plotting a war to wipe out millions.",
 				Poster:        Media{ID: "rm1942154753", TitleID: "tt6856242", URL: "https://www.imdb.com/title/tt6856242/mediaviewer/rm1942154753", ContentURL: "https://m.media-amazon.com/images/M/MV5BMDEzZDY2ZDktNTlmOS00NThjLThkNTEtMjE5MzI5NWEwZmRjXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_.jpg"},
-				AKA:           []string{"King's Man. Pradžia", "King's Man: A Origem", "King's Man: A kezdetek", "King's Man: El Origen", "King's Man: El origen", "King's Man: Pierwsza misja", "King's Man: Начало", "King's Man: Първа мисия", "Kings man: Ha'Hatkhala", "Kings's Man: Početak", "Kingsman 3", "Kingsman: Başlangıç", "Kingsman: First Agent", "Kingsman: Khởi Nguồn", "Kingsman: O Grande Jogo", "Kingsman: Première mission", "Kingsman: První mise", "Kingsman: The Great Game", "The Beginning", "The King's Man", "The King's Man - Le origini", "The King's Man - The Beginning", "The King's Man: Khởi Nguồn", "The King's Man: La primera misión", "The King's Man: O Início", "The King's Man: Première mission", "The King's Man: Prvá misia", "The King's Man: Zacetek", "The King's Man: Începutul", "The King's Man: Почетак", "The king's man: pirmā misija", "Ο άνθρωπος του Bασιλιά: Το ξεκίνημα", "Кінгс Мен", "Кінґс Мен", "キングスマン：ファースト・エージェント", "皇家特工：第一任務", "金牌特務：金士曼起源", "킹스맨: 퍼스트 에이전트"},
 			},
 		},
 	} {

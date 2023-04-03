@@ -72,6 +72,7 @@ func TestSearchTitleUnicode(t *testing.T) {
 		"tt5761478": true, // Harlots (TV Series) (2017-2019)
 		"tt0244764": true, // Rip Girls (TV Movie) (2000)
 		"tt0098797": true, // Les filles de Caleb (TV Series) (1990-)
+		"tt22522556": true, // Les Filles de l'Océan
 	}; !accepted[r[0].ID] {
 		t.Errorf("SearchTitle(%s)[0] = %v; want any of %v", title, r[0].ID, accepted)
 	}
