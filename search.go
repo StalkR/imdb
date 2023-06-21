@@ -13,7 +13,7 @@ import (
 const searchURL = "https://www.imdb.com/find?%s"
 
 var (
-	titleIDRE = regexp.MustCompile(`<link rel="canonical" href="https://www.imdb.com/title/(tt\d+)/"`)
+	titleIDLinkRE = regexp.MustCompile(`<link rel="canonical" href="https://www.imdb.com/title/(tt\d+)/"`)
 	// searchTitleListRE matches on results list. (?s) for multi-line.
 	searchTitleListRE = regexp.MustCompile(`(?s)<table class="findList">(.*?)</table>`)
 	// searchTitleRE matches on titles.

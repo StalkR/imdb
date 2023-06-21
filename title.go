@@ -110,6 +110,8 @@ func NewTitle(c *http.Client, id string) (*Title, error) {
 // Regular expressions to parse a Title.
 var (
 	schemaRE             = regexp.MustCompile(`(?s)<script type="application/ld\+json">(.*?)</script>`)
+	titleIDRE            = regexp.MustCompile(`https://www\.imdb\.com/title/(tt\d+)`)
+	nameIDRE             = regexp.MustCompile(`https://www\.imdb\.com/name/(nm\d+)`)
 	titleYearRE          = regexp.MustCompile(`<a href="/year/(\d+)/`)
 	titleYear2RE         = regexp.MustCompile(`(?s)<h4[^>]*>\s*Release Date:\s*</h4>\s*(\d+)\s+`)
 	titleYear3RE         = regexp.MustCompile(`(?s)<title[^>]*>[^<]*TV Episode (\d{4})[^<]*</title>`)
@@ -193,11 +195,12 @@ func (t *Title) Parse(page []byte) error {
 		return NewErrParse(err.Error() + "; schema was: " + string(s[1]))
 	}
 
-	p := strings.Split(v.URL, "/")
-	if len(p) != 4 {
+	m := titleIDRE.FindStringSubmatch(v.URL)
+	if len(m) != 2 {
 		return NewErrParse("id")
 	}
-	t.ID = p[2]
+	t.ID = m[1]
+
 	t.URL = fmt.Sprintf(titleURL, t.ID)
 	t.Name = decode(v.Name)
 	t.Type = v.Type
@@ -255,11 +258,11 @@ func (t *Title) Parse(page []byte) error {
 		if e.Type != "Person" {
 			continue
 		}
-		p := strings.Split(e.URL, "/")
-		if len(p) != 4 {
+		m = nameIDRE.FindStringSubmatch(e.URL)
+		if len(m) != 2 {
 			return NewErrParse("director id")
 		}
-		id := p[2]
+		id := m[1]
 		if nameSlice(t.Directors).Has(id) {
 			continue
 		}
@@ -275,11 +278,11 @@ func (t *Title) Parse(page []byte) error {
 		if e.Type != "Person" {
 			continue
 		}
-		p := strings.Split(e.URL, "/")
-		if len(p) != 4 {
+		m = nameIDRE.FindStringSubmatch(e.URL)
+		if len(m) != 2 {
 			return NewErrParse("writer id")
 		}
-		id := p[2]
+		id := m[1]
 		if nameSlice(t.Writers).Has(id) {
 			continue
 		}
@@ -295,11 +298,11 @@ func (t *Title) Parse(page []byte) error {
 		if e.Type != "Person" {
 			continue
 		}
-		p := strings.Split(e.URL, "/")
-		if len(p) != 4 {
+		m = nameIDRE.FindStringSubmatch(e.URL)
+		if len(m) != 2 {
 			return NewErrParse("actor id")
 		}
-		id := p[2]
+		id := m[1]
 		if nameSlice(t.Actors).Has(id) {
 			continue
 		}

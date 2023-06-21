@@ -53,14 +53,14 @@ func NewName(c *http.Client, id string) (*Name, error) {
 
 // Regular expressions to parse a Name.
 var (
-	nameIDRE       = regexp.MustCompile(`<link rel="canonical" href="https://www.imdb.com/name/(nm\d+)/"`)
+	nameIDLinkRE   = regexp.MustCompile(`<link rel="canonical" href="https://www.imdb.com/name/(nm\d+)/"`)
 	nameFullNameRE = regexp.MustCompile(`<meta property=.og:title. content="(.*?)( - IMDb)?"`)
 )
 
 // Parse parses a Name from its page.
 func (n *Name) Parse(page []byte) error {
 	// ID, URL
-	s := nameIDRE.FindSubmatch(page)
+	s := nameIDLinkRE.FindSubmatch(page)
 	if s == nil {
 		return NewErrParse("id")
 	}
