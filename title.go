@@ -119,7 +119,7 @@ var (
 	titleDurationRE      = regexp.MustCompile(`<time datetime="(?:PT)?([0-9HM]+)"`)
 	titleDuration2RE     = regexp.MustCompile(`(?s)<(?:span|button)[^>]*>Runtime</(?:span|button)><div[^>]*><ul[^>]*><li[^>]*><span[^>]*>(\d+m)in</span>`)
 	titleDuration3RE     = regexp.MustCompile(`(?s)<(?:span|button)[^>]*>Runtime</(?:span|button)><div[^>]*>(\d+)(:?<![^>]*>\s*)*minutes</div>`)
-	titleLanguagesRE     = regexp.MustCompile(`(?s)<[^>]+>Languages?:?</[^>]+>(.*?)</div>`)
+	titleLanguagesRE     = regexp.MustCompile(`(?s)<[^>]+>Languages?</span><div(.*?)</div>`)
 	titleLanguageRE      = regexp.MustCompile(`<a[^>]*>([^<]+)</a>`)
 	titleNationalitiesRE = regexp.MustCompile(`href="/search/title/?\?country_of_origin[^"]*"[^>]*>([^<]+)`)
 	titleDescriptionRE   = regexp.MustCompile(`<meta property="og:description" content="(?:(?:Created|Directed) by .*?\w\w\.\s*)*(?:With .*?\w\w\.\s*)?([^"]*)`)
