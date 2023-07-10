@@ -1,6 +1,7 @@
 package imdb
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
@@ -53,8 +54,7 @@ func NewName(c *http.Client, id string) (*Name, error) {
 
 // Regular expressions to parse a Name.
 var (
-	nameIDLinkRE   = regexp.MustCompile(`<link rel="canonical" href="https://www.imdb.com/name/(nm\d+)/"`)
-	nameFullNameRE = regexp.MustCompile(`<meta property=.og:title. content="(.*?)( - IMDb)?"`)
+	nameIDLinkRE = regexp.MustCompile(`<link rel="canonical" href="https://www.imdb.com/name/(nm\d+)/"`)
 )
 
 // Parse parses a Name from its page.
@@ -67,15 +67,16 @@ func (n *Name) Parse(page []byte) error {
 	n.ID = string(s[1])
 	n.URL = fmt.Sprintf(nameURL, n.ID)
 
-	// FullName
-	s = nameFullNameRE.FindSubmatch(page)
+	s = schemaRE.FindSubmatch(page)
 	if s == nil {
-		return NewErrParse("full name")
+		return NewErrParse("schema")
 	}
-	if len(s[1]) == 0 {
-		return NewErrParse("full name empty")
+	var v schemaJSON
+	if err := json.Unmarshal(s[1], &v); err != nil {
+		return NewErrParse(err.Error() + "; schema was: " + string(s[1]))
 	}
-	n.FullName = decode(string(s[1]))
+
+	n.FullName = decode(v.Name)
 
 	return nil
 }
