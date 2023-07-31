@@ -239,7 +239,7 @@ func TestTitle(t *testing.T) {
 					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Kim Ki-duk"},
 				},
 				Actors: []Name{
-					{ID: "nm1165901", URL: "https://www.imdb.com/name/nm1165901", FullName: "Seung-Yun Lee"},
+					{ID: "nm1165901", URL: "https://www.imdb.com/name/nm1165901", FullName: "Lee Seung-yun"},
 					{ID: "nm1030819", URL: "https://www.imdb.com/name/nm1030819", FullName: "Hee Jae"},
 					{ID: "nm1891528", URL: "https://www.imdb.com/name/nm1891528", FullName: "Hyuk-ho Kwon"},
 				},
