@@ -20,7 +20,7 @@ func TestTitle(t *testing.T) {
 				Name:        "L'uomo che sfidò l'organizzazione",
 				Type:        "Movie",
 				Year:        1975,
-				Rating:      "5.3",
+				Rating:      "5.4",
 				RatingCount: 25,
 				Duration:    "1h27m",
 				Directors: []Name{
