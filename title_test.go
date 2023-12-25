@@ -236,6 +236,7 @@ func TestTitle(t *testing.T) {
 					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Kim Ki-duk"},
 				},
 				Writers: []Name{
+					Name{ID: "nm15621750", URL: "https://www.imdb.com/name/nm15621750", FullName: "Kim Ki-Duk"},
 					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Kim Ki-duk"},
 				},
 				Actors: []Name{
