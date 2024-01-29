@@ -241,7 +241,7 @@ func TestTitle(t *testing.T) {
 				},
 				Actors: []Name{
 					{ID: "nm1165901", URL: "https://www.imdb.com/name/nm1165901", FullName: "Lee Seung-yun"},
-					{ID: "nm1030819", URL: "https://www.imdb.com/name/nm1030819", FullName: "Hee Jae"},
+					{ID: "nm1030819", URL: "https://www.imdb.com/name/nm1030819", FullName: "Jae Hee"},
 					{ID: "nm1891528", URL: "https://www.imdb.com/name/nm1891528", FullName: "Hyuk-ho Kwon"},
 				},
 				Genres:        []string{"Crime", "Drama", "Romance"},
