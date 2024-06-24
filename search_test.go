@@ -15,25 +15,30 @@ func TestSearchTitle(t *testing.T) {
 		t.Fatalf("SearchTitle(%s) len < 50: %d", title, len(r))
 	}
 	if accepted := map[string]bool{
-		"tt7631058": true, // The Lord of the Rings (TV Series)
-		"tt0120737": true, // The Lord of the Rings: The Fellowship of the Ring (2001)
+		"tt7631058":  true, // The Lord of the Rings: The Rings of Power (2024-) (TV Series)
+		"tt14824600": true, // The Lord of the Rings: The War of the Rohirrim (2024) (Animation)
+		"tt0120737":  true, // The Lord of the Rings: The Fellowship of the Ring (2001)
+		"tt0167260":  true, // The Lord of the Rings: The Return of the King (2003)
+		"tt0167261":  true, // The Lord of the Rings: The Two Towers (2002)
 	}; !accepted[r[0].ID] {
 		t.Errorf("SearchTitle(%s)[0].ID = %v; want any of %v", title, r[0].ID, accepted)
 	}
 	if accepted := map[string]bool{
-		"The Lord of the Rings":                             true,
-		"The Lord of the Rings: The Fellowship of the Ring": true,
 		"The Lord of the Rings: The Rings of Power":         true,
+		"The Lord of the Rings: The War of the Rohirrim":    true,
+		"The Lord of the Rings: The Fellowship of the Ring": true,
+		"The Lord of the Rings: The Return of the King":     true,
+		"The Lord of the Rings: The Two Towers":             true,
 	}; !accepted[r[0].Name] {
 		t.Errorf("SearchTitle(%s)[0].Name = %v; want any of %v", title, r[0].Name, accepted)
 	}
 	errors := []string{}
 	for i, want := range []int{
 		2022,
+		2024,
 		2001,
 		2003,
 		2002,
-		2022,
 	} {
 		if r[i].Year != want {
 			errors = append(errors, fmt.Sprintf("SearchTitle(%s)[%d].Year = %d; want %d", title, i, r[i].Year, want))
@@ -69,9 +74,9 @@ func TestSearchTitleUnicode(t *testing.T) {
 		t.Fatalf("SearchTitle(%s) len = %d; want %d", title, len(r), 1)
 	}
 	if accepted := map[string]bool{
-		"tt5761478": true, // Harlots (TV Series) (2017-2019)
-		"tt0244764": true, // Rip Girls (TV Movie) (2000)
-		"tt0098797": true, // Les filles de Caleb (TV Series) (1990-)
+		"tt5761478":  true, // Harlots (TV Series) (2017-2019)
+		"tt0244764":  true, // Rip Girls (TV Movie) (2000)
+		"tt0098797":  true, // Les filles de Caleb (TV Series) (1990-)
 		"tt22522556": true, // Les Filles de l'Océan
 	}; !accepted[r[0].ID] {
 		t.Errorf("SearchTitle(%s)[0] = %v; want any of %v", title, r[0].ID, accepted)
