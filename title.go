@@ -29,6 +29,7 @@ type Title struct {
 	Nationalities []string `json:",omitempty"`
 	Description   string   `json:",omitempty"`
 	Poster        Media    `json:",omitempty"`
+	SeasonCount   int      `json:",omitempty"`
 }
 
 // String formats a Title on one line.
@@ -122,6 +123,7 @@ var (
 	titleLanguagesRE     = regexp.MustCompile(`(?s)<[^>]+>Languages?</span><div(.*?)</div>`)
 	titleLanguageRE      = regexp.MustCompile(`<a[^>]*>([^<]+)</a>`)
 	titleNationalitiesRE = regexp.MustCompile(`href="/search/title/?\?country_of_origin[^"]*"[^>]*>([^<]+)`)
+	titleSeasonCountRE   = regexp.MustCompile(`<select id="browse-episodes-season" aria-label="(\d+) seasons"`)
 	titleDescriptionRE   = regexp.MustCompile(`<meta property="og:description" content="(?:(?:Created|Directed) by .*?\w\w\.\s*)*(?:With .*?\w\w\.\s*)?([^"]*)`)
 	titlePosterRE        = regexp.MustCompile(`(?s)<div class="poster">\s*<a href="/title/tt\d+/mediaviewer/(rm\d+)[^"]*"[^>]*>\s*<img.*?src="([^"]+)"`)
 	titlePoster2RE       = regexp.MustCompile(`(?s)"primaryImage":{"id":"([^"]*)","__typename":"Image"}`)
@@ -209,6 +211,13 @@ func (t *Title) Parse(page []byte) error {
 	titleYear2 := titleYear2RE.FindSubmatch(page)
 	titleYear3 := titleYear3RE.FindSubmatch(page)
 	titleYear4 := titleYear4RE.FindSubmatch(page)
+
+	if v.Type == "TVSeries" {
+		seasons := titleSeasonCountRE.FindSubmatch(page)
+		if len(seasons) > 1 {
+			t.SeasonCount, _ = strconv.Atoi(string(seasons[1]))
+		}
+	}
 
 	if len(v.DatePublished) >= 4 {
 		year, err := strconv.Atoi(v.DatePublished[:4])
