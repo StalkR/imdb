@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"regexp"
 	"strconv"
@@ -91,14 +91,16 @@ func NewTitle(c *http.Client, id string) (*Title, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 	if resp.StatusCode != http.StatusOK {
 		if resp.StatusCode == http.StatusForbidden {
 			return nil, errors.New("forbidden (e.g. denied by AWS WAF)")
 		}
 		return nil, fmt.Errorf("imdb: status not ok: %v", resp.Status)
 	}
-	page, err := ioutil.ReadAll(resp.Body)
+	page, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
