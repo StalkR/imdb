@@ -30,6 +30,8 @@ type Title struct {
 	Description   string   `json:",omitempty"`
 	Poster        Media    `json:",omitempty"`
 	SeasonCount   int      `json:",omitempty"`
+	Season        int      `json:",omitempty"`
+	Episode       int      `json:",omitempty"`
 }
 
 // String formats a Title on one line.
@@ -110,23 +112,24 @@ func NewTitle(c *http.Client, id string) (*Title, error) {
 
 // Regular expressions to parse a Title.
 var (
-	schemaRE             = regexp.MustCompile(`(?s)<script type="application/ld\+json">(.*?)</script>`)
-	titleIDRE            = regexp.MustCompile(`https://www\.imdb\.com/title/(tt\d+)`)
-	nameIDRE             = regexp.MustCompile(`https://www\.imdb\.com/name/(nm\d+)`)
-	titleYearRE          = regexp.MustCompile(`<a href="/year/(\d+)/`)
-	titleYear2RE         = regexp.MustCompile(`(?s)<h4[^>]*>\s*Release Date:\s*</h4>\s*(\d+)\s+`)
-	titleYear3RE         = regexp.MustCompile(`(?s)<title[^>]*>[^<]*TV Episode (\d{4})[^<]*</title>`)
-	titleYear4RE         = regexp.MustCompile(`(?s) href="/title/tt\d+/releaseinfo[^"]*"[^>]*>(\d{4})[^<]*</a>`)
-	titleDurationRE      = regexp.MustCompile(`<time datetime="(?:PT)?([0-9HM]+)"`)
-	titleDuration2RE     = regexp.MustCompile(`(?s)<(?:span|button)[^>]*>Runtime</(?:span|button)><div[^>]*><ul[^>]*><li[^>]*><span[^>]*>(\d+m)in</span>`)
-	titleDuration3RE     = regexp.MustCompile(`(?s)<(?:span|button)[^>]*>Runtime</(?:span|button)><div[^>]*>(\d+)(:?<![^>]*>\s*)*minutes</div>`)
-	titleLanguagesRE     = regexp.MustCompile(`(?s)<[^>]+>Languages?</span><div(.*?)</div>`)
-	titleLanguageRE      = regexp.MustCompile(`<a[^>]*>([^<]+)</a>`)
-	titleNationalitiesRE = regexp.MustCompile(`href="/search/title/?\?country_of_origin[^"]*"[^>]*>([^<]+)`)
-	titleSeasonCountRE   = regexp.MustCompile(`<select id="browse-episodes-season" aria-label="(\d+) seasons"`)
-	titleDescriptionRE   = regexp.MustCompile(`<meta property="og:description" content="(?:(?:Created|Directed) by .*?\w\w\.\s*)*(?:With .*?\w\w\.\s*)?([^"]*)`)
-	titlePosterRE        = regexp.MustCompile(`(?s)<div class="poster">\s*<a href="/title/tt\d+/mediaviewer/(rm\d+)[^"]*"[^>]*>\s*<img.*?src="([^"]+)"`)
-	titlePoster2RE       = regexp.MustCompile(`(?s)"primaryImage":{"id":"([^"]*)","__typename":"Image"}`)
+	schemaRE                  = regexp.MustCompile(`(?s)<script type="application/ld\+json">(.*?)</script>`)
+	titleIDRE                 = regexp.MustCompile(`https://www\.imdb\.com/title/(tt\d+)`)
+	nameIDRE                  = regexp.MustCompile(`https://www\.imdb\.com/name/(nm\d+)`)
+	titleYearRE               = regexp.MustCompile(`<a href="/year/(\d+)/`)
+	titleYear2RE              = regexp.MustCompile(`(?s)<h4[^>]*>\s*Release Date:\s*</h4>\s*(\d+)\s+`)
+	titleYear3RE              = regexp.MustCompile(`(?s)<title[^>]*>[^<]*TV Episode (\d{4})[^<]*</title>`)
+	titleYear4RE              = regexp.MustCompile(`(?s) href="/title/tt\d+/releaseinfo[^"]*"[^>]*>(\d{4})[^<]*</a>`)
+	titleDurationRE           = regexp.MustCompile(`<time datetime="(?:PT)?([0-9HM]+)"`)
+	titleDuration2RE          = regexp.MustCompile(`(?s)<(?:span|button)[^>]*>Runtime</(?:span|button)><div[^>]*><ul[^>]*><li[^>]*><span[^>]*>(\d+m)in</span>`)
+	titleDuration3RE          = regexp.MustCompile(`(?s)<(?:span|button)[^>]*>Runtime</(?:span|button)><div[^>]*>(\d+)(:?<![^>]*>\s*)*minutes</div>`)
+	titleLanguagesRE          = regexp.MustCompile(`(?s)<[^>]+>Languages?</span><div(.*?)</div>`)
+	titleLanguageRE           = regexp.MustCompile(`<a[^>]*>([^<]+)</a>`)
+	titleNationalitiesRE      = regexp.MustCompile(`href="/search/title/?\?country_of_origin[^"]*"[^>]*>([^<]+)`)
+	titleSeasonCountRE        = regexp.MustCompile(`<select id="browse-episodes-season" aria-label="(\d+) seasons"`)
+	titleEpisodeInformationRE = regexp.MustCompile(`<div data-testid="hero-subnav-bar-season-episode-numbers-section" class="[^"]*">S(\d+)[^E]*E(\d+)</div>`)
+	titleDescriptionRE        = regexp.MustCompile(`<meta property="og:description" content="(?:(?:Created|Directed) by .*?\w\w\.\s*)*(?:With .*?\w\w\.\s*)?([^"]*)`)
+	titlePosterRE             = regexp.MustCompile(`(?s)<div class="poster">\s*<a href="/title/tt\d+/mediaviewer/(rm\d+)[^"]*"[^>]*>\s*<img.*?src="([^"]+)"`)
+	titlePoster2RE            = regexp.MustCompile(`(?s)"primaryImage":{"id":"([^"]*)","__typename":"Image"}`)
 )
 
 type schemaJSON struct {
@@ -216,6 +219,18 @@ func (t *Title) Parse(page []byte) error {
 		seasons := titleSeasonCountRE.FindSubmatch(page)
 		if len(seasons) > 1 {
 			t.SeasonCount, _ = strconv.Atoi(string(seasons[1]))
+		}
+	} else if v.Type == "TVEpisode" {
+		episodeInfo := titleEpisodeInformationRE.FindSubmatch(page)
+		if len(episodeInfo) == 3 {
+			se, err := strconv.Atoi(string(episodeInfo[1]))
+			if err == nil {
+				t.Season = se
+				ep, err := strconv.Atoi(string(episodeInfo[2]))
+				if err == nil {
+					t.Episode = ep
+				}
+			}
 		}
 	}
 
