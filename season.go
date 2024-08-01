@@ -12,7 +12,7 @@ import (
 
 type Episode struct {
 	SeasonNumber, EpisodeNumber int
-	Title                       Title
+	ImageURL, ID, Name          string
 }
 
 type Season struct {
@@ -57,19 +57,15 @@ func NewSeason(c *http.Client, id string, season int) (*Season, error) {
 }
 
 var (
-	seasonEpisodeEntryRE = regexp.MustCompile(`<a class="[^"]*" href="/title/(tt.\d*)/\?ref_=ttep_ep(\d+)" aria-label="(.*?)">`)
+	seasonEpisodeEntryRE = regexp.MustCompile(`src="(https://m\.media-amazon\.com/images/[^"]*)" srcSet="[^"]*" sizes="[^"]*" width=".\d+"[^h]*[^r][^e][^f]f="/title/(tt.\d*)/\?ref_=ttep_ep(\d+)"[^"]*"([^"]*)"><`)
 )
 
 func (s *Season) Parse(c *http.Client, page []byte) error {
 	episodesMatch := seasonEpisodeEntryRE.FindAllSubmatch(page, -1)
 
 	for _, ep := range episodesMatch {
-		n, _ := strconv.Atoi(string(ep[2]))
-		tit, err := NewTitle(c, string(ep[1]))
-		if err != nil {
-			return err
-		}
-		episode := Episode{SeasonNumber: s.SeasonNumber, EpisodeNumber: n, Title: *tit}
+		n, _ := strconv.Atoi(string(ep[3]))
+		episode := Episode{SeasonNumber: s.SeasonNumber, EpisodeNumber: n, ImageURL: string(ep[1]), ID: string(ep[2]), Name: string(ep[4])}
 		s.Episodes = append(s.Episodes, episode)
 	}
 
