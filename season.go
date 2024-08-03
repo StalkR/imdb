@@ -3,8 +3,8 @@ package imdb
 import (
 	"errors"
 	"fmt"
+	"html"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"regexp"
 	"strconv"
@@ -43,7 +43,7 @@ func NewSeason(c *http.Client, id string, season int) (*Season, error) {
 		}
 		return nil, fmt.Errorf("imdb: status not ok: %v", resp.Status)
 	}
-	page, err := ioutil.ReadAll(resp.Body)
+	page, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
@@ -69,7 +69,7 @@ func (s *Season) Parse(c *http.Client, page []byte) error {
 
 	for _, ep := range episodesMatch {
 		n, _ := strconv.Atoi(string(ep[3]))
-		episode := Episode{SeasonNumber: s.SeasonNumber, EpisodeNumber: n, ImageURL: string(ep[1]), ID: string(ep[2]), Name: string(ep[4])}
+		episode := Episode{SeasonNumber: s.SeasonNumber, EpisodeNumber: n, ImageURL: string(ep[1]), ID: string(ep[2]), Name: html.UnescapeString(string(ep[4]))}
 		s.Episodes = append(s.Episodes, episode)
 	}
 

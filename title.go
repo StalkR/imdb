@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"html"
 	"io"
 	"net/http"
 	"regexp"
@@ -369,7 +370,7 @@ func (t *Title) Parse(page []byte) error {
 		}
 	}
 
-	t.Description = v.Description
+	t.Description = html.UnescapeString(v.Description)
 
 	s = titlePosterRE.FindSubmatch(page)
 	if s != nil {

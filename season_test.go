@@ -18,7 +18,7 @@ func TestSeason(t *testing.T) {
 						EpisodeNumber: 1,
 						ImageURL:      "https://m.media-amazon.com/images/M/MV5BMWIwZWExNGUtNTJjNC00N2Q2LWFjYjItMzhhNzc2NmNlMzBhXkEyXkFqcGc@._V1_QL75_UY281_CR8,0,500,281_.jpg",
 						ID:            "tt1000552",
-						Name:          "I Fuckin&#x27; Miss Cory and Trevor",
+						Name:          "I Fuckin' Miss Cory and Trevor",
 					},
 					{
 						SeasonNumber:  7,
@@ -53,7 +53,7 @@ func TestSeason(t *testing.T) {
 						EpisodeNumber: 6,
 						ImageURL:      "https://m.media-amazon.com/images/M/MV5BZDI4Nzc3MTMtNjM0OC00ZDJiLTgzMzctNTZjZGExOTM4MGY3XkEyXkFqcGc@._V1_QL75_UY281_CR11,0,500,281_.jpg",
 						ID:            "tt1026371",
-						Name:          "We Can&#x27;t Call People Without Wings Angels So We Call Them Friends",
+						Name:          "We Can't Call People Without Wings Angels So We Call Them Friends",
 					},
 					{
 						SeasonNumber:  7,
@@ -111,7 +111,7 @@ func TestSeason(t *testing.T) {
 						EpisodeNumber: 3,
 						ImageURL:      "https://m.media-amazon.com/images/M/MV5BMmE4MDVhODctZGZmZi00MTdiLTkyZjUtYzBmNWZlYWU5ZDVlXkEyXkFqcGc@._V1_QL75_UX500_CR0,40,500,281_.jpg",
 						ID:            "tt0732924",
-						Name:          "The Fuckin&#x27; Way She Goes",
+						Name:          "The Fuckin' Way She Goes",
 					},
 					{
 						SeasonNumber:  5,
@@ -125,14 +125,14 @@ func TestSeason(t *testing.T) {
 						EpisodeNumber: 5,
 						ImageURL:      "https://m.media-amazon.com/images/M/MV5BMjU3Y2IzMDMtYjFkZC00NTdhLWI1YTQtMTRhNGM2MDY2MWJhXkEyXkFqcGdeQXVyMTQ2ODE0NDA@._V1_QL75_UX500_CR0,52,500,281_.jpg",
 						ID:            "tt0732913",
-						Name:          "Mr. Lahey Is a Fuckin&#x27; Drunk, and He Always Will Be",
+						Name:          "Mr. Lahey Is a Fuckin' Drunk, and He Always Will Be",
 					},
 					{
 						SeasonNumber:  5,
 						EpisodeNumber: 6,
 						ImageURL:      "https://m.media-amazon.com/images/M/MV5BNTE1MmU3MjItZWE4ZC00NjkwLTllZDAtMjM4YTlmZDM2MDRlXkEyXkFqcGdeQXVyMTQ2ODE0NDA@._V1_QL75_UX500_CR0,46,500,281_.jpg",
 						ID:            "tt0732904",
-						Name:          "Don&#x27;t Cross the Shitline",
+						Name:          "Don't Cross the Shitline",
 					},
 					{
 						SeasonNumber:  5,
@@ -146,7 +146,7 @@ func TestSeason(t *testing.T) {
 						EpisodeNumber: 8,
 						ImageURL:      "https://m.media-amazon.com/images/M/MV5BYTg1ZGI2YmItNDJiZC00NjJiLWE2ZTEtNTc2MGJlNzM3YjRkL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQ2ODE0NDA@._V1_QL75_UX500_CR0,46,500,281_.jpg",
 						ID:            "tt0732905",
-						Name:          "Dressed All Over &amp; Zesty Mordant",
+						Name:          "Dressed All Over & Zesty Mordant",
 					},
 					{
 						SeasonNumber:  5,
