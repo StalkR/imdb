@@ -1,139 +1,80 @@
 package imdb
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
-	"net/url"
-	"regexp"
-	"strconv"
+	"strings"
 )
 
-const searchURL = "https://www.imdb.com/find?%s"
+const searchURL = "https://v3.sg.media-imdb.com/suggestion/x/%s.json?includeVideos=0"
 
-var (
-	titleIDLinkRE = regexp.MustCompile(`<link rel="canonical" href="https://www.imdb.com/title/(tt\d+)/"`)
-	// searchTitleListRE matches on results list. (?s) for multi-line.
-	searchTitleListRE = regexp.MustCompile(`(?s)<table class="findList">(.*?)</table>`)
-	// searchTitleRE matches on titles.
-	searchTitleRE = regexp.MustCompile(`<a href="/title/(tt\d+).*?>([^<]+)</a>([^<]+)`)
-	searchExtraRE = regexp.MustCompile(`\(([^(]+)\)`)
-	searchYearRE  = regexp.MustCompile(`\d{4}`)
-	// Ignore roman numerals used for duplicates in a year, e.g. Title (II) (2000) (TV Series)
-	searchRomanRE = regexp.MustCompile(`^[MDCLXVI]+$`)
-)
+// SearchQueryResponse represents the JSON struct returned by a query on searchURL
+type SearchQueryResponse struct {
+	Matches []struct {
+		Image struct {
+			Height   int    `json:"height"`
+			ImageURL string `json:"imageUrl"`
+			Width    int    `json:"width"`
+		} `json:"i"`
+		ID               string `json:"id"`
+		Title            string `json:"l"`
+		MainActors       string `json:"s"`
+		Q                string `json:"q,omitempty"`
+		Type             string `json:"qid,omitempty"`
+		Rank             int    `json:"rank,omitempty"`
+		Year             int    `json:"y,omitempty"`
+		YearInProduction string `json:"yr,omitempty"`
+	} `json:"d"`
+	Query string `json:"q"`
+	V     int    `json:"v"`
+}
 
 // SearchTitle searches for titles matching name and returns partial Titles.
 // A partial Title has only ID, URL, Name and Year set.
 // A full Title can be obtained with NewTitle, at the cost of extra requests.
 func SearchTitle(c *http.Client, name string) ([]Title, error) {
-	// Sections: all, tt, ep, nm, co, kw, ch, vi, qu, bi, pl
-	params := url.Values{"q": {name}, "s": {"tt"}}
-	resp, err := c.Get(fmt.Sprintf(searchURL, params.Encode()))
+	resp, err := c.Get(fmt.Sprintf(searchURL, name))
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 	if resp.StatusCode != http.StatusOK {
 		if resp.StatusCode == http.StatusForbidden {
 			return nil, errors.New("forbidden (e.g. denied by AWS WAF)")
 		}
 		return nil, fmt.Errorf("imdb: status not ok: %v", resp.Status)
 	}
-	page, err := ioutil.ReadAll(resp.Body)
+
+	decoder := json.NewDecoder(resp.Body)
+	if decoder == nil {
+		return nil, errors.New("imdb: decoder is nil")
+	}
+
+	var searchResponse SearchQueryResponse
+	err = decoder.Decode(&searchResponse)
 	if err != nil {
 		return nil, err
 	}
 
-	list := searchTitleListRE.FindSubmatch(page)
-	if list == nil {
-		return newSearchTitle(page)
-	}
-	results := searchTitleRE.FindAllSubmatch(list[1], -1)
-	if results == nil {
-		return nil, nil // No results.
-	}
-
 	var t []Title
-	for _, r := range results {
-		var titleYear int
-		var titleType string
-		extras := searchExtraRE.FindAllSubmatch(r[3], -1)
-		// expecting 0-3 max (any of roman/type/year)
-		if len(extras) > 3 {
-			return nil, fmt.Errorf("search: too many extras")
+	for _, match := range searchResponse.Matches {
+		if strings.HasPrefix(match.ID, "tt") {
+			t = append(t, Title{
+				ID:   match.ID,
+				URL:  fmt.Sprintf(titleURL, match.ID),
+				Name: match.Title,
+				Year: match.Year,
+				Type: match.Type,
+				Poster: Media{
+					URL: match.Image.ImageURL,
+				},
+			})
 		}
-		for i, x := range extras {
-			if i == 0 && searchRomanRE.Match(x[1]) {
-				continue // ignore roman numerals used for duplicates in a year
-			}
-			if digits := searchYearRE.FindSubmatch(x[1]); digits != nil {
-				year, err := strconv.Atoi(string(digits[0]))
-				if err != nil {
-					return nil, err // should not happen as regexp matches digits
-				}
-				titleYear = year
-			} else {
-				titleType = string(x[1])
-			}
-		}
-		id := string(r[1])
-		t = append(t, Title{
-			ID:   id,
-			URL:  fmt.Sprintf(titleURL, id),
-			Name: decode(string(r[2])),
-			Year: titleYear,
-			Type: titleType,
-		})
-	}
-	return t, nil
-}
-
-var (
-	// searchTitleListRE matches on each result in the list.
-	newSearchTitleListRE = regexp.MustCompile(`<div class="ipc-metadata-list-summary-item__tc">(.*?)</div>`)
-	// searchTitleRE matches on titles.
-	newSearchTitleRE = regexp.MustCompile(`<a .*?href="/title/(tt\d+).*?>([^<]+)</a>`)
-	newSearchYearRE  = regexp.MustCompile(`<ul\s*[^>]*>.*?<(?:span|label)\s*[^>]*>(\d{4})[^<]*</(?:span|label)>(.*?)</ul>`)
-	newSearchTypeRE  = regexp.MustCompile(`<span\s*[^>]*>([^<]*)</span>`) // from within the year 2nd capture group
-)
-
-func newSearchTitle(page []byte) ([]Title, error) {
-	list := newSearchTitleListRE.FindAllSubmatch(page, -1)
-	if list == nil {
-		return nil, NewErrParse("list")
-	}
-
-	var t []Title
-	for _, e := range list {
-		r := newSearchTitleRE.FindSubmatch(e[1])
-		if r == nil {
-			return nil, NewErrParse("list title")
-		}
-		id := string(r[1])
-
-		var titleYear int
-		var titleType string
-
-		if m := newSearchYearRE.FindSubmatch(e[1]); m != nil {
-			year, err := strconv.Atoi(string(m[1]))
-			if err != nil {
-				return nil, err // should not happen as regexp matches digits
-			}
-			titleYear = year
-			if m := newSearchTypeRE.FindSubmatch(m[2]); m != nil {
-				titleType = string(m[1])
-			}
-		}
-
-		t = append(t, Title{
-			ID:   id,
-			URL:  fmt.Sprintf(titleURL, id),
-			Name: decode(string(r[2])),
-			Year: titleYear,
-			Type: titleType,
-		})
 	}
 	return t, nil
 }
