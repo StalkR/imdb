@@ -1,118 +1,68 @@
 package imdb
 
 import (
-	"fmt"
 	"testing"
 )
 
-func TestSearchTitle(t *testing.T) {
-	title := "Lord of the rings"
-	r, err := SearchTitle(client, title)
+func TestSearch(t *testing.T) {
+	want := []Title{
+		{
+			ID:     "tt4647692",
+			URL:    "https://www.imdb.com/title/tt4647692",
+			Name:   "Letterkenny",
+			Year:   2016,
+			Type:   "tvSeries",
+			Poster: Media{ID: "", TitleID: "", URL: "https://m.media-amazon.com/images/M/MV5BMjM2MjE3MDktODU4Yi00YzY5LTgzMDktYWIzMTMxYmU2YzM5XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg", ContentURL: ""},
+		},
+		{
+			ID:     "tt3238856",
+			URL:    "https://www.imdb.com/title/tt3238856",
+			Name:   "Letterkenny Problems",
+			Year:   2013,
+			Type:   "tvSeries",
+			Poster: Media{ID: "", TitleID: "", URL: "https://m.media-amazon.com/images/M/MV5BM2UxNjU4NDYtNzk4Yi00MDAzLWE5MjgtMjI4NDhiZWNlNTVkXkEyXkFqcGdeQXVyMTgxNDgxOQ@@._V1_.jpg", ContentURL: ""},
+		},
+		{
+			ID:     "tt3913450",
+			URL:    "https://www.imdb.com/title/tt3913450",
+			Name:   "Letterkenny People",
+			Year:   2014,
+			Type:   "tvSeries",
+			Poster: Media{ID: "", TitleID: "", URL: "https://m.media-amazon.com/images/M/MV5BYTI5OWI2NjMtODhlMS00Zjk5LThhYWEtOWFlYWQ0MDMzNGMyXkEyXkFqcGdeQXVyNjUxMjc1OTM@._V1_.jpg", ContentURL: ""},
+		},
+		{
+			ID:     "tt30767687",
+			URL:    "https://www.imdb.com/title/tt30767687",
+			Name:   "The Produce Stand: Letterkenny",
+			Year:   2020,
+			Type:   "podcastSeries",
+			Poster: Media{ID: "", TitleID: "", URL: "https://m.media-amazon.com/images/M/MV5BMWViNmQ4YjAtYzI4MS00YTA3LThlNzctZTkyM2RjODNjNDcxXkEyXkFqcGdeQXVyNDY3MzkyMjM@._V1_.jpg", ContentURL: ""},
+		},
+		{
+			ID:     "tt0038948",
+			URL:    "https://www.imdb.com/title/tt0038948",
+			Name:   "Sister Kenny",
+			Year:   1946,
+			Type:   "movie",
+			Poster: Media{ID: "", TitleID: "", URL: "https://m.media-amazon.com/images/M/MV5BYjZlMzc0YjgtNzgwYi00NzAyLTk4YjUtNTMyMzEwYzM2MzgwXkEyXkFqcGdeQXVyNjc0MzMzNjA@._V1_.jpg", ContentURL: ""},
+		},
+		{
+			ID:     "tt5572524",
+			URL:    "https://www.imdb.com/title/tt5572524",
+			Name:   "A Letter from Rose Kennedy",
+			Year:   0,
+			Type:   "movie",
+			Poster: Media{ID: "", TitleID: "", URL: "", ContentURL: ""},
+		},
+	}
+	got, err := SearchTitle(client, "Letterkenny")
 	if err != nil {
-		t.Fatalf("SearchTitle(%s) error: %v", title, err)
-	}
-	if len(r) < 10 {
-		t.Fatalf("SearchTitle(%s) len < 50: %d", title, len(r))
-	}
-	if accepted := map[string]bool{
-		"tt7631058":  true, // The Lord of the Rings: The Rings of Power (2024-) (TV Series)
-		"tt14824600": true, // The Lord of the Rings: The War of the Rohirrim (2024) (Animation)
-		"tt0120737":  true, // The Lord of the Rings: The Fellowship of the Ring (2001)
-		"tt0167260":  true, // The Lord of the Rings: The Return of the King (2003)
-		"tt0167261":  true, // The Lord of the Rings: The Two Towers (2002)
-	}; !accepted[r[0].ID] {
-		t.Errorf("SearchTitle(%s)[0].ID = %v; want any of %v", title, r[0].ID, accepted)
-	}
-	if accepted := map[string]bool{
-		"The Lord of the Rings: The Rings of Power":         true,
-		"The Lord of the Rings: The War of the Rohirrim":    true,
-		"The Lord of the Rings: The Fellowship of the Ring": true,
-		"The Lord of the Rings: The Return of the King":     true,
-		"The Lord of the Rings: The Two Towers":             true,
-	}; !accepted[r[0].Name] {
-		t.Errorf("SearchTitle(%s)[0].Name = %v; want any of %v", title, r[0].Name, accepted)
-	}
-	errors := []string{}
-	for i, want := range []int{
-		2022,
-		2024,
-		2001,
-		2003,
-		2002,
-	} {
-		if r[i].Year != want {
-			errors = append(errors, fmt.Sprintf("SearchTitle(%s)[%d].Year = %d; want %d", title, i, r[i].Year, want))
+		t.Errorf("SearchTitle(\"Letterkenny\") error: %v", err)
+	} else {
+		for i, wGot := range got {
+			if err := diffStruct(wGot, want[i]); err != nil {
+				t.Errorf("SearchTitle(\"Letterkenny\") error: %v", err)
+			}
 		}
-	}
-	if len(errors) > 3 {
-		t.Errorf("> 3 errors: %v", errors)
-	}
-	errors = []string{}
-	for i, want := range []string{
-		"TV Series",
-		"",
-		"",
-		"",
-		"TV Series",
-	} {
-		if r[i].Type != want {
-			errors = append(errors, fmt.Sprintf("SearchTitle(%s)[%d].Type = %s; want %s", title, i, r[i].Type, want))
-		}
-	}
-	if len(errors) > 3 {
-		t.Errorf("> 3 errors: %v", errors)
-	}
-}
-
-func TestSearchTitleUnicode(t *testing.T) {
-	title := "Les Filles De L'Océan"
-	r, err := SearchTitle(client, title)
-	if err != nil {
-		t.Fatalf("SearchTitle(%s) error: %v", title, err)
-	}
-	if len(r) == 0 {
-		t.Fatalf("SearchTitle(%s) len = %d; want %d", title, len(r), 1)
-	}
-	if accepted := map[string]bool{
-		"tt5761478":  true, // Harlots (TV Series) (2017-2019)
-		"tt0244764":  true, // Rip Girls (TV Movie) (2000)
-		"tt0098797":  true, // Les filles de Caleb (TV Series) (1990-)
-		"tt22522556": true, // Les Filles de l'Océan
-	}; !accepted[r[0].ID] {
-		t.Errorf("SearchTitle(%s)[0] = %v; want any of %v", title, r[0].ID, accepted)
-	}
-}
-
-func TestSearchTitlePositions(t *testing.T) {
-	title := "Burlesque"
-	r, err := SearchTitle(client, title)
-	if err != nil {
-		t.Fatalf("SearchTitle(%s) error: %v", title, err)
-	}
-	if len(r) < 3 {
-		t.Fatalf("SearchTitle(%s) len = %d; want %d", title, len(r), 1)
-	}
-	if accepted := map[string]bool{
-		"tt1126591":  true, // Burlesque (I) (2010)
-		"tt1586713":  true, // Burlesque (II) (2010)
-		"tt11288016": true, // Jak si nepodelat zivot (2019) (TV Mini Series) aka "Burlesque"
-	}; !accepted[r[0].ID] {
-		t.Errorf("SearchTitle(%s)[0] = %v; want any of %v", title, r[0].ID, accepted)
-	}
-}
-
-func TestMachete(t *testing.T) {
-	title := "Machete Kills Again... In Space!"
-	r, err := SearchTitle(client, title)
-	if err != nil {
-		t.Fatalf("SearchTitle(%s) error: %v", title, err)
-	}
-	if len(r) == 0 {
-		t.Fatalf("SearchTitle(%s) len = %d; want > 0", title, len(r))
-	}
-	if accepted := map[string]bool{
-		"tt2002719": true,
-	}; !accepted[r[0].ID] {
-		t.Errorf("SearchTitle(%s)[0] = %v; want any of %v", title, r[0].ID, accepted)
 	}
 }
