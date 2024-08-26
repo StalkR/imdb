@@ -144,7 +144,7 @@ func TestSeason(t *testing.T) {
 					{
 						SeasonNumber:  5,
 						EpisodeNumber: 8,
-						ImageURL:      "https://m.media-amazon.com/images/M/MV5BYTg1ZGI2YmItNDJiZC00NjJiLWE2ZTEtNTc2MGJlNzM3YjRkL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQ2ODE0NDA@._V1_QL75_UX500_CR0,46,500,281_.jpg",
+						ImageURL:      "https://m.media-amazon.com/images/M/MV5BNmFkNTYzNDYtNDYzOC00OWVmLWE5MmItNzVmOTA3ZTk5MjJlXkEyXkFqcGc@._V1_QL75_UX500_CR0,46,500,281_.jpg",
 						ID:            "tt0732905",
 						Name:          "Dressed All Over & Zesty Mordant",
 					},
