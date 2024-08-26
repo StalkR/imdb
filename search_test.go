@@ -28,7 +28,7 @@ func TestSearch(t *testing.T) {
 			Name:   "Letterkenny People",
 			Year:   2014,
 			Type:   "tvSeries",
-			Poster: Media{ID: "", TitleID: "", URL: "https://m.media-amazon.com/images/M/MV5BYTI5OWI2NjMtODhlMS00Zjk5LThhYWEtOWFlYWQ0MDMzNGMyXkEyXkFqcGdeQXVyNjUxMjc1OTM@._V1_.jpg", ContentURL: ""},
+			Poster: Media{ID: "", TitleID: "", URL: "https://m.media-amazon.com/images/M/MV5BNmY5MDc1MDYtNzNjYS00M2JiLWI3ODgtMDBmMGJjYjhjYjZkXkEyXkFqcGc@._V1_.jpg", ContentURL: ""},
 		},
 		{
 			ID:     "tt30767687",
@@ -61,7 +61,7 @@ func TestSearch(t *testing.T) {
 	} else {
 		for i, wGot := range got {
 			if err := diffStruct(wGot, want[i]); err != nil {
-				t.Errorf("SearchTitle(\"Letterkenny\") error: %v", err)
+				t.Errorf("SearchTitle(\"Letterkenny\") result #%v error: %v", i, err)
 			}
 		}
 	}
