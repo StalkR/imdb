@@ -39,7 +39,7 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"Italian"},
 				Nationalities: []string{"Italy", "France", "Spain"},
 				Description:   "An airport employee switches a pack of drugs for baking soda and absconds to Barcelona, meanwhile the drug-runners are on his trail.",
-				Poster:        Media{ID: "rm3600132097", TitleID: "tt0073845", URL: "https://www.imdb.com/title/tt0073845/mediaviewer/rm3600132097", ContentURL: "https://m.media-amazon.com/images/M/MV5BMzJmM2E0ZTEtYmJhMy00Nzc2LTgyMDUtODViNzQyZDczODc0XkEyXkFqcGdeQXVyMTQ3Njg3MQ@@._V1_.jpg"},
+				Poster:        Media{ID: "rm3600132097", TitleID: "tt0073845", URL: "https://www.imdb.com/title/tt0073845/mediaviewer/rm3600132097", ContentURL: "https://m.media-amazon.com/images/M/MV5BYmNkODYxMDQtZjdhZS00ZmIzLTgwMjMtZWY3ZmRmODM5YTJjXkEyXkFqcGc@._V1_.jpg"},
 			},
 		},
 		{

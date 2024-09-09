@@ -20,7 +20,7 @@ func TestSearch(t *testing.T) {
 			Name:   "Letterkenny Problems",
 			Year:   2013,
 			Type:   "tvSeries",
-			Poster: Media{ID: "", TitleID: "", URL: "https://m.media-amazon.com/images/M/MV5BM2UxNjU4NDYtNzk4Yi00MDAzLWE5MjgtMjI4NDhiZWNlNTVkXkEyXkFqcGdeQXVyMTgxNDgxOQ@@._V1_.jpg", ContentURL: ""},
+			Poster: Media{ID: "", TitleID: "", URL: "https://m.media-amazon.com/images/M/MV5BNTQ2ZGNiOGYtYWVjYS00YTlkLTgzNDItZTIwMTdhM2FmMTc4XkEyXkFqcGc@._V1_.jpg", ContentURL: ""},
 		},
 		{
 			ID:     "tt3913450",
