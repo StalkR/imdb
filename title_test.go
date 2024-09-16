@@ -248,7 +248,7 @@ func TestTitle(t *testing.T) {
 			want: Title{
 				ID:          "tt0423866",
 				URL:         "https://www.imdb.com/title/tt0423866",
-				Name:        "Bin-jip",
+				Name:        "Binjip",
 				Type:        "Movie",
 				Year:        2004,
 				Rating:      "7.9",
@@ -310,7 +310,7 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English"},
 				Nationalities: []string{"Canada"},
 				Description:   "When Randy and Lahey rip the boys off on buying Rush tickets, Ricky \"borrows\" guitarist Alex Lifeson for access to the concert.",
-				Poster:        Media{ID: "rm1259893761", TitleID: "tt0732901", URL: "https://www.imdb.com/title/tt0732901/mediaviewer/rm1259893761", ContentURL: "https://m.media-amazon.com/images/M/MV5BNjY4YjJhZDQtM2U3ZS00ZThkLWIyZmMtZTY3MmU3N2QwOTVmXkEyXkFqcGc@._V1_.jpg"},
+				Poster:        Media{ID: "rm4113067265", TitleID: "tt0732901", URL: "https://www.imdb.com/title/tt0732901/mediaviewer/rm4113067265", ContentURL: "https://m.media-amazon.com/images/M/MV5BMDgxMzMyMjQtOGM1Yy00NWNkLWJmYzAtZWYxMjZmY2JkYWU4XkEyXkFqcGc@._V1_.jpg"},
 				Season:        3,
 				Episode:       5,
 			},
