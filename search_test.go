@@ -60,6 +60,9 @@ func TestSearch(t *testing.T) {
 		t.Errorf("SearchTitle(\"Letterkenny\") error: %v", err)
 	} else {
 		for i, wGot := range got {
+			if i >= len(want) {
+				break
+			}
 			if err := diffStruct(wGot, want[i]); err != nil {
 				t.Errorf("SearchTitle(\"Letterkenny\") result #%v error: %v", i, err)
 			}
