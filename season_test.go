@@ -1,8 +1,13 @@
 package imdb
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func TestSeason(t *testing.T) {
+	assert := assert.New(t)
 	for _, tt := range []struct {
 		season int
 		want   Season
@@ -169,12 +174,8 @@ func TestSeason(t *testing.T) {
 		got, err := NewSeason(client, "tt0290988", tt.season)
 		if err != nil {
 			t.Errorf("NewSeason(\"tt0290988\", %d) error: %v", tt.season, err)
-		} else {
-
-			if err := diffStruct(*got, tt.want); err != nil {
-				t.Errorf("NewSeason(\"tt0290988\", %d) error: %v", tt.season, err)
-			}
+			continue
 		}
+		assert.Equal(tt.want, *got, "NewSeason(\"tt0290988\", %d) error: %v", tt.season, err)
 	}
-
 }

@@ -2,9 +2,12 @@ package imdb
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestMedia(t *testing.T) {
+	assert := assert.New(t)
 	_, err := NewMedia(client, "wrong", "wrong")
 	if err != ErrInvalidID {
 		t.Errorf("NewMedia(wrong) = %v; want ErrInvalidId", err)
@@ -31,8 +34,6 @@ func TestMedia(t *testing.T) {
 			t.Errorf("NewMedia(%s) error: %v", tt.ID, err)
 			continue
 		}
-		if err := diffStruct(*got, tt.want); err != nil {
-			t.Errorf("NewMedia(%s): %v", tt.ID, err)
-		}
+		assert.Equal(tt.want, *got, "NewMedia(%s): %v", tt.ID, err)
 	}
 }

@@ -1,8 +1,13 @@
 package imdb
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func TestTitle(t *testing.T) {
+	assert := assert.New(t)
 	_, err := NewTitle(client, "wrong")
 	if err != ErrInvalidID {
 		t.Errorf("NewTitle(wrong) = %v; want ErrInvalidId", err)
@@ -39,7 +44,12 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"Italian"},
 				Nationalities: []string{"Italy", "France", "Spain"},
 				Description:   "An airport employee switches a pack of drugs for baking soda and absconds to Barcelona, meanwhile the drug-runners are on his trail.",
-				Poster:        Media{ID: "rm3600132097", TitleID: "tt0073845", URL: "https://www.imdb.com/title/tt0073845/mediaviewer/rm3600132097", ContentURL: "https://m.media-amazon.com/images/M/MV5BYmNkODYxMDQtZjdhZS00ZmIzLTgwMjMtZWY3ZmRmODM5YTJjXkEyXkFqcGc@._V1_.jpg"},
+				Poster: Media{
+					ID:         "rm3600132097",
+					TitleID:    "tt0073845",
+					URL:        "https://www.imdb.com/title/tt0073845/mediaviewer/rm3600132097",
+					ContentURL: "https://m.media-amazon.com/images/M/MV5BYmNkODYxMDQtZjdhZS00ZmIzLTgwMjMtZWY3ZmRmODM5YTJjXkEyXkFqcGc@._V1_.jpg",
+				},
 			},
 		},
 		{
@@ -70,7 +80,12 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English"},
 				Nationalities: []string{"United States"},
 				Description:   "An advanced race of aliens descends upon Earth with a single goal - the blood of eight million humans to save their own dying planet.",
-				Poster:        Media{ID: "rm804357633", TitleID: "tt0437803", URL: "https://www.imdb.com/title/tt0437803/mediaviewer/rm804357633", ContentURL: "https://m.media-amazon.com/images/M/MV5BZTEwZDBmNTgtMTg3OC00MDJiLTkzZTgtZGYwYzcwMWMwZTBjXkEyXkFqcGdeQXVyMTY5Nzc4MDY@._V1_.jpg"},
+				Poster: Media{
+					ID:         "rm804357633",
+					TitleID:    "tt0437803",
+					URL:        "https://www.imdb.com/title/tt0437803/mediaviewer/rm804357633",
+					ContentURL: "https://m.media-amazon.com/images/M/MV5BNDZiN2QxZTEtOWY2Yi00MGQ2LThmYjUtOWY4YTU3M2RhZjc0XkEyXkFqcGc@._V1_.jpg",
+				},
 			},
 		},
 		{
@@ -91,7 +106,12 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English"},
 				Nationalities: []string{"Canada"},
 				Description:   "Three petty felons have a documentary made about their life in a trailer park.",
-				Poster:        Media{ID: "rm2293178112", TitleID: "tt0290988", URL: "https://www.imdb.com/title/tt0290988/mediaviewer/rm2293178112", ContentURL: "https://m.media-amazon.com/images/M/MV5BOTA0NTAwMTc1MF5BMl5BanBnXkFtZTgwODk2NjY0ODE@._V1_.jpg"},
+				Poster: Media{
+					ID:         "rm2293178112",
+					TitleID:    "tt0290988",
+					URL:        "https://www.imdb.com/title/tt0290988/mediaviewer/rm2293178112",
+					ContentURL: "https://m.media-amazon.com/images/M/MV5BOTA0NTAwMTc1MF5BMl5BanBnXkFtZTgwODk2NjY0ODE@._V1_.jpg",
+				},
 			},
 		},
 		{
@@ -121,7 +141,12 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English", "French", "Mandarin", "German"},
 				Nationalities: []string{"France", "United Kingdom", "United States"},
 				Description:   "In Paris, a young employee in the office of the US Ambassador hooks up with an American spy looking to stop a terrorist attack in the city.",
-				Poster:        Media{ID: "rm30481408", TitleID: "tt1179034", URL: "https://www.imdb.com/title/tt1179034/mediaviewer/rm30481408", ContentURL: "https://m.media-amazon.com/images/M/MV5BODAwMDFjNjktMWY2Mi00MmVhLWI0MjYtNzg4OTI0NzA5YzBjXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg"},
+				Poster: Media{
+					ID:         "rm30481408",
+					TitleID:    "tt1179034",
+					URL:        "https://www.imdb.com/title/tt1179034/mediaviewer/rm30481408",
+					ContentURL: "https://m.media-amazon.com/images/M/MV5BNThhNDcyYjktNTNkOC00NDFmLTkyMjAtNGU2NjYyY2ZlMjBhXkEyXkFqcGc@._V1_.jpg",
+				},
 			},
 		},
 		{
@@ -152,7 +177,12 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English"},
 				Nationalities: []string{"United States", "Australia"},
 				Description:   "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
-				Poster:        Media{ID: "rm525547776", TitleID: "tt0133093", URL: "https://www.imdb.com/title/tt0133093/mediaviewer/rm525547776", ContentURL: "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg"},
+				Poster: Media{
+					ID:         "rm525547776",
+					TitleID:    "tt0133093",
+					URL:        "https://www.imdb.com/title/tt0133093/mediaviewer/rm525547776",
+					ContentURL: "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_.jpg",
+				},
 			},
 		},
 		{
@@ -210,7 +240,12 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English"},
 				Nationalities: []string{"United States"},
 				Description:   "When their youngest brother comes out as gay, two conservative men support him and help him navigate being openly gay in 1980s Philadelphia.",
-				Poster:        Media{ID: "rm1328617472", TitleID: "tt0086677", URL: "https://www.imdb.com/title/tt0086677/mediaviewer/rm1328617472", ContentURL: "https://m.media-amazon.com/images/M/MV5BMjgwNjNmYTAtOTY2Zi00NDJlLWE0ZDgtYmRlNmVhZDhjNTZkXkEyXkFqcGc@._V1_.jpg"},
+				Poster: Media{
+					ID:         "rm1328617472",
+					TitleID:    "tt0086677",
+					URL:        "https://www.imdb.com/title/tt0086677/mediaviewer/rm1328617472",
+					ContentURL: "https://m.media-amazon.com/images/M/MV5BMjgwNjNmYTAtOTY2Zi00NDJlLWE0ZDgtYmRlNmVhZDhjNTZkXkEyXkFqcGc@._V1_.jpg",
+				},
 			},
 		},
 		{
@@ -240,7 +275,12 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English"},
 				Nationalities: []string{"United States"},
 				Description:   "Video game based upon the film of the same name.",
-				Poster:        Media{ID: "rm2383169025", TitleID: "tt1371159", URL: "https://www.imdb.com/title/tt1371159/mediaviewer/rm2383169025", ContentURL: "https://m.media-amazon.com/images/M/MV5BYTMzOTJmNDgtNmE4My00MzQ5LTg4YmMtOWRmNjJiMzUzZTg0XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg"},
+				Poster: Media{
+					ID:         "rm2383169025",
+					TitleID:    "tt1371159",
+					URL:        "https://www.imdb.com/title/tt1371159/mediaviewer/rm2383169025",
+					ContentURL: "https://m.media-amazon.com/images/M/MV5BNTc0ODkxMjYtNDQ0Mi00MmYzLWJlNjktZmFiMWYzOWQyMGNkXkEyXkFqcGc@._V1_.jpg",
+				},
 			},
 		},
 		{
@@ -258,7 +298,6 @@ func TestTitle(t *testing.T) {
 					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Kim Ki-duk"},
 				},
 				Writers: []Name{
-					Name{ID: "nm15621750", URL: "https://www.imdb.com/name/nm15621750", FullName: "Kim Ki-Duk"},
 					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Kim Ki-duk"},
 				},
 				Actors: []Name{
@@ -270,7 +309,12 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"Korean"},
 				Nationalities: []string{"South Korea", "Japan"},
 				Description:   "A transient young man breaks into empty homes to partake of the vacationing residents' lives for a few days.",
-				Poster:        Media{ID: "rm880057600", TitleID: "tt0423866", URL: "https://www.imdb.com/title/tt0423866/mediaviewer/rm880057600", ContentURL: "https://m.media-amazon.com/images/M/MV5BMTM1ODIwNzM5OV5BMl5BanBnXkFtZTcwNjk5MDkyMQ@@._V1_.jpg"},
+				Poster: Media{
+					ID:         "rm880057600",
+					TitleID:    "tt0423866",
+					URL:        "https://www.imdb.com/title/tt0423866/mediaviewer/rm880057600",
+					ContentURL: "https://m.media-amazon.com/images/M/MV5BMTM1ODIwNzM5OV5BMl5BanBnXkFtZTcwNjk5MDkyMQ@@._V1_.jpg",
+				},
 			},
 		},
 		{
@@ -310,9 +354,14 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English"},
 				Nationalities: []string{"Canada"},
 				Description:   "When Randy and Lahey rip the boys off on buying Rush tickets, Ricky \"borrows\" guitarist Alex Lifeson for access to the concert.",
-				Poster:        Media{ID: "rm4113067265", TitleID: "tt0732901", URL: "https://www.imdb.com/title/tt0732901/mediaviewer/rm4113067265", ContentURL: "https://m.media-amazon.com/images/M/MV5BMDgxMzMyMjQtOGM1Yy00NWNkLWJmYzAtZWYxMjZmY2JkYWU4XkEyXkFqcGc@._V1_.jpg"},
-				Season:        3,
-				Episode:       5,
+				Poster: Media{
+					ID:         "rm4113067265",
+					TitleID:    "tt0732901",
+					URL:        "https://www.imdb.com/title/tt0732901/mediaviewer/rm4113067265",
+					ContentURL: "https://m.media-amazon.com/images/M/MV5BMDgxMzMyMjQtOGM1Yy00NWNkLWJmYzAtZWYxMjZmY2JkYWU4XkEyXkFqcGc@._V1_.jpg",
+				},
+				Season:  3,
+				Episode: 5,
 			},
 		},
 		{
@@ -343,20 +392,23 @@ func TestTitle(t *testing.T) {
 				Languages:     []string{"English", "Latin", "German", "French", "Russian"},
 				Nationalities: []string{"United Kingdom", "United States"},
 				Description:   "In the early years of the 20th century, the Kingsman agency is formed to stand against a cabal plotting a war to wipe out millions.",
-				Poster:        Media{ID: "rm1942154753", TitleID: "tt6856242", URL: "https://www.imdb.com/title/tt6856242/mediaviewer/rm1942154753", ContentURL: "https://m.media-amazon.com/images/M/MV5BMDEzZDY2ZDktNTlmOS00NThjLThkNTEtMjE5MzI5NWEwZmRjXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_.jpg"},
+				Poster: Media{
+					ID:         "rm1942154753",
+					TitleID:    "tt6856242",
+					URL:        "https://www.imdb.com/title/tt6856242/mediaviewer/rm1942154753",
+					ContentURL: "https://m.media-amazon.com/images/M/MV5BNjY3YTY3MGMtMjVmYS00ZmM3LWIxMDAtYWVhZTAyZDMwNmMwXkEyXkFqcGc@._V1_.jpg",
+				},
 			},
 		},
 	} {
 		got, err := NewTitle(client, tt.ID)
 		if err != nil {
 			t.Errorf("NewTitle(%s) error: %v", tt.ID, err)
-		} else {
-			if got.RatingCount > tt.want.RatingCount && tt.want.RatingCount > 0 {
-				tt.want.RatingCount = got.RatingCount
-			}
-			if err := diffStruct(*got, tt.want); err != nil {
-				t.Errorf("NewTitle(%s): %v", tt.ID, err)
-			}
+			continue
 		}
+		if got.RatingCount > tt.want.RatingCount && tt.want.RatingCount > 0 {
+			tt.want.RatingCount = got.RatingCount
+		}
+		assert.Equal(tt.want, *got, "NewTitle(%s): %v", tt.ID, err)
 	}
 }

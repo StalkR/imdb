@@ -35,7 +35,9 @@ func TestName(t *testing.T) {
 		got, err := NewName(client, tt.ID)
 		if err != nil {
 			t.Errorf("NewName(%s) error: %v", tt.ID, err)
-		} else if !reflect.DeepEqual(tt.want, *got) {
+			continue
+		}
+		if !reflect.DeepEqual(tt.want, *got) {
 			t.Errorf("NewName(%s) = %+v; want %+v", tt.ID, *got, tt.want)
 		}
 	}
