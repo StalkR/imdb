@@ -37,9 +37,10 @@ type Episode struct {
 	AggregateRating float64     `json:"aggregateRating"`
 	VoteCount       int         `json:"voteCount"`
 	CanRate         bool        `json:"canRate"`
-	ContributionUrl string      `json:"ContributionUrl"`
+	ContributionURL string      `json:"ContributionUrl"`
 }
 
+// ReleaseDate represents the release date of an Episode
 type ReleaseDate struct {
 	Month    int    `json:"month"`
 	Day      int    `json:"day"`
@@ -47,6 +48,7 @@ type ReleaseDate struct {
 	Typename string `json:"__typename"`
 }
 
+// Image represents the information about an Episode image
 type Image struct {
 	URL       string `json:"url"`
 	MaxHeight int    `json:"maxHeight"`
