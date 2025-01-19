@@ -1,26 +1,57 @@
 package imdb
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"html"
 	"io"
 	"net/http"
 	"regexp"
-	"strconv"
 )
 
-// Episode represents a single episode from a TV series.
-type Episode struct {
-	SeasonNumber, EpisodeNumber int
-	ImageURL, ID, Name          string
+type seasonWrapper struct {
+	Season `json:"episodes"`
 }
 
 // Season represents a season from a TV Series, with a list of episodes.
 type Season struct {
-	ID           string    `json:",omitempty"`
-	SeasonNumber int       `json:",omitempty"`
-	Episodes     []Episode `json:",omitempty"`
+	Episodes        []Episode `json:"items"`
+	Total           int       `json:"total"`
+	HasNextPage     bool      `json:"hasNextPage"`
+	EndCursor       string    `json:"endCursor"`
+	HasRatedEpisode bool      `json:"hasRatedEpisode"`
+}
+
+// Episode represents a single episode from a TV series.
+type Episode struct {
+	ID              string      `json:"id"`
+	Type            string      `json:"type"`
+	Season          string      `json:"season"`
+	Episode         string      `json:"episode"`
+	TitleText       string      `json:"titleText"`
+	ReleaseDate     ReleaseDate `json:"releaseDate"`
+	ReleaseYear     int         `json:"releaseYear"`
+	Image           Image       `json:"image"`
+	Plot            string      `json:"plot"`
+	AggregateRating float64     `json:"aggregateRating"`
+	VoteCount       int         `json:"voteCount"`
+	CanRate         bool        `json:"canRate"`
+	ContributionUrl string      `json:"ContributionUrl"`
+}
+
+type ReleaseDate struct {
+	Month    int    `json:"month"`
+	Day      int    `json:"day"`
+	Year     int    `json:"year"`
+	Typename string `json:"__typename"`
+}
+
+type Image struct {
+	URL       string `json:"url"`
+	MaxHeight int    `json:"maxHeight"`
+	MaxWidth  int    `json:"maxWidth"`
+	Caption   string `json:"caption"`
 }
 
 const seasonURL = "https://www.imdb.com/title/%s/episodes/?season=%d"
@@ -47,10 +78,7 @@ func NewSeason(c *http.Client, id string, season int) (*Season, error) {
 	if err != nil {
 		return nil, err
 	}
-	s := Season{
-		SeasonNumber: season,
-		ID:           id,
-	}
+	s := Season{}
 
 	if err := s.Parse(c, page); err != nil {
 		return nil, err
@@ -60,18 +88,23 @@ func NewSeason(c *http.Client, id string, season int) (*Season, error) {
 }
 
 var (
-	seasonEpisodeEntryRE = regexp.MustCompile(`src="(https://m\.media-amazon\.com/images/[^"]*)" srcSet="[^"]*" sizes="[^"]*" width=".\d+"[^h]*[^r][^e][^f]f="/title/(tt.\d*)/\?ref_=ttep_ep(\d+)"[^"]*"([^"]*)"><`)
+	seasonInfoJSONRE = regexp.MustCompile(`],("episodes":.*}),"currentSeason`)
 )
 
 // Parse parses a Season from its page.
 func (s *Season) Parse(c *http.Client, page []byte) error {
-	episodesMatch := seasonEpisodeEntryRE.FindAllSubmatch(page, -1)
-
-	for _, ep := range episodesMatch {
-		n, _ := strconv.Atoi(string(ep[3]))
-		episode := Episode{SeasonNumber: s.SeasonNumber, EpisodeNumber: n, ImageURL: string(ep[1]), ID: string(ep[2]), Name: html.UnescapeString(string(ep[4]))}
-		s.Episodes = append(s.Episodes, episode)
+	episodesMatch := seasonInfoJSONRE.FindSubmatch(page)
+	jsonData := "{" + html.UnescapeString(string(episodesMatch[1])) + "}"
+	var sw seasonWrapper
+	err := json.Unmarshal([]byte(jsonData), &sw)
+	if err != nil {
+		return err
 	}
+	s.Episodes = sw.Episodes
+	s.HasNextPage = sw.HasNextPage
+	s.HasRatedEpisode = sw.HasRatedEpisode
+	s.EndCursor = sw.EndCursor
+	s.Total = sw.Total
 
 	return nil
 }
