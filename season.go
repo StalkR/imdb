@@ -1,6 +1,7 @@
 package imdb
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"html"
@@ -48,30 +49,78 @@ func NewSeason(c *http.Client, id string, season int) (*Season, error) {
 		return nil, err
 	}
 	s := Season{
-		SeasonNumber: season,
 		ID:           id,
+		SeasonNumber: season,
 	}
-
 	if err := s.Parse(c, page); err != nil {
 		return nil, err
 	}
-
 	return &s, nil
 }
 
 var (
-	seasonEpisodeEntryRE = regexp.MustCompile(`src="(https://m\.media-amazon\.com/images/[^"]*)" srcSet="[^"]*" sizes="[^"]*" width=".\d+"[^h]*[^r][^e][^f]f="/title/(tt.\d*)/\?ref_=ttep_ep(\d+)"[^"]*"([^"]*)"><`)
+	seasonInfoJSONRE = regexp.MustCompile(`],("episodes":.*}),"currentSeason`)
 )
 
 // Parse parses a Season from its page.
 func (s *Season) Parse(c *http.Client, page []byte) error {
-	episodesMatch := seasonEpisodeEntryRE.FindAllSubmatch(page, -1)
+	episodesMatch := seasonInfoJSONRE.FindSubmatch(page)
+	jsonData := "{" + html.UnescapeString(string(episodesMatch[1])) + "}"
 
-	for _, ep := range episodesMatch {
-		n, _ := strconv.Atoi(string(ep[3]))
-		episode := Episode{SeasonNumber: s.SeasonNumber, EpisodeNumber: n, ImageURL: string(ep[1]), ID: string(ep[2]), Name: html.UnescapeString(string(ep[4]))}
-		s.Episodes = append(s.Episodes, episode)
+	var r struct {
+		Episodes struct {
+			Items []struct {
+				ID          string `json:"id"`
+				Type        string `json:"type"`
+				Season      string `json:"season"`
+				Episode     string `json:"episode"`
+				TitleText   string `json:"titleText"`
+				ReleaseDate struct {
+					Month    int    `json:"month"`
+					Day      int    `json:"day"`
+					Year     int    `json:"year"`
+					Typename string `json:"__typename"`
+				} `json:"releaseDate"`
+				ReleaseYear int `json:"releaseYear"`
+				Image       struct {
+					URL       string `json:"url"`
+					MaxHeight int    `json:"maxHeight"`
+					MaxWidth  int    `json:"maxWidth"`
+					Caption   string `json:"caption"`
+				} `json:"image"`
+				Plot            string  `json:"plot"`
+				AggregateRating float64 `json:"aggregateRating"`
+				VoteCount       int     `json:"voteCount"`
+				CanRate         bool    `json:"canRate"`
+				ContributionURL string  `json:"ContributionUrl"`
+			} `json:"items"`
+			Total           int    `json:"total"`
+			HasNextPage     bool   `json:"hasNextPage"`
+			EndCursor       string `json:"endCursor"`
+			HasRatedEpisode bool   `json:"hasRatedEpisode"`
+		} `json:"episodes"`
 	}
 
+	if err := json.Unmarshal([]byte(jsonData), &r); err != nil {
+		return err
+	}
+	for _, e := range r.Episodes.Items {
+		if n, err := strconv.Atoi(e.Season); err != nil {
+			return fmt.Errorf("Season(%v, %v): atoi(season %v): %v", s.ID, s.SeasonNumber, e.Season, err)
+		} else if n != s.SeasonNumber {
+			continue
+		}
+		episodeNumber, err := strconv.Atoi(e.Episode)
+		if err != nil {
+			return fmt.Errorf("Season(%v, %v): atoi(episode %v): %v", s.ID, s.SeasonNumber, e.Episode, err)
+		}
+		s.Episodes = append(s.Episodes, Episode{
+			ID:            e.ID,
+			SeasonNumber:  s.SeasonNumber,
+			EpisodeNumber: episodeNumber,
+			ImageURL:      e.Image.URL,
+			Name:          e.TitleText,
+		})
+	}
 	return nil
 }
