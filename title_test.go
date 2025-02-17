@@ -391,7 +391,7 @@ func TestTitle(t *testing.T) {
 				Genres:        []string{"Action", "Adventure", "Thriller"},
 				Languages:     []string{"English", "Latin", "German", "French", "Russian"},
 				Nationalities: []string{"United Kingdom", "United States"},
-				Description:   "In the early years of the 20th century, the Kingsman agency is formed to stand against a cabal plotting a war to wipe out millions.",
+				Description:   "In the early years of the 20th century, the Kingsman agency is formed to stand against a cabal plotting a war to wipe out millions of people.",
 				Poster: Media{
 					ID:         "rm1942154753",
 					TitleID:    "tt6856242",
