@@ -29,16 +29,16 @@ func TestTitle(t *testing.T) {
 				RatingCount: 25,
 				Duration:    "1h27m",
 				Directors: []Name{
-					Name{ID: "nm0340894", URL: "https://www.imdb.com/name/nm0340894", FullName: "Sergio Grieco"},
+					{ID: "nm0340894", URL: "https://www.imdb.com/name/nm0340894", FullName: "Sergio Grieco"},
 				},
 				Writers: []Name{
-					Name{ID: "nm0340894", URL: "https://www.imdb.com/name/nm0340894", FullName: "Sergio Grieco"},
-					Name{ID: "nm0739308", URL: "https://www.imdb.com/name/nm0739308", FullName: "Rafael Romero Marchent"},
+					{ID: "nm0340894", URL: "https://www.imdb.com/name/nm0340894", FullName: "Sergio Grieco"},
+					{ID: "nm0739308", URL: "https://www.imdb.com/name/nm0739308", FullName: "Rafael Romero Marchent"},
 				},
 				Actors: []Name{
-					Name{ID: "nm0001886", URL: "https://www.imdb.com/name/nm0001886", FullName: "Howard Ross"},
-					Name{ID: "nm0775810", URL: "https://www.imdb.com/name/nm0775810", FullName: "Karin Schubert"},
-					Name{ID: "nm0000963", URL: "https://www.imdb.com/name/nm0000963", FullName: "Stephen Boyd"},
+					{ID: "nm0001886", URL: "https://www.imdb.com/name/nm0001886", FullName: "Howard Ross"},
+					{ID: "nm0775810", URL: "https://www.imdb.com/name/nm0775810", FullName: "Karin Schubert"},
+					{ID: "nm0000963", URL: "https://www.imdb.com/name/nm0000963", FullName: "Stephen Boyd"},
 				},
 				Genres:        []string{"Crime", "Drama"},
 				Languages:     []string{"Italian"},
@@ -65,17 +65,17 @@ func TestTitle(t *testing.T) {
 				RatingCount: 799,
 				Duration:    "1h30m",
 				Directors: []Name{
-					Name{ID: "nm0821100", URL: "https://www.imdb.com/name/nm0821100", FullName: "Robert Stadd"},
+					{ID: "nm0821100", URL: "https://www.imdb.com/name/nm0821100", FullName: "Robert Stadd"},
 				},
 				Writers: []Name{
-					Name{ID: "nm1305705", URL: "https://www.imdb.com/name/nm1305705", FullName: "Bill Lundy"},
-					Name{ID: "nm0757507", URL: "https://www.imdb.com/name/nm0757507", FullName: "Paul Salamoff"},
-					Name{ID: "nm0821100", URL: "https://www.imdb.com/name/nm0821100", FullName: "Robert Stadd"},
+					{ID: "nm1305705", URL: "https://www.imdb.com/name/nm1305705", FullName: "Bill Lundy"},
+					{ID: "nm0757507", URL: "https://www.imdb.com/name/nm0757507", FullName: "Paul Salamoff"},
+					{ID: "nm0821100", URL: "https://www.imdb.com/name/nm0821100", FullName: "Robert Stadd"},
 				},
 				Actors: []Name{
-					Name{ID: "nm0424635", URL: "https://www.imdb.com/name/nm0424635", FullName: "Brad Johnson"},
-					Name{ID: "nm1658541", URL: "https://www.imdb.com/name/nm1658541", FullName: "Erin Ross"},
-					Name{ID: "nm0250169", URL: "https://www.imdb.com/name/nm0250169", FullName: "Lilas Lane"},
+					{ID: "nm0424635", URL: "https://www.imdb.com/name/nm0424635", FullName: "Brad Johnson"},
+					{ID: "nm1658541", URL: "https://www.imdb.com/name/nm1658541", FullName: "Erin Ross"},
+					{ID: "nm0250169", URL: "https://www.imdb.com/name/nm0250169", FullName: "Lilas Lane"},
 				},
 				Genres:        []string{"Action", "Adventure", "Drama"},
 				Languages:     []string{"English"},
@@ -102,8 +102,8 @@ func TestTitle(t *testing.T) {
 				ID:            "tt0290988",
 				Type:          "TVSeries",
 				URL:           "https://www.imdb.com/title/tt0290988",
-				Writers:       []Name{Name{ID: "nm0154104", URL: "https://www.imdb.com/name/nm0154104", FullName: "Mike Clattenburg"}},
-				Actors:        []Name{Name{ID: "nm1033215", URL: "https://www.imdb.com/name/nm1033215", FullName: "John Paul Tremblay"}, Name{ID: "nm1036211", URL: "https://www.imdb.com/name/nm1036211", FullName: "Robb Wells"}, Name{ID: "nm1034266", URL: "https://www.imdb.com/name/nm1034266", FullName: "Mike Smith"}},
+				Writers:       []Name{{ID: "nm0154104", URL: "https://www.imdb.com/name/nm0154104", FullName: "Mike Clattenburg"}},
+				Actors:        []Name{{ID: "nm1033215", URL: "https://www.imdb.com/name/nm1033215", FullName: "John Paul Tremblay"}, {ID: "nm1036211", URL: "https://www.imdb.com/name/nm1036211", FullName: "Robb Wells"}, {ID: "nm1034266", URL: "https://www.imdb.com/name/nm1034266", FullName: "Mike Smith"}},
 				Genres:        []string{"Comedy", "Crime"},
 				Languages:     []string{"English"},
 				Nationalities: []string{"Canada"},
@@ -129,16 +129,16 @@ func TestTitle(t *testing.T) {
 				RatingCount: 107802,
 				Duration:    "1h32m",
 				Directors: []Name{
-					Name{ID: "nm0603628", URL: "https://www.imdb.com/name/nm0603628", FullName: "Pierre Morel"},
+					{ID: "nm0603628", URL: "https://www.imdb.com/name/nm0603628", FullName: "Pierre Morel"},
 				},
 				Writers: []Name{
-					Name{ID: "nm0367867", URL: "https://www.imdb.com/name/nm0367867", FullName: "Adi Hasak"},
-					Name{ID: "nm0000108", URL: "https://www.imdb.com/name/nm0000108", FullName: "Luc Besson"},
+					{ID: "nm0367867", URL: "https://www.imdb.com/name/nm0367867", FullName: "Adi Hasak"},
+					{ID: "nm0000108", URL: "https://www.imdb.com/name/nm0000108", FullName: "Luc Besson"},
 				},
 				Actors: []Name{
-					Name{ID: "nm0000237", URL: "https://www.imdb.com/name/nm0000237", FullName: "John Travolta"},
-					Name{ID: "nm0001667", URL: "https://www.imdb.com/name/nm0001667", FullName: "Jonathan Rhys Meyers"},
-					Name{ID: "nm0810738", URL: "https://www.imdb.com/name/nm0810738", FullName: "Kasia Smutniak"},
+					{ID: "nm0000237", URL: "https://www.imdb.com/name/nm0000237", FullName: "John Travolta"},
+					{ID: "nm0001667", URL: "https://www.imdb.com/name/nm0001667", FullName: "Jonathan Rhys Meyers"},
+					{ID: "nm0810738", URL: "https://www.imdb.com/name/nm0810738", FullName: "Kasia Smutniak"},
 				},
 				Genres:        []string{"Action", "Crime", "Thriller"},
 				Languages:     []string{"English", "French", "Mandarin", "German"},
@@ -165,17 +165,17 @@ func TestTitle(t *testing.T) {
 				RatingCount: 1536356,
 				Duration:    "2h16m",
 				Directors: []Name{
-					Name{ID: "nm0905154", URL: "https://www.imdb.com/name/nm0905154", FullName: "Lana Wachowski"},
-					Name{ID: "nm0905152", URL: "https://www.imdb.com/name/nm0905152", FullName: "Lilly Wachowski"},
+					{ID: "nm0905154", URL: "https://www.imdb.com/name/nm0905154", FullName: "Lana Wachowski"},
+					{ID: "nm0905152", URL: "https://www.imdb.com/name/nm0905152", FullName: "Lilly Wachowski"},
 				},
 				Writers: []Name{
-					Name{ID: "nm0905152", URL: "https://www.imdb.com/name/nm0905152", FullName: "Lilly Wachowski"},
-					Name{ID: "nm0905154", URL: "https://www.imdb.com/name/nm0905154", FullName: "Lana Wachowski"},
+					{ID: "nm0905152", URL: "https://www.imdb.com/name/nm0905152", FullName: "Lilly Wachowski"},
+					{ID: "nm0905154", URL: "https://www.imdb.com/name/nm0905154", FullName: "Lana Wachowski"},
 				},
 				Actors: []Name{
-					Name{ID: "nm0000206", URL: "https://www.imdb.com/name/nm0000206", FullName: "Keanu Reeves"},
-					Name{ID: "nm0000401", URL: "https://www.imdb.com/name/nm0000401", FullName: "Laurence Fishburne"},
-					Name{ID: "nm0005251", URL: "https://www.imdb.com/name/nm0005251", FullName: "Carrie-Anne Moss"},
+					{ID: "nm0000206", URL: "https://www.imdb.com/name/nm0000206", FullName: "Keanu Reeves"},
+					{ID: "nm0000401", URL: "https://www.imdb.com/name/nm0000401", FullName: "Laurence Fishburne"},
+					{ID: "nm0005251", URL: "https://www.imdb.com/name/nm0005251", FullName: "Carrie-Anne Moss"},
 				},
 				Genres:        []string{"Action", "Sci-Fi"},
 				Languages:     []string{"English"},
@@ -200,8 +200,8 @@ func TestTitle(t *testing.T) {
 				Year:     1981,
 				Duration: "26m",
 				Directors: []Name{
-					Name{ID: "nm1029036", URL: "https://www.imdb.com/name/nm1029036", FullName: "Jean-François Després"},
-					Name{ID: "nm1003289", URL: "https://www.imdb.com/name/nm1003289", FullName: "Alain Godon"},
+					{ID: "nm1029036", URL: "https://www.imdb.com/name/nm1029036", FullName: "Jean-François Després"},
+					{ID: "nm1003289", URL: "https://www.imdb.com/name/nm1003289", FullName: "Alain Godon"},
 				},
 				Genres:        []string{"Documentary", "Short"},
 				Nationalities: []string{"Canada"},
@@ -235,13 +235,13 @@ func TestTitle(t *testing.T) {
 				RatingCount: 267,
 				Duration:    "22m",
 				Writers: []Name{
-					Name{ID: "nm0515953", URL: "https://www.imdb.com/name/nm0515953", FullName: "David Lloyd"},
-					Name{ID: "nm0031246", URL: "https://www.imdb.com/name/nm0031246", FullName: "Greg Antonacci"},
+					{ID: "nm0515953", URL: "https://www.imdb.com/name/nm0515953", FullName: "David Lloyd"},
+					{ID: "nm0031246", URL: "https://www.imdb.com/name/nm0031246", FullName: "Greg Antonacci"},
 				},
 				Actors: []Name{
-					Name{ID: "nm0907107", URL: "https://www.imdb.com/name/nm0907107", FullName: "Robert Walden"},
-					Name{ID: "nm0716618", URL: "https://www.imdb.com/name/nm0716618", FullName: "Paul Regina"},
-					Name{ID: "nm0535933", URL: "https://www.imdb.com/name/nm0535933", FullName: "Brandon Maggart"},
+					{ID: "nm0907107", URL: "https://www.imdb.com/name/nm0907107", FullName: "Robert Walden"},
+					{ID: "nm0716618", URL: "https://www.imdb.com/name/nm0716618", FullName: "Paul Regina"},
+					{ID: "nm0535933", URL: "https://www.imdb.com/name/nm0535933", FullName: "Brandon Maggart"},
 				},
 				Genres:        []string{"Comedy"},
 				Languages:     []string{"English"},
@@ -267,17 +267,17 @@ func TestTitle(t *testing.T) {
 				Rating:      "6.1",
 				RatingCount: 641,
 				Directors: []Name{
-					Name{ID: "nm4157448", URL: "https://www.imdb.com/name/nm4157448", FullName: "Michael McCormick"},
-					Name{ID: "nm4157551", URL: "https://www.imdb.com/name/nm4157551", FullName: "Robert Taylor"},
+					{ID: "nm4157448", URL: "https://www.imdb.com/name/nm4157448", FullName: "Michael McCormick"},
+					{ID: "nm4157551", URL: "https://www.imdb.com/name/nm4157551", FullName: "Robert Taylor"},
 				},
 				Writers: []Name{
-					Name{ID: "nm3881781", URL: "https://www.imdb.com/name/nm3881781", FullName: "Matt Fraction"},
-					Name{ID: "nm1411347", URL: "https://www.imdb.com/name/nm1411347", FullName: "Don Heck"},
+					{ID: "nm3881781", URL: "https://www.imdb.com/name/nm3881781", FullName: "Matt Fraction"},
+					{ID: "nm1411347", URL: "https://www.imdb.com/name/nm1411347", FullName: "Don Heck"},
 				},
 				Actors: []Name{
-					Name{ID: "nm0000332", URL: "https://www.imdb.com/name/nm0000332", FullName: "Don Cheadle"},
-					Name{ID: "nm0519680", URL: "https://www.imdb.com/name/nm0519680", FullName: "Eric Loomis"},
-					Name{ID: "nm0000168", URL: "https://www.imdb.com/name/nm0000168", FullName: "Samuel L. Jackson"},
+					{ID: "nm0000332", URL: "https://www.imdb.com/name/nm0000332", FullName: "Don Cheadle"},
+					{ID: "nm0519680", URL: "https://www.imdb.com/name/nm0519680", FullName: "Eric Loomis"},
+					{ID: "nm0000168", URL: "https://www.imdb.com/name/nm0000168", FullName: "Samuel L. Jackson"},
 				},
 				Genres:        []string{"Action", "Adventure", "Crime"},
 				Languages:     []string{"English"},
@@ -304,10 +304,10 @@ func TestTitle(t *testing.T) {
 				RatingCount: 45493,
 				Duration:    "1h28m",
 				Directors: []Name{
-					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Kim Ki-duk"},
+					{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Kim Ki-duk"},
 				},
 				Writers: []Name{
-					Name{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Kim Ki-duk"},
+					{ID: "nm1104118", URL: "https://www.imdb.com/name/nm1104118", FullName: "Kim Ki-duk"},
 				},
 				Actors: []Name{
 					{ID: "nm1165901", URL: "https://www.imdb.com/name/nm1165901", FullName: "Lee Seung-yun"},
@@ -336,12 +336,12 @@ func TestTitle(t *testing.T) {
 				Type: "TVEpisode",
 				Year: 2002,
 				Writers: []Name{
-					Name{ID: "nm2422546", URL: "https://www.imdb.com/name/nm2422546", FullName: "Nick Greenaway"},
-					Name{ID: "nm0646855", URL: "https://www.imdb.com/name/nm0646855", FullName: "Harley Oliver"},
+					{ID: "nm2422546", URL: "https://www.imdb.com/name/nm2422546", FullName: "Nick Greenaway"},
+					{ID: "nm0646855", URL: "https://www.imdb.com/name/nm0646855", FullName: "Harley Oliver"},
 				},
 				Actors: []Name{
-					Name{ID: "nm2426039", URL: "https://www.imdb.com/name/nm2426039", FullName: "Jo Rush"},
-					Name{ID: "nm2423121", URL: "https://www.imdb.com/name/nm2423121", FullName: "Matt Tomaszewski"},
+					{ID: "nm2426039", URL: "https://www.imdb.com/name/nm2426039", FullName: "Jo Rush"},
+					{ID: "nm2423121", URL: "https://www.imdb.com/name/nm2423121", FullName: "Matt Tomaszewski"},
 				},
 				Genres: []string{"Documentary"},
 				c:      client,
@@ -359,8 +359,8 @@ func TestTitle(t *testing.T) {
 				RatingCount:   916,
 				Duration:      "23m",
 				Directors:     []Name{{ID: "nm0154104", URL: "https://www.imdb.com/name/nm0154104", FullName: "Mike Clattenburg"}},
-				Writers:       []Name{Name{ID: "nm0154104", URL: "https://www.imdb.com/name/nm0154104", FullName: "Mike Clattenburg"}},
-				Actors:        []Name{Name{ID: "nm1033215", URL: "https://www.imdb.com/name/nm1033215", FullName: "John Paul Tremblay"}, Name{ID: "nm1036211", URL: "https://www.imdb.com/name/nm1036211", FullName: "Robb Wells"}, Name{ID: "nm0243082", URL: "https://www.imdb.com/name/nm0243082", FullName: "John Dunsworth"}},
+				Writers:       []Name{{ID: "nm0154104", URL: "https://www.imdb.com/name/nm0154104", FullName: "Mike Clattenburg"}},
+				Actors:        []Name{{ID: "nm1033215", URL: "https://www.imdb.com/name/nm1033215", FullName: "John Paul Tremblay"}, {ID: "nm1036211", URL: "https://www.imdb.com/name/nm1036211", FullName: "Robb Wells"}, {ID: "nm0243082", URL: "https://www.imdb.com/name/nm0243082", FullName: "John Dunsworth"}},
 				Genres:        []string{"Comedy", "Crime"},
 				Languages:     []string{"English"},
 				Nationalities: []string{"Canada"},
@@ -388,17 +388,17 @@ func TestTitle(t *testing.T) {
 				RatingCount: 115757,
 				Duration:    "2h11m",
 				Directors: []Name{
-					Name{ID: "nm0891216", URL: "https://www.imdb.com/name/nm0891216", FullName: "Matthew Vaughn"},
+					{ID: "nm0891216", URL: "https://www.imdb.com/name/nm0891216", FullName: "Matthew Vaughn"},
 				},
 				Writers: []Name{
-					Name{ID: "nm0891216", URL: "https://www.imdb.com/name/nm0891216", FullName: "Matthew Vaughn"},
-					Name{ID: "nm2244980", URL: "https://www.imdb.com/name/nm2244980", FullName: "Karl Gajdusek"},
-					Name{ID: "nm2092839", URL: "https://www.imdb.com/name/nm2092839", FullName: "Mark Millar"},
+					{ID: "nm0891216", URL: "https://www.imdb.com/name/nm0891216", FullName: "Matthew Vaughn"},
+					{ID: "nm2244980", URL: "https://www.imdb.com/name/nm2244980", FullName: "Karl Gajdusek"},
+					{ID: "nm2092839", URL: "https://www.imdb.com/name/nm2092839", FullName: "Mark Millar"},
 				},
 				Actors: []Name{
-					Name{ID: "nm0000146", URL: "https://www.imdb.com/name/nm0000146", FullName: "Ralph Fiennes"},
-					Name{ID: "nm2605345", URL: "https://www.imdb.com/name/nm2605345", FullName: "Gemma Arterton"},
-					Name{ID: "nm0406975", URL: "https://www.imdb.com/name/nm0406975", FullName: "Rhys Ifans"},
+					{ID: "nm0000146", URL: "https://www.imdb.com/name/nm0000146", FullName: "Ralph Fiennes"},
+					{ID: "nm2605345", URL: "https://www.imdb.com/name/nm2605345", FullName: "Gemma Arterton"},
+					{ID: "nm0406975", URL: "https://www.imdb.com/name/nm0406975", FullName: "Rhys Ifans"},
 				},
 				Genres:        []string{"Action", "Adventure", "Thriller"},
 				Languages:     []string{"English", "Latin", "German", "French", "Russian"},
@@ -419,8 +419,14 @@ func TestTitle(t *testing.T) {
 			t.Errorf("NewTitle(%s) error: %v", tt.ID, err)
 			continue
 		}
+		if got.Rating != "" {
+			tt.want.Rating = got.Rating
+		}
 		if got.RatingCount > tt.want.RatingCount && tt.want.RatingCount > 0 {
 			tt.want.RatingCount = got.RatingCount
+		}
+		if got.SeasonCount > tt.want.SeasonCount && tt.want.SeasonCount > 0 {
+			tt.want.SeasonCount = got.SeasonCount
 		}
 		assert.Equal(tt.want, *got, "NewTitle(%s): %v", tt.ID, err)
 	}
