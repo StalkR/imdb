@@ -33,6 +33,7 @@ type Title struct {
 	SeasonCount   int      `json:",omitempty"`
 	Season        int      `json:",omitempty"`
 	Episode       int      `json:",omitempty"`
+	c             *http.Client
 }
 
 // String formats a Title on one line.
@@ -105,7 +106,7 @@ func NewTitle(c *http.Client, id string) (*Title, error) {
 	if err != nil {
 		return nil, err
 	}
-	t := Title{}
+	t := Title{c: c}
 	if err := t.Parse(page); err != nil {
 		return nil, err
 	}
@@ -397,6 +398,19 @@ func (t *Title) Parse(page []byte) error {
 					URL:        fmt.Sprintf(mediaURL, t.ID, id),
 					ContentURL: string(s[1]),
 				}
+			}
+		} else {
+			re, err := regexp.Compile(`<a class="ipc-lockup-overlay ipc-focusable" href="/title/tt\d+/mediaviewer/(rm\d+)/\?ref_=tt_ov_i" aria-label=".*"><div class="ipc-lockup-overlay__screen"></div></a>`)
+			if err != nil {
+				return NewErrParse("poster RE")
+			}
+			s = re.FindSubmatch(page)
+			if s != nil {
+				media, err := NewMedia(t.c, string(s[1]), t.ID)
+				if err != nil {
+					return NewErrParse(err.Error())
+				}
+				t.Poster = *media
 			}
 		}
 	}

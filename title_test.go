@@ -50,6 +50,7 @@ func TestTitle(t *testing.T) {
 					URL:        "https://www.imdb.com/title/tt0073845/mediaviewer/rm3600132097",
 					ContentURL: "https://m.media-amazon.com/images/M/MV5BYmNkODYxMDQtZjdhZS00ZmIzLTgwMjMtZWY3ZmRmODM5YTJjXkEyXkFqcGc@._V1_.jpg",
 				},
+				c: client,
 			},
 		},
 		{
@@ -86,6 +87,7 @@ func TestTitle(t *testing.T) {
 					URL:        "https://www.imdb.com/title/tt0437803/mediaviewer/rm804357633",
 					ContentURL: "https://m.media-amazon.com/images/M/MV5BNDZiN2QxZTEtOWY2Yi00MGQ2LThmYjUtOWY4YTU3M2RhZjc0XkEyXkFqcGc@._V1_.jpg",
 				},
+				c: client,
 			},
 		},
 		{
@@ -112,6 +114,7 @@ func TestTitle(t *testing.T) {
 					URL:        "https://www.imdb.com/title/tt0290988/mediaviewer/rm2293178112",
 					ContentURL: "https://m.media-amazon.com/images/M/MV5BOTA0NTAwMTc1MF5BMl5BanBnXkFtZTgwODk2NjY0ODE@._V1_.jpg",
 				},
+				c: client,
 			},
 		},
 		{
@@ -147,6 +150,7 @@ func TestTitle(t *testing.T) {
 					URL:        "https://www.imdb.com/title/tt1179034/mediaviewer/rm30481408",
 					ContentURL: "https://m.media-amazon.com/images/M/MV5BNThhNDcyYjktNTNkOC00NDFmLTkyMjAtNGU2NjYyY2ZlMjBhXkEyXkFqcGc@._V1_.jpg",
 				},
+				c: client,
 			},
 		},
 		{
@@ -183,6 +187,7 @@ func TestTitle(t *testing.T) {
 					URL:        "https://www.imdb.com/title/tt0133093/mediaviewer/rm525547776",
 					ContentURL: "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_.jpg",
 				},
+				c: client,
 			},
 		},
 		{
@@ -200,6 +205,7 @@ func TestTitle(t *testing.T) {
 				},
 				Genres:        []string{"Documentary", "Short"},
 				Nationalities: []string{"Canada"},
+				c:             client,
 			},
 		},
 		{
@@ -213,6 +219,7 @@ func TestTitle(t *testing.T) {
 				Genres:        []string{"Documentary"},
 				Languages:     []string{"Spanish"},
 				Nationalities: []string{"Spain"},
+				c:             client,
 			},
 		},
 		{
@@ -246,6 +253,7 @@ func TestTitle(t *testing.T) {
 					URL:        "https://www.imdb.com/title/tt0086677/mediaviewer/rm1328617472",
 					ContentURL: "https://m.media-amazon.com/images/M/MV5BMjgwNjNmYTAtOTY2Zi00NDJlLWE0ZDgtYmRlNmVhZDhjNTZkXkEyXkFqcGc@._V1_.jpg",
 				},
+				c: client,
 			},
 		},
 		{
@@ -281,6 +289,7 @@ func TestTitle(t *testing.T) {
 					URL:        "https://www.imdb.com/title/tt1371159/mediaviewer/rm2383169025",
 					ContentURL: "https://m.media-amazon.com/images/M/MV5BNTc0ODkxMjYtNDQ0Mi00MmYzLWJlNjktZmFiMWYzOWQyMGNkXkEyXkFqcGc@._V1_.jpg",
 				},
+				c: client,
 			},
 		},
 		{
@@ -315,6 +324,7 @@ func TestTitle(t *testing.T) {
 					URL:        "https://www.imdb.com/title/tt0423866/mediaviewer/rm880057600",
 					ContentURL: "https://m.media-amazon.com/images/M/MV5BMTM1ODIwNzM5OV5BMl5BanBnXkFtZTcwNjk5MDkyMQ@@._V1_.jpg",
 				},
+				c: client,
 			},
 		},
 		{
@@ -334,6 +344,7 @@ func TestTitle(t *testing.T) {
 					Name{ID: "nm2423121", URL: "https://www.imdb.com/name/nm2423121", FullName: "Matt Tomaszewski"},
 				},
 				Genres: []string{"Documentary"},
+				c:      client,
 			},
 		},
 		{
@@ -362,6 +373,7 @@ func TestTitle(t *testing.T) {
 				},
 				Season:  3,
 				Episode: 5,
+				c:       client,
 			},
 		},
 		{
@@ -398,6 +410,7 @@ func TestTitle(t *testing.T) {
 					URL:        "https://www.imdb.com/title/tt6856242/mediaviewer/rm1942154753",
 					ContentURL: "https://m.media-amazon.com/images/M/MV5BNjY3YTY3MGMtMjVmYS00ZmM3LWIxMDAtYWVhZTAyZDMwNmMwXkEyXkFqcGc@._V1_.jpg",
 				},
+				c: client,
 			},
 		},
 	} {
