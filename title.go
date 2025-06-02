@@ -33,7 +33,6 @@ type Title struct {
 	SeasonCount   int      `json:",omitempty"`
 	Season        int      `json:",omitempty"`
 	Episode       int      `json:",omitempty"`
-	c             *http.Client
 }
 
 // String formats a Title on one line.
@@ -106,7 +105,7 @@ func NewTitle(c *http.Client, id string) (*Title, error) {
 	if err != nil {
 		return nil, err
 	}
-	t := Title{c: c}
+	t := Title{}
 	if err := t.Parse(page); err != nil {
 		return nil, err
 	}
@@ -133,7 +132,6 @@ var (
 	titleEpisodeInformationRE = regexp.MustCompile(`<div data-testid="hero-subnav-bar-season-episode-numbers-section" class="[^"]*">S(\d+)[^E]*E(\d+)</div>`)
 	titleDescriptionRE        = regexp.MustCompile(`<meta property="og:description" content="(?:(?:Created|Directed) by .*?\w\w\.\s*)*(?:With .*?\w\w\.\s*)?([^"]*)`)
 	titlePosterRE             = regexp.MustCompile(`(?s)<div class="poster">\s*<a href="/title/tt\d+/mediaviewer/(rm\d+)[^"]*"[^>]*>\s*<img.*?src="([^"]+)"`)
-	titlePoster2RE            = regexp.MustCompile(`(?s)"primaryImage":{"id":"([^"]*)","__typename":"Image"}`)
 )
 
 type schemaJSON struct {
@@ -383,7 +381,12 @@ func (t *Title) Parse(page []byte) error {
 			ContentURL: string(s[2]),
 		}
 	} else {
-		s = titlePoster2RE.FindSubmatch(page)
+		re, err := regexp.Compile(`<a class="ipc-lockup-overlay ipc-focusable" href="/title/` + t.ID + `/mediaviewer/(rm\d+)/\?ref_=tt_ov_i" aria-label=".*"><div class="ipc-lockup-overlay__screen"></div></a>`)
+		if err != nil {
+			return NewErrParse("poster RE")
+		}
+		s = re.FindSubmatch(page)
+
 		if s != nil {
 			id := string(s[1])
 			re, err := regexp.Compile(`(?s)"primaryImage":{"id":"` + id + `","width":\d+,"height":\d+,"url":"([^"]+)"`)
@@ -399,21 +402,7 @@ func (t *Title) Parse(page []byte) error {
 					ContentURL: string(s[1]),
 				}
 			}
-		} else {
-			re, err := regexp.Compile(`<a class="ipc-lockup-overlay ipc-focusable" href="/title/tt\d+/mediaviewer/(rm\d+)/\?ref_=tt_ov_i" aria-label=".*"><div class="ipc-lockup-overlay__screen"></div></a>`)
-			if err != nil {
-				return NewErrParse("poster RE")
-			}
-			s = re.FindSubmatch(page)
-			if s != nil {
-				media, err := NewMedia(t.c, string(s[1]), t.ID)
-				if err != nil {
-					return NewErrParse(err.Error())
-				}
-				t.Poster = *media
-			}
 		}
 	}
-
 	return nil
 }
