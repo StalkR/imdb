@@ -61,6 +61,13 @@ func TestSearch(t *testing.T) {
 			},
 		},
 		{
+			ID:   "tt5572524",
+			URL:  "https://www.imdb.com/title/tt5572524",
+			Name: "A Letter from Rose Kennedy",
+			Year: 0,
+			Type: "movie",
+		},
+		{
 			ID:   "tt0038948",
 			URL:  "https://www.imdb.com/title/tt0038948",
 			Name: "Sister Kenny",
@@ -72,13 +79,6 @@ func TestSearch(t *testing.T) {
 				URL:        "https://m.media-amazon.com/images/M/MV5BMTFkM2E1NDAtY2M2MS00ZWFmLTg3M2EtOWYzY2Y4NzcyZjU0XkEyXkFqcGc@._V1_.jpg",
 				ContentURL: "",
 			},
-		},
-		{
-			ID:   "tt5572524",
-			URL:  "https://www.imdb.com/title/tt5572524",
-			Name: "A Letter from Rose Kennedy",
-			Year: 0,
-			Type: "movie",
 		},
 	}
 	assert := assert.New(t)
