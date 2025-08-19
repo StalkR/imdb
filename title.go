@@ -123,7 +123,7 @@ var (
 	titleYear3RE              = regexp.MustCompile(`(?s)<title[^>]*>[^<]*TV Episode (\d{4})[^<]*</title>`)
 	titleYear4RE              = regexp.MustCompile(`(?s) href="/title/tt\d+/releaseinfo[^"]*"[^>]*>(\d{4})[^<]*</a>`)
 	titleDurationRE           = regexp.MustCompile(`<time datetime="(?:PT)?([0-9HM]+)"`)
-	titleDuration2RE          = regexp.MustCompile(`(?s)<(?:span|button)[^>]*>Runtime</(?:span|button)><div[^>]*><ul[^>]*><li[^>]*><span[^>]*>(\d+m)in</span>`)
+	titleDuration2RE          = regexp.MustCompile(`(?s)<(?:span|button)[^>]*>Runtime</(?:span|button)><div[^>]*><ul[^>]*><li[^>]*><span[^>]*>(\d+m)(?:in)?</span>`)
 	titleDuration3RE          = regexp.MustCompile(`(?s)<(?:span|button)[^>]*>Runtime</(?:span|button)><div[^>]*>(\d+)(:?<![^>]*>\s*)*minutes</div>`)
 	titleLanguagesRE          = regexp.MustCompile(`(?s)<[^>]+>Languages?</span><div(.*?)</div>`)
 	titleLanguageRE           = regexp.MustCompile(`<a[^>]*>([^<]+)</a>`)
