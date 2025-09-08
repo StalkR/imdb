@@ -270,6 +270,7 @@ func TestTitle(t *testing.T) {
 				},
 				Writers: []Name{
 					{ID: "nm3881781", URL: "https://www.imdb.com/name/nm3881781", FullName: "Matt Fraction"},
+					{ID: "nm0456158", URL: "https://www.imdb.com/name/nm0456158", FullName: "Jack Kirby"},
 					{ID: "nm1411347", URL: "https://www.imdb.com/name/nm1411347", FullName: "Don Heck"},
 				},
 				Actors: []Name{
