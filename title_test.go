@@ -357,9 +357,6 @@ func TestTitle(t *testing.T) {
 				Directors: []Name{
 					{ID: "nm0154104", URL: "https://www.imdb.com/name/nm0154104", FullName: "Mike Clattenburg"},
 				},
-				Writers: []Name{
-					{ID: "nm0154104", URL: "https://www.imdb.com/name/nm0154104", FullName: "Mike Clattenburg"},
-				},
 				Actors: []Name{
 					{ID: "nm1033215", URL: "https://www.imdb.com/name/nm1033215", FullName: "John Paul Tremblay"},
 					{ID: "nm1036211", URL: "https://www.imdb.com/name/nm1036211", FullName: "Robb Wells"},
@@ -399,9 +396,9 @@ func TestTitle(t *testing.T) {
 					{ID: "nm2092839", URL: "https://www.imdb.com/name/nm2092839", FullName: "Mark Millar"},
 				},
 				Actors: []Name{
+					{ID: "nm0005023", URL: "https://www.imdb.com/name/nm0005023", FullName: "Djimon Hounsou"},
 					{ID: "nm0000146", URL: "https://www.imdb.com/name/nm0000146", FullName: "Ralph Fiennes"},
-					{ID: "nm2605345", URL: "https://www.imdb.com/name/nm2605345", FullName: "Gemma Arterton"},
-					{ID: "nm0406975", URL: "https://www.imdb.com/name/nm0406975", FullName: "Rhys Ifans"},
+					{ID: "nm6578548", URL: "https://www.imdb.com/name/nm6578548", FullName: "Shaun Yusuf McKee"},
 				},
 				Genres:        []string{"Action", "Adventure", "Thriller"},
 				Languages:     []string{"English", "Latin", "German", "French", "Russian"},
