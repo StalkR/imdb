@@ -132,7 +132,7 @@ var (
 	titleEpisodeInformationRE = regexp.MustCompile(`<div data-testid="hero-subnav-bar-season-episode-numbers-section" class="[^"]*">S(\d+)[^E]*E(\d+)</div>`)
 	titleDescriptionRE        = regexp.MustCompile(`<meta property="og:description" content="(?:(?:Created|Directed) by .*?\w\w\.\s*)*(?:With .*?\w\w\.\s*)?([^"]*)`)
 	titlePosterRE             = regexp.MustCompile(`(?s)<div class="poster">\s*<a href="/title/tt\d+/mediaviewer/(rm\d+)[^"]*"[^>]*>\s*<img.*?src="([^"]+)"`)
-	titlePoster2RE            = regexp.MustCompile(`<a class="ipc-lockup-overlay ipc-focusable" href="/title/tt\d+/mediaviewer/(rm\d+)/\?ref_=tt_ov_i" aria-label="`)
+	titlePoster2RE            = regexp.MustCompile(`(?s)"primaryImage":{"id":"(rm\d+)","width":\d+,"height":\d+,"url":"([^"]+)"`)
 
 	titlePersonRE    = regexp.MustCompile(`(?s)<a (?:class="[^"]*" )?(?:tabindex="[^"]*" )?(?:aria-disabled="[^"]*" )?href="/name/(nm\d+)[^"]*">([^<]+)`)
 	titleDirectorsRE = regexp.MustCompile(`(?s)<li role="presentation"[^>]*><(?:span|a)[^>]*>Directors?</(?:span|a)><div[^>]*>(.*?)</div>`)
@@ -374,8 +374,7 @@ func (t *Title) Parse(page []byte) error {
 
 	t.Description = html.UnescapeString(v.Description)
 
-	s = titlePosterRE.FindSubmatch(page)
-	if s != nil {
+	if s = titlePosterRE.FindSubmatch(page); s != nil {
 		id := string(s[1])
 		t.Poster = Media{
 			ID:         id,
@@ -383,23 +382,13 @@ func (t *Title) Parse(page []byte) error {
 			URL:        fmt.Sprintf(mediaURL, t.ID, id),
 			ContentURL: string(s[2]),
 		}
-	} else {
-		s = titlePoster2RE.FindSubmatch(page)
-		if s != nil {
-			id := string(s[1])
-			re, err := regexp.Compile(`(?s)"primaryImage":{"id":"` + id + `","width":\d+,"height":\d+,"url":"([^"]+)"`)
-			if err != nil {
-				return NewErrParse("poster RE")
-			}
-			s = re.FindSubmatch(page)
-			if s != nil {
-				t.Poster = Media{
-					ID:         id,
-					TitleID:    t.ID,
-					URL:        fmt.Sprintf(mediaURL, t.ID, id),
-					ContentURL: string(s[1]),
-				}
-			}
+	} else if s := titlePoster2RE.FindSubmatch(page); s != nil {
+		id := string(s[1])
+		t.Poster = Media{
+			ID:         id,
+			TitleID:    t.ID,
+			URL:        fmt.Sprintf(mediaURL, t.ID, id),
+			ContentURL: string(s[2]),
 		}
 	}
 	return nil

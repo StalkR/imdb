@@ -341,6 +341,12 @@ func TestTitle(t *testing.T) {
 					{ID: "nm2423121", URL: "https://www.imdb.com/name/nm2423121", FullName: "Matt Tomaszewski"},
 				},
 				Genres: []string{"Documentary"},
+				Poster: Media{
+					ID:         "rm2357364226",
+					TitleID:    "tt0900059",
+					URL:        "https://www.imdb.com/title/tt0900059/mediaviewer/rm2357364226",
+					ContentURL: "https://m.media-amazon.com/images/M/MV5BNWE5YjRhNDUtODBlYi00Y2Q1LThlNmEtYTI5NzJkNTFmNmE4XkEyXkFqcGc@._V1_.jpg",
+				},
 			},
 		},
 		{
@@ -396,9 +402,9 @@ func TestTitle(t *testing.T) {
 					{ID: "nm2092839", URL: "https://www.imdb.com/name/nm2092839", FullName: "Mark Millar"},
 				},
 				Actors: []Name{
-					{ID: "nm0005023", URL: "https://www.imdb.com/name/nm0005023", FullName: "Djimon Hounsou"},
 					{ID: "nm0000146", URL: "https://www.imdb.com/name/nm0000146", FullName: "Ralph Fiennes"},
-					{ID: "nm6578548", URL: "https://www.imdb.com/name/nm6578548", FullName: "Shaun Yusuf McKee"},
+					{ID: "nm2605345", URL: "https://www.imdb.com/name/nm2605345", FullName: "Gemma Arterton"},
+					{ID: "nm0406975", URL: "https://www.imdb.com/name/nm0406975", FullName: "Rhys Ifans"},
 				},
 				Genres:        []string{"Action", "Adventure", "Thriller"},
 				Languages:     []string{"English", "Latin", "German", "French", "Russian"},
