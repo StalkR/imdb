@@ -28,13 +28,6 @@ func TestSearch(t *testing.T) {
 				Year: 1914,
 			},
 			Title{
-				ID:   "tt38636721",
-				URL:  "https://www.imdb.com/title/tt38636721",
-				Name: "One Baza After Another",
-				Type: "short",
-				Year: 2025,
-			},
-			Title{
 				ID:   "tt0057193",
 				URL:  "https://www.imdb.com/title/tt0057193",
 				Name: "It's a Mad Mad Mad Mad World",
@@ -43,6 +36,13 @@ func TestSearch(t *testing.T) {
 				Poster: Media{
 					URL: "https://m.media-amazon.com/images/M/MV5BYzVhY2Y4MTUtMDJmYi00MmMyLWFhY2UtMzk4NjEyYWFlZWFkXkEyXkFqcGc@._V1_.jpg",
 				},
+			},
+			Title{
+				ID:   "tt15022684",
+				URL:  "https://www.imdb.com/title/tt15022684",
+				Name: "One After Another",
+				Type: "movie",
+				Year: 1961,
 			},
 			Title{
 				ID:   "tt13499806",
@@ -59,21 +59,24 @@ func TestSearch(t *testing.T) {
 				Year: 2020,
 			},
 			Title{
-				ID:   "tt14872974",
-				URL:  "https://www.imdb.com/title/tt14872974",
-				Name: "Hebe Tien: One, After Another",
+				ID:   "tt38636721",
+				URL:  "https://www.imdb.com/title/tt38636721",
+				Name: "One Baza After Another",
 				Type: "short",
-				Year: 2020,
+				Year: 2025,
 				Poster: Media{
-					URL: "https://m.media-amazon.com/images/M/MV5BY2FmNmQ0NzItZGNjOS00ZGIxLWI3YWMtOTVlYzE0YzVjMDI4XkEyXkFqcGc@._V1_.jpg",
+					URL: "https://m.media-amazon.com/images/M/MV5BMzUwMWNjMDgtMzYzYy00MTI3LWI0ZjQtN2U2NGJkNTc4MTY5XkEyXkFqcGc@._V1_.jpg",
 				},
 			},
 			Title{
-				ID:   "tt15022684",
-				URL:  "https://www.imdb.com/title/tt15022684",
-				Name: "One After Another",
+				ID:   "tt0063742",
+				URL:  "https://www.imdb.com/title/tt0063742",
+				Name: "Day After Tomorrow",
 				Type: "movie",
-				Year: 1961,
+				Year: 1968,
+				Poster: Media{
+					URL: "https://m.media-amazon.com/images/M/MV5BMWJkNDAxODktNzQxMi00NTEzLWIwMGYtYzg5YWQ0MjFlNDgyXkEyXkFqcGc@._V1_.jpg",
+				},
 			},
 		},
 		"Letterkenny": []Title{
@@ -104,19 +107,6 @@ func TestSearch(t *testing.T) {
 				},
 			},
 			{
-				ID:   "tt3913450",
-				URL:  "https://www.imdb.com/title/tt3913450",
-				Name: "Letterkenny People",
-				Year: 2014,
-				Type: "tvSeries",
-				Poster: Media{
-					ID:         "",
-					TitleID:    "",
-					URL:        "https://m.media-amazon.com/images/M/MV5BNmY5MDc1MDYtNzNjYS00M2JiLWI3ODgtMDBmMGJjYjhjYjZkXkEyXkFqcGc@._V1_.jpg",
-					ContentURL: "",
-				},
-			},
-			{
 				ID:   "tt30767687",
 				URL:  "https://www.imdb.com/title/tt30767687",
 				Name: "The Produce Stand: Letterkenny",
@@ -126,6 +116,19 @@ func TestSearch(t *testing.T) {
 					ID:         "",
 					TitleID:    "",
 					URL:        "https://m.media-amazon.com/images/M/MV5BOGJiN2Y0ZTYtNmI0Ni00ZGRiLWFmMGYtN2I2YmUwZjM3YzdmXkEyXkFqcGc@._V1_.jpg",
+					ContentURL: "",
+				},
+			},
+			{
+				ID:   "tt3913450",
+				URL:  "https://www.imdb.com/title/tt3913450",
+				Name: "Letterkenny People",
+				Year: 2014,
+				Type: "tvSeries",
+				Poster: Media{
+					ID:         "",
+					TitleID:    "",
+					URL:        "https://m.media-amazon.com/images/M/MV5BNmY5MDc1MDYtNzNjYS00M2JiLWI3ODgtMDBmMGJjYjhjYjZkXkEyXkFqcGc@._V1_.jpg",
 					ContentURL: "",
 				},
 			},
