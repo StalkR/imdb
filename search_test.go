@@ -28,6 +28,13 @@ func TestSearch(t *testing.T) {
 				Year: 1914,
 			},
 			Title{
+				ID:   "tt13499806",
+				URL:  "https://www.imdb.com/title/tt13499806",
+				Name: "One Damn Thing After Another",
+				Type: "short",
+				Year: 2020,
+			},
+			Title{
 				ID:   "tt0057193",
 				URL:  "https://www.imdb.com/title/tt0057193",
 				Name: "It's a Mad Mad Mad Mad World",
@@ -45,18 +52,14 @@ func TestSearch(t *testing.T) {
 				Year: 1961,
 			},
 			Title{
-				ID:   "tt13499806",
-				URL:  "https://www.imdb.com/title/tt13499806",
-				Name: "One Damn Thing After Another",
+				ID:   "tt14872974",
+				URL:  "https://www.imdb.com/title/tt14872974",
+				Name: "Hebe Tien: One, After Another",
 				Type: "short",
 				Year: 2020,
-			},
-			Title{
-				ID:   "tt21382412",
-				URL:  "https://www.imdb.com/title/tt21382412",
-				Name: "One After Another",
-				Type: "short",
-				Year: 2020,
+				Poster: Media{
+					URL: "https://m.media-amazon.com/images/M/MV5BY2FmNmQ0NzItZGNjOS00ZGIxLWI3YWMtOTVlYzE0YzVjMDI4XkEyXkFqcGc@._V1_.jpg",
+				},
 			},
 			Title{
 				ID:   "tt38636721",
@@ -107,19 +110,6 @@ func TestSearch(t *testing.T) {
 				},
 			},
 			{
-				ID:   "tt30767687",
-				URL:  "https://www.imdb.com/title/tt30767687",
-				Name: "The Produce Stand: Letterkenny",
-				Year: 2020,
-				Type: "podcastSeries",
-				Poster: Media{
-					ID:         "",
-					TitleID:    "",
-					URL:        "https://m.media-amazon.com/images/M/MV5BOGJiN2Y0ZTYtNmI0Ni00ZGRiLWFmMGYtN2I2YmUwZjM3YzdmXkEyXkFqcGc@._V1_.jpg",
-					ContentURL: "",
-				},
-			},
-			{
 				ID:   "tt3913450",
 				URL:  "https://www.imdb.com/title/tt3913450",
 				Name: "Letterkenny People",
@@ -129,6 +119,19 @@ func TestSearch(t *testing.T) {
 					ID:         "",
 					TitleID:    "",
 					URL:        "https://m.media-amazon.com/images/M/MV5BNmY5MDc1MDYtNzNjYS00M2JiLWI3ODgtMDBmMGJjYjhjYjZkXkEyXkFqcGc@._V1_.jpg",
+					ContentURL: "",
+				},
+			},
+			{
+				ID:   "tt30767687",
+				URL:  "https://www.imdb.com/title/tt30767687",
+				Name: "The Produce Stand: Letterkenny",
+				Year: 2020,
+				Type: "podcastSeries",
+				Poster: Media{
+					ID:         "",
+					TitleID:    "",
+					URL:        "https://m.media-amazon.com/images/M/MV5BOGJiN2Y0ZTYtNmI0Ni00ZGRiLWFmMGYtN2I2YmUwZjM3YzdmXkEyXkFqcGc@._V1_.jpg",
 					ContentURL: "",
 				},
 			},
