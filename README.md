@@ -1,16 +1,19 @@
 # IMDb Go API
 
-[![Build Status][1]][2] [![Godoc][3]][4]
+[![godoc](https://godoc.org/github.com/StalkR/imdb?status.png)](https://godoc.org/github.com/StalkR/imdb)
+[![build status](https://github.com/StalkR/imdb/actions/workflows/build.yml/badge.svg)](https://github.com/StalkR/imdb/actions/workflows/build.yml)
+[![test status](https://github.com/StalkR/imdb/actions/workflows/test.yml/badge.svg)](https://github.com/StalkR/imdb/actions/workflows/test.yml)
 
-`go get github.com/StalkR/imdb`
+Unofficial IMDb API in Go.
 
-Bugs, comments, questions: create a [new issue][5].
+## Usage
 
-Also, IMDb has [alternative interfaces][6].
+See [example](https://github.com/StalkR/imdb/blob/master/examples/imdb.go).
 
-[1]: https://github.com/StalkR/imdb/actions/workflows/build.yml/badge.svg
-[2]: https://github.com/StalkR/imdb/actions/workflows/build.yml
-[3]: https://godoc.org/github.com/StalkR/imdb?status.png
-[4]: https://godoc.org/github.com/StalkR/imdb
-[5]: https://github.com/StalkR/imdb/issues/new
-[6]: http://www.imdb.com/interfaces
+## Support
+
+Bugs, comments, questions: create a [new issue](https://github.com/StalkR/imdb/issues/new).
+
+## Alternatives
+
+See IMDb [interfaces](https://www.imdb.com/interfaces).
