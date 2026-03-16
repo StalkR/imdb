@@ -2,7 +2,6 @@ package imdb
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"html"
 	"io"
@@ -35,14 +34,9 @@ func NewSeason(c *http.Client, id string, season int) (*Season, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer func(Body io.ReadCloser) {
-		_ = Body.Close()
-	}(resp.Body)
-	if resp.StatusCode != http.StatusOK {
-		if resp.StatusCode == http.StatusForbidden {
-			return nil, errors.New("forbidden (e.g. denied by AWS WAF)")
-		}
-		return nil, fmt.Errorf("imdb: status not ok: %v", resp.Status)
+	defer resp.Body.Close()
+	if err := checkResponse(resp); err != nil {
+		return nil, err
 	}
 	page, err := io.ReadAll(resp.Body)
 	if err != nil {

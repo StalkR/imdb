@@ -1,6 +1,7 @@
 package imdb
 
 import (
+	"log"
 	"reflect"
 	"testing"
 )
@@ -34,6 +35,10 @@ func TestName(t *testing.T) {
 	} {
 		got, err := NewName(client, tt.ID)
 		if err != nil {
+			if err == errChallenged {
+				log.Printf("test inconclusive: %v", errChallenged)
+				continue
+			}
 			t.Errorf("NewName(%s) error: %v", tt.ID, err)
 			continue
 		}

@@ -1,7 +1,10 @@
 package imdb
 
 import (
+	"errors"
+	"fmt"
 	"html"
+	"net/http"
 	"regexp"
 	"strings"
 )
@@ -36,4 +39,22 @@ func (s stringSlice) Has(e string) bool {
 		}
 	}
 	return false
+}
+
+var (
+	errForbidden  = errors.New("forbidden by AWS WAF")
+	errChallenged = errors.New("challenged by AWS WAF")
+)
+
+func checkResponse(resp *http.Response) error {
+	if resp.StatusCode == http.StatusOK {
+		return nil
+	}
+	if resp.StatusCode == http.StatusForbidden {
+		return errForbidden
+	}
+	if resp.Header.Get("X-Amzn-Waf-Action") == "challenge" {
+		return errChallenged
+	}
+	return fmt.Errorf("imdb: status not ok: %v", resp.Status)
 }
