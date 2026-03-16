@@ -35,6 +35,13 @@ func TestSearch(t *testing.T) {
 				Year: 2020,
 			},
 			Title{
+				ID:   "tt15022684",
+				URL:  "https://www.imdb.com/title/tt15022684",
+				Name: "One After Another",
+				Type: "movie",
+				Year: 1961,
+			},
+			Title{
 				ID:   "tt0057193",
 				URL:  "https://www.imdb.com/title/tt0057193",
 				Name: "It's a Mad Mad Mad Mad World",
@@ -45,20 +52,13 @@ func TestSearch(t *testing.T) {
 				},
 			},
 			Title{
-				ID:   "tt15022684",
-				URL:  "https://www.imdb.com/title/tt15022684",
-				Name: "One After Another",
+				ID:   "tt0063742",
+				URL:  "https://www.imdb.com/title/tt0063742",
+				Name: "Day After Tomorrow",
 				Type: "movie",
-				Year: 1961,
-			},
-			Title{
-				ID:   "tt14872974",
-				URL:  "https://www.imdb.com/title/tt14872974",
-				Name: "Hebe Tien: One, After Another",
-				Type: "short",
-				Year: 2020,
+				Year: 1968,
 				Poster: Media{
-					URL: "https://m.media-amazon.com/images/M/MV5BY2FmNmQ0NzItZGNjOS00ZGIxLWI3YWMtOTVlYzE0YzVjMDI4XkEyXkFqcGc@._V1_.jpg",
+					URL: "https://m.media-amazon.com/images/M/MV5BMWJkNDAxODktNzQxMi00NTEzLWIwMGYtYzg5YWQ0MjFlNDgyXkEyXkFqcGc@._V1_.jpg",
 				},
 			},
 			Title{
@@ -69,16 +69,6 @@ func TestSearch(t *testing.T) {
 				Year: 2025,
 				Poster: Media{
 					URL: "https://m.media-amazon.com/images/M/MV5BMzUwMWNjMDgtMzYzYy00MTI3LWI0ZjQtN2U2NGJkNTc4MTY5XkEyXkFqcGc@._V1_.jpg",
-				},
-			},
-			Title{
-				ID:   "tt0063742",
-				URL:  "https://www.imdb.com/title/tt0063742",
-				Name: "Day After Tomorrow",
-				Type: "movie",
-				Year: 1968,
-				Poster: Media{
-					URL: "https://m.media-amazon.com/images/M/MV5BMWJkNDAxODktNzQxMi00NTEzLWIwMGYtYzg5YWQ0MjFlNDgyXkEyXkFqcGc@._V1_.jpg",
 				},
 			},
 		},

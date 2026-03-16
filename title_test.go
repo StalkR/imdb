@@ -206,6 +206,12 @@ func TestTitle(t *testing.T) {
 				},
 				Genres:        []string{"Documentary", "Short"},
 				Nationalities: []string{"Canada"},
+				Poster: Media{
+					ID:         "rm2164536576",
+					TitleID:    "tt0291830",
+					URL:        "https://www.imdb.com/title/tt0291830/mediaviewer/rm2164536576",
+					ContentURL: "https://m.media-amazon.com/images/M/MV5BODBiMWQ2NWItNDIwOC00ZmI1LWJlMTItOGUwMDAwNmViNTJlXkEyXkFqcGc@._V1_.jpg",
+				},
 			},
 		},
 		{
@@ -271,7 +277,7 @@ func TestTitle(t *testing.T) {
 				Writers: []Name{
 					{ID: "nm3881781", URL: "https://www.imdb.com/name/nm3881781", FullName: "Matt Fraction"},
 					{ID: "nm0456158", URL: "https://www.imdb.com/name/nm0456158", FullName: "Jack Kirby"},
-					{ID: "nm1293367", URL: "https://www.imdb.com/name/nm1293367", FullName: "Larry Lieber"},
+					{ID: "nm18208773", URL: "https://www.imdb.com/name/nm18208773", FullName: "Stan Lee"},
 				},
 				Actors: []Name{
 					{ID: "nm0000332", URL: "https://www.imdb.com/name/nm0000332", FullName: "Don Cheadle"},
