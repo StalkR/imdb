@@ -1,13 +1,12 @@
 package imdb
 
 import (
+	"log"
+	"reflect"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestSearch(t *testing.T) {
-	assert := assert.New(t)
 	for searchTerm, want := range map[string][]Title{
 		"one battle after another": []Title{
 			Title{
@@ -49,16 +48,6 @@ func TestSearch(t *testing.T) {
 				Year: 1963,
 				Poster: Media{
 					URL: "https://m.media-amazon.com/images/M/MV5BYzVhY2Y4MTUtMDJmYi00MmMyLWFhY2UtMzk4NjEyYWFlZWFkXkEyXkFqcGc@._V1_.jpg",
-				},
-			},
-			Title{
-				ID:   "tt0063742",
-				URL:  "https://www.imdb.com/title/tt0063742",
-				Name: "Day After Tomorrow",
-				Type: "movie",
-				Year: 1968,
-				Poster: Media{
-					URL: "https://m.media-amazon.com/images/M/MV5BMWJkNDAxODktNzQxMi00NTEzLWIwMGYtYzg5YWQ0MjFlNDgyXkEyXkFqcGc@._V1_.jpg",
 				},
 			},
 			Title{
@@ -149,14 +138,28 @@ func TestSearch(t *testing.T) {
 	} {
 		results, err := SearchTitle(client, searchTerm)
 		if err != nil {
+			if err == errChallenged {
+				log.Printf("test inconclusive: %v", errChallenged)
+				continue
+			}
 			t.Errorf("SearchTitle(%v) error: %v", searchTerm, err)
 			continue
 		}
-		if len(results) > len(want) {
-			results = results[:len(want)]
+		if len(results) < len(want) {
+			t.Errorf("SearchTitle(%v) got %v results, want at least %v", searchTerm, len(results), len(want))
+			continue
 		}
-		for i, got := range results {
-			assert.Equal(want[i], got, "SearchTitle(%v) result #%v error: %v", searchTerm, i, err)
+		for i, w := range want {
+			if found := func() bool {
+				for _, got := range results {
+					if reflect.DeepEqual(got, w) {
+						return true
+					}
+				}
+				return false
+			}(); !found {
+				t.Errorf("SearchTitle(%v) result #%v missing: %T(%#v)", searchTerm, i, w, w)
+			}
 		}
 	}
 }

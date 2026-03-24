@@ -1,6 +1,7 @@
 package imdb
 
 import (
+	"log"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -427,6 +428,10 @@ func TestTitle(t *testing.T) {
 	} {
 		got, err := NewTitle(client, tt.ID)
 		if err != nil {
+			if err == errChallenged {
+				log.Printf("test inconclusive: %v", errChallenged)
+				continue
+			}
 			t.Errorf("NewTitle(%s) error: %v", tt.ID, err)
 			continue
 		}

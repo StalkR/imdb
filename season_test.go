@@ -1,6 +1,7 @@
 package imdb
 
 import (
+	"log"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -176,6 +177,10 @@ func TestSeason(t *testing.T) {
 	} {
 		got, err := NewSeason(client, tt.ID, tt.Season)
 		if err != nil {
+			if err == errChallenged {
+				log.Printf("test inconclusive: %v", errChallenged)
+				continue
+			}
 			t.Errorf("NewSeason(%v, %v) error: %v", tt.ID, tt.Season, err)
 			continue
 		}
