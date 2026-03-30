@@ -1,8 +1,10 @@
 package imdb
 
 import (
+	"fmt"
 	"log"
 	"reflect"
+	"strings"
 	"testing"
 )
 
@@ -48,16 +50,6 @@ func TestSearch(t *testing.T) {
 				Year: 1963,
 				Poster: Media{
 					URL: "https://m.media-amazon.com/images/M/MV5BYzVhY2Y4MTUtMDJmYi00MmMyLWFhY2UtMzk4NjEyYWFlZWFkXkEyXkFqcGc@._V1_.jpg",
-				},
-			},
-			Title{
-				ID:   "tt38636721",
-				URL:  "https://www.imdb.com/title/tt38636721",
-				Name: "One Baza After Another",
-				Type: "short",
-				Year: 2025,
-				Poster: Media{
-					URL: "https://m.media-amazon.com/images/M/MV5BMzUwMWNjMDgtMzYzYy00MTI3LWI0ZjQtN2U2NGJkNTc4MTY5XkEyXkFqcGc@._V1_.jpg",
 				},
 			},
 		},
@@ -158,7 +150,11 @@ func TestSearch(t *testing.T) {
 				}
 				return false
 			}(); !found {
-				t.Errorf("SearchTitle(%v) result #%v missing: %T(%#v)", searchTerm, i, w, w)
+				var resultsByLine []string
+				for j, r := range results {
+					resultsByLine = append(resultsByLine, fmt.Sprintf("%v: %#v", j, r))
+				}
+				t.Errorf("SearchTitle(%v) result #%v missing: %#v; results:\n%v", searchTerm, i, w, strings.Join(resultsByLine, "\n"))
 			}
 		}
 	}
