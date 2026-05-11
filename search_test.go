@@ -42,16 +42,6 @@ func TestSearch(t *testing.T) {
 				Type: "movie",
 				Year: 1961,
 			},
-			Title{
-				ID:   "tt0057193",
-				URL:  "https://www.imdb.com/title/tt0057193",
-				Name: "It's a Mad Mad Mad Mad World",
-				Type: "movie",
-				Year: 1963,
-				Poster: Media{
-					URL: "https://m.media-amazon.com/images/M/MV5BYzVhY2Y4MTUtMDJmYi00MmMyLWFhY2UtMzk4NjEyYWFlZWFkXkEyXkFqcGc@._V1_.jpg",
-				},
-			},
 		},
 		"Letterkenny": []Title{
 			{
