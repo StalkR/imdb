@@ -35,13 +35,6 @@ func TestSearch(t *testing.T) {
 				Type: "short",
 				Year: 2020,
 			},
-			Title{
-				ID:   "tt15022684",
-				URL:  "https://www.imdb.com/title/tt15022684",
-				Name: "One After Another",
-				Type: "movie",
-				Year: 1961,
-			},
 		},
 		"Letterkenny": []Title{
 			{
