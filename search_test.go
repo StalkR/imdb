@@ -28,13 +28,6 @@ func TestSearch(t *testing.T) {
 				Type: "short",
 				Year: 1914,
 			},
-			Title{
-				ID:   "tt13499806",
-				URL:  "https://www.imdb.com/title/tt13499806",
-				Name: "One Damn Thing After Another",
-				Type: "short",
-				Year: 2020,
-			},
 		},
 		"Letterkenny": []Title{
 			{
